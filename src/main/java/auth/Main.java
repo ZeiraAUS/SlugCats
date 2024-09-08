@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Main {
+public class Testconnection {
     public static void main(String[] args) {
         Connection connection = DatabaseConnection.getInstance();
         try {
