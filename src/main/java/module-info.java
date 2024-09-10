@@ -2,6 +2,8 @@ module com.example.addressbook {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires org.testng;
+    requires org.junit.jupiter.api;
 
 
     opens com.SlugCats to javafx.fxml;

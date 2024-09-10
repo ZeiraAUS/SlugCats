@@ -9,7 +9,7 @@ public class Main {
         Connection connection = DatabaseConnection.getInstance();
         try {
             Statement statement = connection.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS user " +
+            statement.execute("CREATE TABLE IF NOT EXISTS users " +
                     "(id INTEGER PRIMARY KEY, username VARCHAR," +
                     "email VARCHAR," +
                     "password VARCHAR)");
