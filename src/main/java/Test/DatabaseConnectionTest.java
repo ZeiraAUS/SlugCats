@@ -1,19 +1,23 @@
-package auth;
+package Test;
 
-import org.testng.annotations.Test;
+
 import java.sql.Connection;
 
+import auth.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class DatabaseConnectionTest {
 
     @Test
-    public void testGetInstanceNotNull() {
+    public   void testGetInstanceNotNull() {
 
         Connection connection = DatabaseConnection.getInstance();
         assertNotNull(connection, "databace not null");
     }
+
 
     @Test
     public void testSingletonPattern() {

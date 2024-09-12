@@ -105,7 +105,7 @@ public class Authentication /*implements UserService*/ {
             Scanner scanner = new Scanner(System.in);
             Authentication authService = new Authentication();
 
-
+            /*
             System.out.println("Register a new user:");
             System.out.print("Enter username: ");
             String username = scanner.nextLine();
@@ -121,7 +121,7 @@ public class Authentication /*implements UserService*/ {
                 System.out.println("Registration successful!");
             } else {
                 System.out.println("Registration failed.");
-            }
+            }*/
 
 
             System.out.println("\nLogin:");
