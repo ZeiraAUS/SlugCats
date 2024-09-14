@@ -6,6 +6,11 @@ import java.util.List;
 
 public interface IGameTimeDAO {
     /**
+     * Creates the GameTime table in the database if it doesn't already exist.
+     */
+    public void CreateGameTimeTable();
+
+    /**
      * Adds a new GameTime to the database.
      * @param gameTime GameTime to be added.
      */
@@ -36,4 +41,9 @@ public interface IGameTimeDAO {
      * @param id The ID of the GameTime to be deleted.
      */
     public void DeleteGameTime(int id);
+
+    /**
+     * Closes the connection to the database.
+     */
+    public void close();
 }

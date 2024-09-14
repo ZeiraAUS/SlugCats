@@ -48,4 +48,15 @@ public class SpeedrunTime {
     public void setLastRunTime(long lastRunTime) {
         LastRunTime = lastRunTime;
     }
+
+    @Override
+    public String toString() {
+        return "SpeedrunTime{" +
+                "SpeedrunTimeID=" + SpeedrunTimeID +
+                ", UserID=" + UserID +
+                ", GameID=" + GameID +
+                ", BestTime=" + BestTime +
+                ", LastRunTime=" + LastRunTime +
+                '}';
+    }
 }

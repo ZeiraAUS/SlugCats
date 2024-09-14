@@ -6,6 +6,11 @@ import java.util.List;
 
 public interface IGameDAO {
     /**
+     * Creates the Game table in the database if it doesn't already exist.
+     */
+    public void CreateGameTable();
+
+    /**
      * Adds a new Game to the database.
      * @param game Game to be added.
      */
@@ -35,4 +40,9 @@ public interface IGameDAO {
      * @param id The ID of the Game to be deleted.
      */
     public void DeleteGame(int id);
+
+    /**
+     * Closes the connection to the database.
+     */
+    public void close();
 }

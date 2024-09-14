@@ -10,6 +10,11 @@ import java.util.List;
  */
 public interface IUserDAO {
     /**
+     * Creates the User table in the database if it doesn't already exist.
+     */
+    public void CreateUserTable();
+
+    /**
      * Adds a new User to the database.
      * @param user The User to be added.
      */
@@ -39,4 +44,9 @@ public interface IUserDAO {
      * @param id The ID of the User to be deleted./
      */
     public void DeleteUser(int id);
+
+    /**
+     * Closes the connection to the database.
+     */
+    public void close();
 }

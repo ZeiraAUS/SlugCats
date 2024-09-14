@@ -8,6 +8,15 @@ public class User {
     private String LastName;
     private String Email;
 
+    public User(int userId, String userName, String password, String firstName, String lastName, String email) {
+        UserId = userId;
+        UserName = userName;
+        Password = password;
+        FirstName = firstName;
+        LastName = lastName;
+        Email = email;
+    }
+
     public User(String userName, String password, String firstName, String lastName, String email) {
         UserName = userName;
         Password = password;
@@ -58,6 +67,15 @@ public class User {
         Email = email;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "UserId=" + UserId +
+                ", UserName='" + UserName + '\'' +
+                ", Password='" + Password + '\'' +
+                ", FirstName='" + FirstName + '\'' +
+                ", LastName='" + LastName + '\'' +
+                ", Email='" + Email + '\'' +
+                '}';
+    }
 }

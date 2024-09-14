@@ -30,4 +30,13 @@ public class Game {
     public void setGameProcess(int gameProcess) {
         GameProcess = gameProcess;
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "GameID=" + GameID +
+                ", GameName='" + GameName + '\'' +
+                ", GameProcess=" + GameProcess +
+                '}';
+    }
 }

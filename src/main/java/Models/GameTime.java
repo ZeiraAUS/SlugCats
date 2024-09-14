@@ -48,4 +48,15 @@ public class GameTime {
     public void setLastSessionPlaytime(long lastSessionPlaytime) {
         LastSessionPlaytime = lastSessionPlaytime;
     }
+
+    @Override
+    public String toString() {
+        return "GameTime{" +
+                "TimerID=" + TimerID +
+                ", UserID=" + UserID +
+                ", GameID=" + GameID +
+                ", TotalPlaytime=" + TotalPlaytime +
+                ", LastSessionPlaytime=" + LastSessionPlaytime +
+                '}';
+    }
 }

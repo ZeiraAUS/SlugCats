@@ -6,6 +6,11 @@ import java.util.List;
 
 public interface ISpeedrunTImeDAO {
     /**
+     * Creates the SpeedrunTime table in the database if it doesn't already exist.
+     */
+    public void CreateSpeedrunTimeTable();
+
+    /**
      * Adds a new SpeedrunTime to the database.
      * @param speedrunTime SpeedrunTime to be added.
      */
@@ -35,4 +40,9 @@ public interface ISpeedrunTImeDAO {
      * @param id The ID of the SpeedrunTime to be deleted.
      */
     public void DeleteSpeedrunTime(int id);
+
+    /**
+     * Closes the connection to the database.
+     */
+    public void close();
 }
