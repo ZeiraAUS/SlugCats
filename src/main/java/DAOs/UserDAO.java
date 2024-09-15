@@ -3,7 +3,6 @@ package DAOs;
 import Models.User;
 import com.SlugCats.DatabaseConnection;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,6 @@ public class UserDAO implements IUserDAO{
         {
             System.err.println(sqlEx);
         }
-
     }
 
     @Override

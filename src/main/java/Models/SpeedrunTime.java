@@ -1,38 +1,46 @@
 package Models;
 
 public class SpeedrunTime {
-    private int SpeedrunTimeID;
-    private int UserID;
-    private int GameID;
+    private int SpeedrunTimeId;
+    private int UserId;
+    private int GameId;
     private long BestTime;
     private long LastRunTime;
 
-    public SpeedrunTime(int userID, int gameID, long bestTime, long lastRunTime) {
-        UserID = userID;
-        GameID = gameID;
+    public SpeedrunTime(int speedrunTimeId, int userId, int gameId, long bestTime, long lastRunTime) {
+        SpeedrunTimeId = speedrunTimeId;
+        UserId = userId;
+        GameId = gameId;
         BestTime = bestTime;
         LastRunTime = lastRunTime;
     }
 
-    public int getSpeedrunTimeID() {
-        return SpeedrunTimeID;
-    }
-    public void setSpeedrunTimeID(int speedrunTimeID) {
-        SpeedrunTimeID = speedrunTimeID;
-    }
-
-    public int getUserID() {
-        return UserID;
-    }
-    public void setUserID(int userID) {
-        UserID = userID;
+    public SpeedrunTime(int userId, int gameId, long bestTime, long lastRunTime) {
+        UserId = userId;
+        GameId = gameId;
+        BestTime = bestTime;
+        LastRunTime = lastRunTime;
     }
 
-    public int getGameID() {
-        return GameID;
+    public int getSpeedrunTimeId() {
+        return SpeedrunTimeId;
     }
-    public void setGameID(int gameID) {
-        GameID = gameID;
+    public void setSpeedrunTimeId(int speedrunTimeId) {
+        SpeedrunTimeId = speedrunTimeId;
+    }
+
+    public int getUserId() {
+        return UserId;
+    }
+    public void setUserId(int userId) {
+        UserId = userId;
+    }
+
+    public int getGameId() {
+        return GameId;
+    }
+    public void setGameId(int gameId) {
+        GameId = gameId;
     }
 
     public long getBestTime() {
@@ -52,9 +60,9 @@ public class SpeedrunTime {
     @Override
     public String toString() {
         return "SpeedrunTime{" +
-                "SpeedrunTimeID=" + SpeedrunTimeID +
-                ", UserID=" + UserID +
-                ", GameID=" + GameID +
+                "SpeedrunTimeID=" + SpeedrunTimeId +
+                ", UserID=" + UserId +
+                ", GameID=" + GameId +
                 ", BestTime=" + BestTime +
                 ", LastRunTime=" + LastRunTime +
                 '}';

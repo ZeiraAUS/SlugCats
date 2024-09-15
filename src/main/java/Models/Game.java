@@ -1,20 +1,26 @@
 package Models;
 
 public class Game {
-    private int GameID;
+    private int GameId;
     private String GameName;
     private int GameProcess;
+
+    public Game(int gameId, String gameName, int gameProcess) {
+        GameId = gameId;
+        GameName = gameName;
+        GameProcess = gameProcess;
+    }
 
     public Game(String gameName, int gameProcess) {
         GameName = gameName;
         GameProcess = gameProcess;
     }
 
-    public int getGameID() {
-        return GameID;
+    public int getGameId() {
+        return GameId;
     }
-    public void setGameID(int gameID) {
-        GameID = gameID;
+    public void setGameId(int gameId) {
+        GameId = gameId;
     }
 
     public String getGameName() {
@@ -34,7 +40,7 @@ public class Game {
     @Override
     public String toString() {
         return "Game{" +
-                "GameID=" + GameID +
+                "GameID=" + GameId +
                 ", GameName='" + GameName + '\'' +
                 ", GameProcess=" + GameProcess +
                 '}';
