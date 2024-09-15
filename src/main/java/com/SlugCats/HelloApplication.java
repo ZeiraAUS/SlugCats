@@ -27,6 +27,7 @@ public class HelloApplication extends Application {
     {
         Connection connection = DatabaseConnection.getInstance();
 
+        DatabaseConnection.StartupMessage();
         DatabaseConnection.CreateTables();
 
         launch();
