@@ -115,6 +115,35 @@ public class GameTimeDAO implements IGameTimeDAO{
     }
 
     @Override
+    public List<GameTime> GetGameTimeListByUser(int id) {
+        List<GameTime> gameTimeList = new ArrayList<>();
+        try
+        {
+            PreparedStatement getAllByUser = connection.prepareStatement("SELECT * FROM GameTimes " +
+                    "WHERE UserId = ?");
+            getAllByUser.setInt(1, id);
+            ResultSet rs = getAllByUser.executeQuery();
+            while (rs.next())
+            {
+                gameTimeList.add(
+                        new GameTime(
+                                rs.getInt("GameTimeId"),
+                                rs.getInt("UserId"),
+                                rs.getInt("GameId"),
+                                rs.getLong("TotalPlaytime"),
+                                rs.getLong("LastSessionPlaytime")
+                        )
+                );
+            }
+        }
+        catch (SQLException sqlEx)
+        {
+            System.err.println(sqlEx);
+        }
+        return gameTimeList;
+    }
+
+    @Override
     public void UpdateGameTime(GameTime gameTime) {
         try
         {

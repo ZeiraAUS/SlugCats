@@ -28,6 +28,14 @@ public interface IUserDAO {
     public User GetUser(int id);
 
     /**
+     * Gets the User with the matching Username and Password.
+     * @param username The Username of the desired User.
+     * @param password The Password of the desired User.
+     * @return The User with a matching Username and Password, or null if not found.
+     */
+    public User GetUserByUsernamePassword(String username, String password);
+
+    /**
      * Gets all the Users in the database.
      * @return A list of all the Users.
      */

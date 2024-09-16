@@ -86,6 +86,34 @@ public class UserDAO implements IUserDAO{
     }
 
     @Override
+    public User GetUserByUsernamePassword(String username, String password) {
+        try
+        {
+            PreparedStatement getUserLogin = connection.prepareStatement("SELECT * FROM Users " +
+                    "WHERE UserName = ? AND Password = ?");
+            getUserLogin.setString(1, username);
+            getUserLogin.setString(2, password);
+            ResultSet rs = getUserLogin.executeQuery();
+            if (rs.next())
+            {
+                return new User(
+                        rs.getInt("UserId"),
+                        rs.getString("UserName"),
+                        rs.getString("Password"),
+                        rs.getString("FirstName"),
+                        rs.getString("LastName"),
+                        rs.getString("Email")
+                );
+            }
+        }
+        catch (SQLException sqlEx)
+        {
+            System.err.println(sqlEx);
+        }
+        return null;
+    }
+
+    @Override
     public List<User> GetUserList() {
         List<User> userList = new ArrayList<>();
         try

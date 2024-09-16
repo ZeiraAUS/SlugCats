@@ -114,6 +114,64 @@ public class SpeedrunTimeDAO implements ISpeedrunTImeDAO{
     }
 
     @Override
+    public List<SpeedrunTime> GetSpeedrunTimeListByUser(int id) {
+        List<SpeedrunTime> speedrunTimeList = new ArrayList<>();
+        try
+        {
+            PreparedStatement getAllByUser = connection.prepareStatement("SELECT * FROM SpeedrunTimes " +
+                    "WHERE UserId = ?");
+            getAllByUser.setInt(1, id);
+            ResultSet rs = getAllByUser.executeQuery();
+            while (rs.next())
+            {
+                speedrunTimeList.add(
+                        new SpeedrunTime(
+                                rs.getInt("SpeedrunTimeId"),
+                                rs.getInt("UserId"),
+                                rs.getInt("GameId"),
+                                rs.getLong("BestTime"),
+                                rs.getLong("LastRunTime")
+                        )
+                );
+            }
+        }
+        catch (SQLException sqlEx)
+        {
+            System.err.println(sqlEx);
+        }
+        return speedrunTimeList;
+    }
+
+    @Override
+    public List<SpeedrunTime> GetSpeedrunTimeListByGame(int id) {
+        List<SpeedrunTime> speedrunTimeList = new ArrayList<>();
+        try
+        {
+            PreparedStatement getAllByGame = connection.prepareStatement("SELECT * FROM SpeedrunTimes " +
+                    "WHERE GameId = ?");
+            getAllByGame.setInt(1, id);
+            ResultSet rs = getAllByGame.executeQuery();
+            while (rs.next())
+            {
+                speedrunTimeList.add(
+                        new SpeedrunTime(
+                                rs.getInt("SpeedrunTimeId"),
+                                rs.getInt("UserId"),
+                                rs.getInt("GameId"),
+                                rs.getLong("BestTime"),
+                                rs.getLong("LastRunTime")
+                        )
+                );
+            }
+        }
+        catch (SQLException sqlEx)
+        {
+            System.err.println(sqlEx);
+        }
+        return speedrunTimeList;
+    }
+
+    @Override
     public void UpdateSpeedrunTime(SpeedrunTime speedrunTime) {
         try
         {

@@ -18,7 +18,6 @@ public interface IGameTimeDAO {
 
     /**
      * Gets the GameTime with the matching ID.
-     *
      * @param id The ID of the desired GameTime.
      * @return A GameTime with a matching ID.
      */
@@ -29,6 +28,13 @@ public interface IGameTimeDAO {
      * @return A list of all GameTimes.
      */
     public List<GameTime> GetGameTimeList();
+
+    /**
+     * Gets the GameTime with the matching UserID.
+     * @param id The ID of the User.
+     * @return A list of all GameTimes with the matching UserId.
+     */
+    public List<GameTime> GetGameTimeListByUser(int id);
 
     /**
      * Updates an existing GameTime in the database.

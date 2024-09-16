@@ -30,6 +30,20 @@ public interface ISpeedrunTImeDAO {
     public List<SpeedrunTime> GetSpeedrunTimeList();
 
     /**
+     * Gets all SpeedrunTimes in the database with the matching UserId.
+     * @param id The ID of the User.
+     * @return A list of all SpeedrunTimes with the matching UserId.
+     */
+    public List<SpeedrunTime> GetSpeedrunTimeListByUser(int id);
+
+    /**
+     * Gets all SpeedrunTimes in the database with the matching GameId.
+     * @param id The ID of the Game.
+     * @return A list of all SpeedrunTimes with the matching GameId.
+     */
+    public List<SpeedrunTime> GetSpeedrunTimeListByGame(int id);
+
+    /**
      * Updates an existing SpeedrunTime in the database.
      * @param speedrunTime The SpeedrunTime to update.
      */
