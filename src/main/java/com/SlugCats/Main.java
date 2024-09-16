@@ -11,7 +11,7 @@ public class Main extends Application {
     // Constants defining the window title and size
     public static final String TITLE = "SnailCat";
     public static final int WIDTH = 1000;
-    public static final int HEIGHT = 750;
+    public static final int HEIGHT = 650;
 
     @Override
     public void start(Stage stage) throws IOException {

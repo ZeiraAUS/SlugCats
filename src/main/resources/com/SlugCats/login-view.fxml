@@ -9,17 +9,38 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<!--Main Pane: Holds everything.-->
+<?import javafx.scene.image.ImageView?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.SlugCats.controller.LoginController" fx:id="rootPane">
+
+    <!--The snailcat logo should go on the top box of the border pane set to top left alignment (I haven't figured out how to work the image as of writing)-->
+    <ImageView fx:id="logoImage"
+               fitHeight="150.0"
+               preserveRatio="true"
+               BorderPane.alignment="TOP_LEFT"
+    />
+
+    <padding>
+        <Insets bottom="20.0" left="100.0" right="100.0" top="150.0"/>
+    </padding>
+
+    <!--Interactable Pane: Sets components in a vertical format.-->
     <VBox BorderPane.alignment="CENTER" alignment="CENTER">
-        <Label text="Login" fx:id="loginLabel" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-        <Label text="Email" fx:id="emailLabel" style="-fx-font-size: 18px;"/>
-        <TextField fx:id="emailField" style="-fx-font-size: 16px;" prefWidth="200"/>
-        <Label text="Password" fx:id="passwordLabel" style="-fx-font-size: 18px;"/>
-        <PasswordField fx:id="passwordField" style="-fx-font-size: 16px;" prefWidth="200"/>
+        <Label text="Login" fx:id="loginLabel" style="-fx-font-size: 48px; -fx-font-weight: bold;" alignment="CENTER"/>
+
+        <Label text="Email" fx:id="emailLabel" style="-fx-font-size: 24px;" alignment="CENTER"/>
+        <TextField fx:id="emailField" style="-fx-font-size: 20px;" prefWidth="200"/>
+
+        <Label text="Password" fx:id="passwordLabel" style="-fx-font-size: 24px;" alignment="CENTER"/>
+        <PasswordField fx:id="passwordField" style="-fx-font-size: 20px;" prefWidth="200"/>
+
+        <!--Button Pane: Holds the buttons on their separate row.-->
         <HBox spacing="10.0" alignment="CENTER" fx:id="buttonBox">
-            <Button text="Login" fx:id="loginButton" style="-fx-font-size: 16px;" prefWidth="100"/>
-            <Button text="Register" fx:id="registerButton" style="-fx-font-size: 16px;" prefWidth="100"/>
+            <Button text="Login" fx:id="loginButton" style="-fx-font-size: 24px;" prefWidth="250" onAction="#onLoginButtonClick"/>
+            <Button text="Register" fx:id="registerButton" style="-fx-font-size: 24px;" prefWidth="250" onAction="#onRegisterButtonClick"/>
         </HBox>
+
     </VBox>
+
 </BorderPane>
 
