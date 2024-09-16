@@ -44,7 +44,7 @@ public class LoginController {
     @FXML
     public void initialize() {
         // Initialise and set the logo image into the image view.
-        Image logo = new Image(getClass().getResource("/src/main/resources/images/snailcat.PNG").toString(),true);
+        Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
         //should be working with Image("file url"); as well but doesn't
         logoImage.setImage(logo);
 
