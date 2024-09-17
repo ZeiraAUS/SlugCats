@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Authentication /*implements UserService*/ {
-    //@Override
+public class Authentication implements UserService{
+    @Override
     public boolean register(String user,String email,String password, String confirmPassword){
         if (!password.equals(confirmPassword)) {
             System.out.println("Password and confirm password do not match.");
@@ -59,7 +59,7 @@ public class Authentication /*implements UserService*/ {
         }
     }
 
-    //@Override
+    @Override
     public boolean login(String username, String password) {
         System.out.print("Enter username: ");
 

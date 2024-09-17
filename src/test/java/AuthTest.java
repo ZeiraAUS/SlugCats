@@ -26,7 +26,7 @@ public class AuthTest {
     @Test
     void testRegisterSuccess() throws SQLException {
         assertTrue(Authentication.register("newUser", "newemail@example.com", "password123", "password123"));
-    }//test
+    }//test ,it will failed 2th because the username already exist.
 
     @Test
     void testLoginSuccess() throws SQLException {
