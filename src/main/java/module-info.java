@@ -5,10 +5,15 @@ module com.example.addressbook {
     requires org.xerial.sqlitejdbc;
 
 
+    exports auth;
+
+
+
     opens com.SlugCats to javafx.fxml;
     exports com.SlugCats;
     exports com.SlugCats.controller;
     opens com.SlugCats.controller to javafx.fxml;
     exports com.SlugCats.model;
     opens com.SlugCats.model to javafx.fxml;
+
 }
