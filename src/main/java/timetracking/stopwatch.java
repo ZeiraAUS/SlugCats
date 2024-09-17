@@ -27,8 +27,11 @@ public class stopwatch {
         isRunning = false;
     }
 
-/*    public String getelapsedTime() {
+    public String getelapsedTime() {
         long elaspedTime = isRunning ? System.currentTimeMillis() - startTime : stopTime - startTime;
-        long hours = (elaspedTime / )
-    }*/
+        long hours = (elaspedTime / 3600000) % 24;
+        long minutes = (elaspedTime / 60000) % 60;
+        long seconds = (elaspedTime / 1000) % 60;
+        return String.format("%02d H : %02d M : %02d S", hours, minutes, seconds);
+    }
 }
