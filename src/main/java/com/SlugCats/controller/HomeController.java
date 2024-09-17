@@ -51,8 +51,9 @@ public class HomeController {
         HBox headerBox = new HBox(20);
         headerBox.getChildren().addAll(
             logoImage,
-            usernameLabel,
-            logoutButton
+            logoutButton,
+            usernameLabel
+
         );
         rootPane.setTop(headerBox);
 
@@ -62,7 +63,7 @@ public class HomeController {
         //AMY
         Image timer = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\hourglass.PNG");
         ImageView timerView = new ImageView(timer);
-        timerView.setFitHeight(250.0);
+        timerView.setFitHeight(350.0);
         timerView.setPreserveRatio(true);
         timerButton.setGraphic(timerView);
 

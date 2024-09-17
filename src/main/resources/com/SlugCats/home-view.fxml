@@ -20,15 +20,15 @@
                    preserveRatio="true"
                    BorderPane.alignment="TOP_LEFT"
         />
-        <Label fx:id="usernameLabel" style="-fx-font-size: 24px;" text="[Username]"/>
         <Button fx:id="logoutButton" text="Logout" style="-fx-font-size: 24px;" prefWidth="250" onAction="#onLogoutButtonClick"/>
+        <Label fx:id="usernameLabel" style="-fx-font-size: 35px;" text="[Username]"/>
     </HBox>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <VBox BorderPane.alignment="CENTER_LEFT" fx:id="timerBox">
         <Button fx:id="timerButton" prefHeight="100" prefWidth="100" onAction="#onTimerButtonClick"/>
-        <Label fx:id="timerLabel" text="Timer" style="-fx-font-size: 24px" alignment="CENTER" textAlignment="CENTER"/>
+        <Label fx:id="timerLabel" text="Timer" style="-fx-font-size: 48px" alignment="CENTER" textAlignment="CENTER"/>
     </VBox>
 
 </BorderPane>
