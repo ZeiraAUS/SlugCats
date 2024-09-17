@@ -1,7 +1,6 @@
-package DAOs;
+package com.SlugCats.DAOs;
 
-import Models.Game;
-import Models.User;
+import com.SlugCats.Models.Game;
 import com.SlugCats.DatabaseConnection;
 
 import java.sql.*;

@@ -1,14 +1,15 @@
 package com.SlugCats;
 
-import DAOs.GameDAO;
-import DAOs.GameTimeDAO;
-import DAOs.SpeedrunTimeDAO;
-import DAOs.UserDAO;
+import com.SlugCats.DAOs.GameDAO;
+import com.SlugCats.DAOs.GameTimeDAO;
+import com.SlugCats.DAOs.SpeedrunTimeDAO;
+import com.SlugCats.DAOs.UserDAO;
 import org.sqlite.SQLiteConfig;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DatabaseConnection
 {
@@ -48,11 +49,29 @@ public class DatabaseConnection
         gameDAO.CreateGameTable();
         gameTimeDAO.CreateGameTimeTable();
         speedrunTimeDAO.CreateSpeedrunTimeTable();
+    }
 
-        userDAO.close();
-        gameDAO.close();
-        gameTimeDAO.close();
-        speedrunTimeDAO.close();
+    public static void DropTables()
+    {
+        Connection connection = getInstance();
+
+        try {
+            Statement dropSpeedrun = connection.createStatement();
+            dropSpeedrun.execute("DROP TABLE IF EXISTS SpeedrunTimes");
+
+            Statement dropTimes = connection.createStatement();
+            dropTimes.execute("DROP TABLE IF EXISTS GameTimes");
+
+            Statement dropGames = connection.createStatement();
+            dropGames.execute("DROP TABLE IF EXISTS Games");
+
+            Statement dropUsers = connection.createStatement();
+            dropUsers.execute("DROP TABLE IF EXISTS Users");
+        }
+        catch (SQLException sqlEx)
+        {
+            System.err.println(sqlEx);
+        }
     }
 
     public static void StartupMessage()

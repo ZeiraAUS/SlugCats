@@ -11,4 +11,6 @@ module com.example.addressbook {
     opens com.SlugCats.controller to javafx.fxml;
     exports com.SlugCats.model;
     opens com.SlugCats.model to javafx.fxml;
+    exports com.SlugCats.DAOs;
+    exports com.SlugCats.Models;
 }

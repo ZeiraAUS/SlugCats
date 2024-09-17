@@ -1,5 +1,7 @@
 package com.SlugCats;
 
+import com.SlugCats.DAOs.UserDAO;
+import com.SlugCats.Models.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

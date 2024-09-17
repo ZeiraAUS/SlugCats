@@ -1,4 +1,4 @@
-package Models;
+package com.SlugCats.Models;
 
 public class GameTime {
     private int GameTimeId;

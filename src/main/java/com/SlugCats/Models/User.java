@@ -1,4 +1,4 @@
-package Models;
+package com.SlugCats.Models;
 
 public class User {
     private int UserId;

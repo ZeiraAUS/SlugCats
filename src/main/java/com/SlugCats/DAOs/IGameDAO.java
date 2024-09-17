@@ -1,6 +1,6 @@
-package DAOs;
+package com.SlugCats.DAOs;
 
-import Models.Game;
+import com.SlugCats.Models.Game;
 
 import java.util.List;
 

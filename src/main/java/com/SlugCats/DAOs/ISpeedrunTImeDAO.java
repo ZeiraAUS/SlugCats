@@ -1,6 +1,6 @@
-package DAOs;
+package com.SlugCats.DAOs;
 
-import Models.SpeedrunTime;
+import com.SlugCats.Models.SpeedrunTime;
 
 import java.util.List;
 

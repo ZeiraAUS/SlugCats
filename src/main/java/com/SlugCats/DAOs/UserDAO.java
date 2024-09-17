@@ -1,6 +1,6 @@
-package DAOs;
+package com.SlugCats.DAOs;
 
-import Models.User;
+import com.SlugCats.Models.User;
 import com.SlugCats.DatabaseConnection;
 
 import java.sql.*;
@@ -30,6 +30,8 @@ public class UserDAO implements IUserDAO{
                             "Email VARCHAR NOT NULL" +
                             ")"
             );
+
+            createTable.close();
         }
         catch (SQLException sqlEx)
         {
@@ -41,6 +43,7 @@ public class UserDAO implements IUserDAO{
     public void AddUser(User user) {
         try
         {
+
             PreparedStatement insertUser = connection.prepareStatement(
                     "INSERT INTO Users (UserName, Password, FirstName, LastName, Email) " +
                             "VALUES (?, ?, ?, ?, ?)"
@@ -52,6 +55,8 @@ public class UserDAO implements IUserDAO{
             insertUser.setString(4, user.getLastName());
             insertUser.setString(5, user.getEmail());
             insertUser.execute();
+
+            insertUser.close();
         }
         catch (SQLException sqlEx)
         {
@@ -77,6 +82,9 @@ public class UserDAO implements IUserDAO{
                         rs.getString("Email")
                 );
             }
+
+            getUser.close();
+            rs.close();
         }
         catch (SQLException sqlEx)
         {
@@ -105,6 +113,9 @@ public class UserDAO implements IUserDAO{
                         rs.getString("Email")
                 );
             }
+
+            getUserLogin.close();
+            rs.close();
         }
         catch (SQLException sqlEx)
         {
@@ -133,6 +144,9 @@ public class UserDAO implements IUserDAO{
                         )
                 );
             }
+
+            getAll.close();
+            rs.close();
         }
         catch (SQLException sqlEx)
         {
@@ -156,6 +170,8 @@ public class UserDAO implements IUserDAO{
             updateUser.setString(5, user.getEmail());
             updateUser.setInt(6, user.getUserId());
             updateUser.execute();
+
+            updateUser.close();
         }
         catch (SQLException sqlEx)
         {
@@ -170,6 +186,8 @@ public class UserDAO implements IUserDAO{
             PreparedStatement deleteUser = connection.prepareStatement("DELETE FROM Users WHERE UserId = ?");
             deleteUser.setInt(1, id);
             deleteUser.execute();
+
+            deleteUser.close();
         }
         catch (SQLException sqlEx)
         {
