@@ -8,22 +8,22 @@ import java.util.Scanner;
 
 public class Authentication implements UserService{
     @Override
-    public boolean register(String user,String email,String password, String confirmPassword){
+    public boolean register(String userName, String password, String confirmPassword,String FirstName, String LastName, String email){
         if (!password.equals(confirmPassword)) {
             System.out.println("Password and confirm password do not match.");
             return false;
         }
 
-        String queryUserExist = "SELECT * FROM users WHERE username = ?";
-        String queryEmailExist = "SELECT * FROM users WHERE email = ?";
-        String insertQuery = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
+        String queryUserExist = "SELECT * FROM Users WHERE username = ?";
+        String queryEmailExist = "SELECT * FROM Users WHERE email = ?";
+        String insertQuery = "INSERT INTO Users (UserName, Password, FirstName, LastName, email) VALUES (?, ?, ?, ?, ?)";
         //need to improve like hash and salt the password
         try (Connection conn = DatabaseConnection.getInstance();
              PreparedStatement checkUserStmt = conn.prepareStatement(queryUserExist);
              PreparedStatement checkEmailStmt = conn.prepareStatement(queryEmailExist)) {
 
             // Check if the username exists
-            checkUserStmt.setString(1, user);
+            checkUserStmt.setString(1, userName);
             ResultSet rsUser = checkUserStmt.executeQuery();
             if (rsUser.next()) {
                 System.out.println("Username already exists.");
@@ -40,9 +40,12 @@ public class Authentication implements UserService{
 
             // If username and email are unique, proceed to register new user
             try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
-                insertStmt.setString(1, user);
+                insertStmt.setString(1, userName);
                 insertStmt.setString(2, password);
-                insertStmt.setString(3, email);
+                insertStmt.setString(3, FirstName);
+                insertStmt.setString(4, LastName);
+                insertStmt.setString(5, email);
+
                 int result = insertStmt.executeUpdate();
                 if (result > 0) {
                     System.out.println("User registered successfully.");
@@ -89,7 +92,7 @@ public class Authentication implements UserService{
             System.out.println("Login failed. Please try again.");
             return false;
         }
-    }
+    }}
 
     /*@Override
     public boolean changePassword(String username, String ConfirmPassword, String newPassword) {
@@ -100,6 +103,7 @@ public class Authentication implements UserService{
         return true;
 
     }*/
+/*
     public static class AuthenticationApp {
         public static void main(String[] args) {
             Scanner scanner = new Scanner(System.in);
@@ -123,7 +127,7 @@ public class Authentication implements UserService{
                 System.out.println("Registration failed.");
             }*/
 
-
+/*
             System.out.println("\nLogin:");
             System.out.print("Enter username: ");
             String loginUsername = scanner.nextLine();
@@ -140,3 +144,4 @@ public class Authentication implements UserService{
             scanner.close();
         }
 }}
+*/

@@ -20,17 +20,17 @@ public class AuthTest {
     @Test
     void testRegisterUserExists() throws SQLException {
       // two password not equal
-             assertFalse(Authentication.register("testUser", "email@example.com", "password123", "password13"));
+             assertFalse(Authentication.register("testUser",  "password123", "password13","a","a","asa"));
     }
 
     @Test
     void testRegisterSuccess() throws SQLException {
-        assertTrue(Authentication.register("newUser", "newemail@example.com", "password123", "password123"));
+        assertTrue(Authentication.register("NewUser",  "password123", "password123","a","asa","asa"));
     }//test ,it will failed 2th because the username already exist.
 
     @Test
     void testLoginSuccess() throws SQLException {
-         assertTrue(Authentication.login("newUser", "password123"));
+         assertTrue(Authentication.login("NewUser", "password123"));
     }
 
     @Test

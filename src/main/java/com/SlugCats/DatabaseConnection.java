@@ -16,7 +16,7 @@ public class DatabaseConnection
 
     private DatabaseConnection()
     {
-        String url = "jdbc:sqlite:SlugCatsDatabase.db";
+        String url ="jdbc:sqlite:SlugCatsDatabase.db";
         try
         {
             SQLiteConfig config = new SQLiteConfig();

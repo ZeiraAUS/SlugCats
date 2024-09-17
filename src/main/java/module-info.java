@@ -3,9 +3,11 @@ module com.example.addressbook {
     requires javafx.fxml;
     requires java.sql;
     requires org.xerial.sqlitejdbc;
+    requires jbcrypt;
 
 
     exports auth;
+    exports NewAuth;
 
 
 
