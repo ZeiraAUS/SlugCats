@@ -12,13 +12,14 @@
 <!--Main Pane: Holds everything.-->
 <?import javafx.scene.image.ImageView?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.SlugCats.controller.LoginController" fx:id="rootPane">
-
-    <!--The snailcat logo should go on the top box of the border pane set to top left alignment (I haven't figured out how to work the image as of writing)-->
-    <ImageView fx:id="logoImage"
-               fitHeight="150.0"
-               preserveRatio="true"
-               BorderPane.alignment="TOP_LEFT"
-    />
+     <!--HBox: Holding any components at the top of the window.-->
+    <HBox BorderPane.alignment="TOP_LEFT">
+        <ImageView fx:id="logoImage"
+                   fitHeight="150.0"
+                   preserveRatio="true"
+                   BorderPane.alignment="TOP_LEFT"
+        />
+    </HBox>
 
     <padding>
         <Insets bottom="20.0" left="100.0" right="100.0" top="150.0"/>

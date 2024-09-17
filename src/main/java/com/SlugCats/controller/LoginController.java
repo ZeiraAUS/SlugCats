@@ -3,6 +3,7 @@ package com.SlugCats.controller;
 import com.SlugCats.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -49,14 +51,13 @@ public class LoginController {
     public void initialize() {
         // Initialise and set the logo image into the image view.
         //WORKING FOR TEAM
-        Image logo = new Image(getClass().getResource("/images/slugcat.PNG").toString(),true);
+        //Image logo = new Image(getClass().getResource("/images/slugcat.PNG").toString(),true);
         //WORKING FOR AMY because one drive ruins my life
-        //Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
+        Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
         logoImage.setImage(logo);
 
         // Initialize and configure the VBox
         VBox vbox = new VBox(20);
-
         vbox.getChildren().addAll(
                 loginLabel,
                 emailLabel,
