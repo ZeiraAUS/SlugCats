@@ -3,65 +3,53 @@ import java.io.InputStreamReader;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class playtimetracker {
-    public static void main(String[] args) {
-        String processName = "idea64.exe"; // change this to user input
+    private String processName;
 
-        playTimeTracker tracker = new playTimeTracker(processName);
-
-        tracker.trackPlaytime();
+    public playtimetracker(String processName) {
+        this.processName = processName;
     }
 
-    public static class playTimeTracker {
-        private String processName;
+    public void trackPlayTime() {
+        while (true) {
+            long loopstartTime = System.currentTimeMillis();
 
-        public playTimeTracker(String processName) {
-            this.processName = processName;
-        }
+            String startTime = getProcessStartTime(processName);
 
-        public void trackPlaytime() {
-            while (true) {
-                long loopstartTime = System.currentTimeMillis();
+            if (startTime != null && !startTime.isEmpty()) {
+                /*System.out.println("Start Time for " + processName + ": " + startTime);*/
 
-                String startTime = getProcessStartTime(processName);
+                LocalDateTime startDateTime = parseDateTime(startTime);
+                if (startDateTime != null) {
+                    Duration runtime = Duration.between(startDateTime, LocalDateTime.now());
 
-                if (startTime != null && !startTime.isEmpty()) {
-                    System.out.println("Start Time for " + processName + ": " + startTime); // can delete this after
-
-                    LocalDateTime startDateTime = parseDateTime(startTime);
-                    if (startDateTime != null) {
-                        Duration runtime = Duration.between(startDateTime, LocalDateTime.now());
-
-                        System.out.println("Real-Time Running for " + processName + ": " +
-                                runtime.toHoursPart() + " H " +
-                                runtime.toMinutesPart() + " M " +
-                                runtime.toSecondsPart() + " S ");
-                    }
-                } else {
-                    System.out.println(processName + " is not running.");
+                    System.out.println(processName + ": " +
+                            runtime.toHoursPart() + " H " +
+                            runtime.toMinutesPart() + " M " +
+                            runtime.toSecondsPart() + " S ");
                 }
-
-                long loopendTime = System.currentTimeMillis();
-                long timeDiff = loopendTime - loopstartTime;
-
-                try {
-                    long sleepTime = 1000 - timeDiff;
-                    if (sleepTime > 0) {
-                        Thread.sleep(sleepTime);
-                    }
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
             }
-        }
+            else {
+                break;
+            }
 
+            long loopendTime = System.currentTimeMillis();
+            long timeDiff = loopendTime - loopstartTime;
+
+            try {
+                long sleepTime = 1000 - timeDiff;
+                if (sleepTime > 0) {
+                    Thread.sleep(sleepTime);
+                }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+        }
     }
 
     public static String getProcessStartTime(String processName) {
@@ -96,3 +84,5 @@ public class playtimetracker {
         }
     }
 }
+
+
