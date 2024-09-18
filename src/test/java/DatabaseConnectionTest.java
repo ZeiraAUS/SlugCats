@@ -1,6 +1,7 @@
 import java.sql.Connection;
 
-import auth.*;
+import com.SlugCats.auth.*;
+import com.SlugCats.auth.DatabaseConnection;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,5 +1,5 @@
-package NewAuth;
-import Models.User;
+package com.SlugCats.NewAuth;
+import com.SlugCats.Models.User;
 
 public class login_status implements LoginInterface{
     private boolean login_status;

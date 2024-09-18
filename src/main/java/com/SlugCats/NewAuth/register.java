@@ -1,7 +1,7 @@
-package NewAuth;
+package com.SlugCats.NewAuth;
 
-import DAOs.*;
-import Models.User;
+import com.SlugCats.Models.User;
+
 //import org.mindrot.jbcrypt.BCrypt;
 public class register extends Authentication{
     public boolean register_a_user(String userName, String password, String ConfirmPassword,String firstName, String lastName, String email) {

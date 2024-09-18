@@ -1,6 +1,7 @@
-package NewAuth;
-import DAOs.*;
-import Models.User;
+package com.SlugCats.NewAuth;
+import com.SlugCats.DAOs.*;
+import com.SlugCats.Models.User;
+
 public class Authentication implements Authentication_function {
 
 

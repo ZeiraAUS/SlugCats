@@ -1,6 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import auth.Authentication;
+import com.SlugCats.auth.Authentication;
 
 import java.sql.*;
 

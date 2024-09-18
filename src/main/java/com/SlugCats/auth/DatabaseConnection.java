@@ -1,4 +1,4 @@
-package auth;
+package com.SlugCats.auth;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

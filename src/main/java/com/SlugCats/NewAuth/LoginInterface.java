@@ -1,6 +1,6 @@
-package NewAuth;
+package com.SlugCats.NewAuth;
 
-import Models.User;
+import com.SlugCats.Models.User;
 
 public interface LoginInterface {
 
