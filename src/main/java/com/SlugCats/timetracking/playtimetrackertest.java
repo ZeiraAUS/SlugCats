@@ -1,4 +1,4 @@
-package timetracking;
+package com.SlugCats.timetracking;
 
 public class playtimetrackertest {
     public static void main(String[] args){

@@ -1,4 +1,4 @@
-package timetracking;
+package com.SlugCats.timetracking;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -1,4 +1,4 @@
-package timetracking;
+package com.SlugCats.timetracking;
 
 public class stopwatch {
     private long startTime;
