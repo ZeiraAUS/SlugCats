@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!--Main Pane: Holds everything.-->
+<?import javafx.scene.image.ImageView?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.SlugCats.controller.LoginController" fx:id="rootPane">
+     <!--HBox: Holding any components at the top of the window.-->
+    <HBox BorderPane.alignment="TOP_LEFT">
+        <ImageView fx:id="logoImage"
+                   fitHeight="150.0"
+                   preserveRatio="true"
+                   BorderPane.alignment="TOP_LEFT"
+        />
+    </HBox>
+
+    <padding>
+        <Insets bottom="20.0" left="100.0" right="100.0" top="150.0"/>
+    </padding>
+
+    <!--Interactable Pane: Sets components in a vertical format.-->
+    <VBox BorderPane.alignment="CENTER" alignment="CENTER" spacing="20.0">
+        <Label text="Login" fx:id="loginLabel" style="-fx-font-size: 48px; -fx-font-weight: bold;" alignment="CENTER"/>
+
+        <Label text="Email" fx:id="emailLabel" style="-fx-font-size: 24px;" alignment="CENTER"/>
+        <TextField fx:id="emailField" style="-fx-font-size: 20px;" prefWidth="200"/>
+
+        <Label text="Password" fx:id="passwordLabel" style="-fx-font-size: 24px;" alignment="CENTER"/>
+        <PasswordField fx:id="passwordField" style="-fx-font-size: 20px;" prefWidth="200"/>
+
+        <!--Button Pane: Holds the buttons on their separate row.-->
+        <HBox spacing="10.0" alignment="CENTER" fx:id="buttonBox">
+            <Button text="Login" fx:id="loginButton" style="-fx-font-size: 24px;" prefWidth="250" onAction="#onLoginButtonClick"/>
+            <Button text="Register" fx:id="registerButton" style="-fx-font-size: 24px;" prefWidth="250" onAction="#onRegisterButtonClick"/>
+        </HBox>
+
+    </VBox>
+
+</BorderPane>
+
