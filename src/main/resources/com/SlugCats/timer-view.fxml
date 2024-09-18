@@ -14,34 +14,28 @@
 <?import javafx.scene.image.ImageView?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.SlugCats.controller.TimerController" fx:id="rootPane">
-<!--HBox: Holding any components at the top of the window.-->
-<HBox BorderPane.alignment="TOP_LEFT" fx:id="headerBox">
-    <ImageView fx:id="logoImage"
-               fitHeight="150.0"
-               preserveRatio="true"
-               BorderPane.alignment="TOP_LEFT"
-    />
-    <VBox fx:id="gameBox">
-        <Label fx:id="playingLabel" style="-fx-font-size: 24px;" text="Currently Tracking:"/>
-        <Label fx:id="gameLabel" style="-fx-font-size: 48px;" text="[Game Detected]"/>
-    </VBox>
-    <!--VVV possible inclusion of the app's icon image or something if possible-->
-    <!--        <ImageView fx:id="gameImage"
-                    fitHeight="150.0"
-                    preserveRatio="true"    />-->
-    <Button fx:id="backButton" onAction="#onBackButtonClick" style="-fx-font-size: 24px;" prefWidth="250" text="Back"/>
-</HBox>
-<padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-</padding>
+    <!--HBox: Holding any components at the top of the window.-->
+    <HBox BorderPane.alignment="TOP_LEFT" fx:id="headerBox">
+        <ImageView fx:id="logoImage"
+                   fitHeight="150.0"
+                   preserveRatio="true"
+                   BorderPane.alignment="TOP_LEFT"
+        />
+        <VBox fx:id="gameBox">
+            <Label fx:id="playingLabel" style="-fx-font-size: 24px;" text="Currently Tracking:"/>
+            <Label fx:id="gameLabel" style="-fx-font-size: 48px;" text="[Game Detected]"/>
+        </VBox>
+        <!--VVV possible inclusion of the app's icon image or something if possible-->
+        <!--        <ImageView fx:id="gameImage"
+                        fitHeight="150.0"
+                        preserveRatio="true"    />-->
+        <Button fx:id="backButton" onAction="#onBackButtonClick" style="-fx-font-size: 24px;" prefWidth="250" text="Back"/>
+    </HBox>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
     <VBox BorderPane.alignment="CENTER" fx:id="timerBox">
-        <HBox fx:id="timerDisplayBox">
-            <Label fx:id="timerHourLabel" style="-fx-font-size: 150px;" text="00"/>
-            <Label fx:id="timerHourColonLabel" style="-fx-font-size: 150px;" text=":"/>
-            <Label fx:id="timerMinuteLabel" style="-fx-font-size: 150px;" text="00"/>
-            <Label fx:id="timerMinuteColonLabel" style="-fx-font-size: 150px;" text=":"/>
-            <Label fx:id="timerSecondLabel" style="-fx-font-size: 150px;" text="00"/>
-        </HBox>
+        <Label fx:id="timerLabel" style="-fx-font-size: 150px;" text="00:00:00"/>
         <HBox fx:id="timerSetBox">
             <Label fx:id="setHourLabel" text="Hours:" style="-fx-font-size: 24px;"/>
             <TextField fx:id="setHourField" style="-fx-font-size: 24px;" prefWidth="75.0"/>

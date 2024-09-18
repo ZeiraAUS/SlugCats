@@ -12,7 +12,7 @@
 <!--Main Pane: Holds everything.-->
 <?import javafx.scene.image.ImageView?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.SlugCats.controller.LoginController" fx:id="rootPane">
-     <!--HBox: Holding any components at the top of the window.-->
+    <!--HBox: Holding any components at the top of the window.-->
     <HBox BorderPane.alignment="TOP_LEFT">
         <ImageView fx:id="logoImage"
                    fitHeight="150.0"

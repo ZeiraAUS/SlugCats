@@ -50,10 +50,8 @@ public class LoginController {
     @FXML
     public void initialize() {
         // Initialise and set the logo image into the image view.
-        //WORKING FOR TEAM
         Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
-        //WORKING FOR AMY because one drive ruins my life
-        //Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
+
         logoImage.setImage(logo);
 
         // Initialize and configure the VBox
@@ -90,7 +88,10 @@ public class LoginController {
 
         if (credentialValidity) {
             Stage stage = (Stage) loginButton.getScene().getWindow();
-            ContinueHomeWindow(stage);
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
+            stage.setResizable(false);
+            stage.setScene(scene);
         }
         else {
             //idk some popup appears that says credentials are wrong WIP
@@ -109,37 +110,11 @@ public class LoginController {
      */
     @FXML
     protected void onRegisterButtonClick() throws IOException {
-        //NOTE: Put your register logic here. - You can reorganise my placeholder logic if you need to.
-        String emailInput = emailField.toString();
-        String passwordInput = passwordField.toString();
-        Boolean registerSuccess = RegisterUser(emailInput, passwordInput);
-
-        if (registerSuccess) {
-            Stage stage = (Stage) registerButton.getScene().getWindow();
-            ContinueHomeWindow(stage);
-        }
-        else {
-            // some kind of pop up saying otherwise WIP
-        }
-
-    }
-
-    //insert your register logic here plz and ty
-    private Boolean RegisterUser(String emailInput, String passwordInput) {
-        return true;
-    }
-
-    /**
-     * Switch to Home Screen window.
-     * @param stage The new window. Sourced from either login or register button.
-     * @throws IOException
-     */
-    protected void ContinueHomeWindow(Stage stage) throws  IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
+        Stage stage = (Stage) registerButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("register-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
         stage.setResizable(false);
         stage.setScene(scene);
     }
-
 
 }
