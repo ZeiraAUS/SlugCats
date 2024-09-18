@@ -1,4 +1,5 @@
 package com.SlugCats.controller;
+import com.SlugCats.NewAuth.login_status;
 
 import com.SlugCats.Main;
 import javafx.fxml.FXML;
@@ -101,7 +102,9 @@ public class LoginController {
 
     // please insert your authentication logic here
     private Boolean AuthenticateUser(String emailInput, String passwordInput) {
-        return true;
+        login_status loginStatus = new login_status();
+        boolean is_login=loginStatus.is_login(emailInput,passwordInput);
+        return is_login;
     }
 
     /**
