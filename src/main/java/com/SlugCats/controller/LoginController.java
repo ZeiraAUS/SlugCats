@@ -51,9 +51,9 @@ public class LoginController {
     public void initialize() {
         // Initialise and set the logo image into the image view.
         //WORKING FOR TEAM
-        //Image logo = new Image(getClass().getResource("/images/slugcat.PNG").toString(),true);
+        Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
         //WORKING FOR AMY because one drive ruins my life
-        Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
+        //Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
         logoImage.setImage(logo);
 
         // Initialize and configure the VBox

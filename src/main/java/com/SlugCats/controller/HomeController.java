@@ -1,24 +1,18 @@
 package com.SlugCats.controller;
 
 import com.SlugCats.Main;
-import com.SlugCats.model.Contact;
-import com.SlugCats.model.IContactDAO;
-import com.SlugCats.model.SqliteContactDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
 
 public class HomeController {
 
@@ -41,9 +35,9 @@ public class HomeController {
     public void initialize() {
         // Initialise and set the logo image into the image view.
         //WORKING FOR TEAM
-        //Image logo = new Image(getClass().getResource("/images/slugcat.PNG").toString(),true);
+        Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
         //WORKING FOR AMY because one drive ruins my life
-        Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
+        //Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
         logoImage.setImage(logo);
 
         SetUsername();
@@ -59,9 +53,9 @@ public class HomeController {
 
         // Timer Button
         //TEAM
-        //Image timer = new Image(getClass().getResource("/images/hourglass.PNG").toString(),true);
+        Image timer = new Image(getClass().getResource("/images/hourglass.PNG").toString(),true);
         //AMY
-        Image timer = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\hourglass.PNG");
+        //Image timer = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\hourglass.PNG");
         ImageView timerView = new ImageView(timer);
         timerView.setFitHeight(350.0);
         timerView.setPreserveRatio(true);

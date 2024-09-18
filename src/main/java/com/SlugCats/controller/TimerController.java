@@ -64,9 +64,9 @@ public class TimerController {
     public void initialize() {
         // Initialise and set the logo image into the image view.
         //WORKING FOR TEAM
-        //Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
+        Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
         //WORKING FOR AMY because one drive ruins my life
-        Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
+        //Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
         logoImage.setImage(logo);
 
         gameLabel.setText(GetGameTitle());
@@ -107,13 +107,13 @@ public class TimerController {
         HBox timerButtonBox = new HBox(20);
         // Timer Buttons Button
         //TEAM
-        //Image play = new Image(getClass().getResource("/images/play.PNG").toString(),true);
-        //Image pause = new Image(getClass().getResource("/images/pause.PNG").toString(),true);
-        //Image reset = new Image(getClass().getResource("/images/reset.PNG").toString(),true);
+        Image play = new Image(getClass().getResource("/images/play.PNG").toString(),true);
+        Image pause = new Image(getClass().getResource("/images/pause.PNG").toString(),true);
+        Image reset = new Image(getClass().getResource("/images/reset.PNG").toString(),true);
         //AMY
-        Image play = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\play.PNG");
+/*        Image play = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\play.PNG");
         Image pause = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\pause.PNG");
-        Image reset = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\reset.PNG");
+        Image reset = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\reset.PNG");*/
         ImageView playView = new ImageView(play);
         ImageView pauseView = new ImageView(pause);
         ImageView resetView = new ImageView(reset);
