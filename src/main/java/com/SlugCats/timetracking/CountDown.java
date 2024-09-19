@@ -17,6 +17,7 @@ public class CountDown
     @FXML
     private Label timerLabel;
     public Timeline timeline;
+    public boolean Active = false;
 
     public CountDown()
     {
@@ -24,7 +25,6 @@ public class CountDown
         timeline = new Timeline();
     }
     public void run() {
-
         LocalTime end = LocalTime.now()
                 .plusHours(hours)
                 .plusMinutes(mins)
@@ -50,6 +50,14 @@ public class CountDown
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+
+
+    }
+    public void pauseTime(int newHours, int newMins, int newSeconds)
+    {
+        hours = newHours;
+        mins = newMins;
+        seconds = newSeconds;
     }
     public void setTime(int newHours, int newMins, int newSeconds)
     {

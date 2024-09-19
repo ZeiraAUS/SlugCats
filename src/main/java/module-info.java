@@ -1,6 +1,8 @@
 module com.SlugCats {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.base;
+    requires javafx.graphics;
     requires java.sql;
     requires org.xerial.sqlitejdbc;
     requires java.desktop;
@@ -15,5 +17,4 @@ module com.SlugCats {
     exports com.SlugCats.auth;
     exports com.SlugCats.NewAuth;
     exports com.SlugCats.DAOs;
-
 }
