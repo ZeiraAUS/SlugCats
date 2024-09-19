@@ -30,15 +30,7 @@ public class TimerController {
     private Button backButton;
 
     @FXML
-    private Label timerHourLabel;
-    @FXML
-    private Label timerHourColonLabel;
-    @FXML
-    private Label timerMinuteLabel;
-    @FXML
-    private Label timerMinuteColonLabel;
-    @FXML
-    private Label timerSecondLabel;
+    private Label timerLabel;
     @FXML
     private Label setHourLabel;
     @FXML
@@ -63,10 +55,8 @@ public class TimerController {
     @FXML
     public void initialize() {
         // Initialise and set the logo image into the image view.
-        //WORKING FOR TEAM
         Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
-        //WORKING FOR AMY because one drive ruins my life
-        //Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
+
         logoImage.setImage(logo);
 
         gameLabel.setText(GetGameTitle());
@@ -84,14 +74,6 @@ public class TimerController {
         );
 
         VBox timerBox = new VBox(20);
-        HBox timerDisplayBox = new HBox(20);
-        timerDisplayBox.getChildren().addAll(
-                timerHourLabel,
-                timerHourColonLabel,
-                timerMinuteLabel,
-                timerMinuteColonLabel,
-                timerSecondLabel
-        );
 
         HBox timerSetBox = new HBox(20);
         timerSetBox.getChildren().addAll(
@@ -110,10 +92,7 @@ public class TimerController {
         Image play = new Image(getClass().getResource("/images/play.PNG").toString(),true);
         Image pause = new Image(getClass().getResource("/images/pause.PNG").toString(),true);
         Image reset = new Image(getClass().getResource("/images/reset.PNG").toString(),true);
-        //AMY
-/*        Image play = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\play.PNG");
-        Image pause = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\pause.PNG");
-        Image reset = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\reset.PNG");*/
+
         ImageView playView = new ImageView(play);
         ImageView pauseView = new ImageView(pause);
         ImageView resetView = new ImageView(reset);
@@ -132,7 +111,7 @@ public class TimerController {
                 resetButton
         );
         timerBox.getChildren().addAll(
-                timerDisplayBox,
+                timerLabel,
                 timerSetBox,
                 timerButtonBox
         );
@@ -151,7 +130,7 @@ public class TimerController {
     protected void onBackButtonClick() throws IOException {
         // Transition to Timer window
         Stage stage = (Stage) backButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Home-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
         stage.setResizable(false);
         stage.setScene(scene);
@@ -159,9 +138,9 @@ public class TimerController {
 
     @FXML
     protected void onSetButtonClick() throws IOException {
-        timerHourLabel.setText(setHourField.getText());
-        timerMinuteLabel.setText(setMinuteField.getText());
-        timerSecondLabel.setText(setSecondField.getText());
+        timerLabel.setText(
+                setHourField.getText() + ":" + setMinuteField.getText() + ":" + setSecondField.getText()
+        );
     }
 
     //NOTE: Whoever's handling the timer display logic, put it in here VVV
