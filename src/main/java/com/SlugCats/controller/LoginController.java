@@ -83,9 +83,15 @@ public class LoginController {
     @FXML
     protected void onLoginButtonClick() throws IOException {
         //NOTE: Put your login logic here. - You can reorganise my placeholder logic if you need to.
-        String emailInput = emailField.toString();
+       /* String emailInput = emailField.toString();
+        System.out.println(emailInput);
         String passwordInput = passwordField.toString();
-        Boolean credentialValidity = AuthenticateUser(emailInput,passwordInput);
+        login_status loginStatus = new login_status();*/
+        String username = emailField.getText().toString();
+        String password = passwordField.getText().toString();
+        login_status loginStatus = new login_status();
+        boolean is_login=loginStatus.is_login(username,password);
+        boolean credentialValidity = is_login;
 
         if (credentialValidity) {
             Stage stage = (Stage) loginButton.getScene().getWindow();
@@ -101,9 +107,11 @@ public class LoginController {
     }
 
     // please insert your authentication logic here
-    private Boolean AuthenticateUser(String emailInput, String passwordInput) {
+    private boolean AuthenticateUser(String emailInput, String passwordInput) {
         login_status loginStatus = new login_status();
+        System.out.println(emailInput);
         boolean is_login=loginStatus.is_login(emailInput,passwordInput);
+        System.out.println(is_login);
         return is_login;
     }
 

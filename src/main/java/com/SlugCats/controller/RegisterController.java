@@ -1,5 +1,6 @@
 package com.SlugCats.controller;
 
+
 import com.SlugCats.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+import com.SlugCats.auth.Authentication;
 public class RegisterController {
     @FXML
     private BorderPane rootPane;
@@ -106,6 +107,13 @@ public class RegisterController {
         //ADD ALL YOUR REGISTER LOGIC HERE PLEASE AND THANK YOU
         //you can get the text from field like example below
         String username = usernameField.getText();
+        String Password = passwordField.getText();
+        String ConfirmPassword = passwordField.getText();
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
+        String email = emailField.getText();
+        Authentication register=new Authentication();
+        register.register(username,Password,ConfirmPassword,firstName,lastName,email);
 
         // Transition to Login window
         Stage stage = (Stage) registerButton.getScene().getWindow();
