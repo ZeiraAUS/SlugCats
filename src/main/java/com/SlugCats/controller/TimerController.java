@@ -175,12 +175,11 @@ public class TimerController {
     }
     protected void SetupCountDown()
     {
-        countdown.GetLabels(timerLabel);
+        countdown.SetLabels(timerLabel);
         int hour = Integer.parseInt(setHourField.getText());
         int min = Integer.parseInt(setMinuteField.getText());
         int seconds = Integer.parseInt(setSecondField.getText());
         countdown.setTime(hour,min,seconds);
-        countdown.Active = true;
     }
 
 }

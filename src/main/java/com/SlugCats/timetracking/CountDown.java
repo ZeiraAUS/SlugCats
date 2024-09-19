@@ -11,7 +11,6 @@ import javafx.util.Duration;
 import java.time.LocalTime;
 public class CountDown
 {
-    public boolean Active = false;
     int originalHours,originalMins,originalSeconds;
     int hours, mins, seconds;
     final Runnable windowsSound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
@@ -54,13 +53,17 @@ public class CountDown
         mins = originalMins;
         seconds = originalSeconds;
     }
+    public int[] GetTime()
+    {
+        return new int[]{hours,mins,seconds};
+    }
     public void resetTime()
     {
         hours = originalHours;
         mins = originalMins;
         seconds = originalSeconds;
     }
-    public void GetLabels(Label timerLabel)
+    public void SetLabels(Label timerLabel)
     {
         this.timerLabel = timerLabel;
     }
