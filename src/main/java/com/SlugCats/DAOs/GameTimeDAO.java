@@ -166,7 +166,7 @@ public class GameTimeDAO implements IGameTimeDAO{
     public void DeleteGameTime(int id) {
         try
         {
-            PreparedStatement deleteGameTime = connection.prepareStatement("DELETE FROM GameTime " +
+            PreparedStatement deleteGameTime = connection.prepareStatement("DELETE FROM GameTimes " +
                     "WHERE GameTimeId = ?");
             deleteGameTime.setInt(1, id);
             deleteGameTime.execute();

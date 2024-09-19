@@ -63,7 +63,7 @@ public class SpeedrunTimeDAO implements ISpeedrunTImeDAO{
     public SpeedrunTime GetSpeedrunTime(int id) {
         try
         {
-            PreparedStatement getSpeedrunTime = connection.prepareStatement("SELECT * FROM SpeedrunTime " +
+            PreparedStatement getSpeedrunTime = connection.prepareStatement("SELECT * FROM SpeedrunTimes " +
                     "WHERE SpeedrunTimeId = ?");
             getSpeedrunTime.setInt(1, id);
             ResultSet rs = getSpeedrunTime.executeQuery();
@@ -175,7 +175,7 @@ public class SpeedrunTimeDAO implements ISpeedrunTImeDAO{
         try
         {
             PreparedStatement updateSpeedrunTime = connection.prepareStatement(
-                    "UPDATE SpeedrunTime SET UserId = ?, GameId = ?, BestTime = ?, " +
+                    "UPDATE SpeedrunTimes SET UserId = ?, GameId = ?, BestTime = ?, " +
                             "LastRunTime = ? WHERE SpeedrunTimeId = ?"
             );
             updateSpeedrunTime.setInt(1, speedrunTime.getUserId());

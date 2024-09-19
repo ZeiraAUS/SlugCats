@@ -1,36 +1,28 @@
 import com.SlugCats.DAOs.UserDAO;
 import com.SlugCats.DatabaseConnection;
 import com.SlugCats.Models.User;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class TestUsers {
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class UsersTest {
     UserDAO userDAO = new UserDAO();
 
     @BeforeAll
-    public static void Startup()
+    public static void RebuildTable()
     {
-        Connection connection = DatabaseConnection.getInstance();
-    }
-
-    @BeforeEach
-    public void RebuildTable()
-    {
+        DatabaseConnection.getInstance();
         DatabaseConnection.DropTables();
         DatabaseConnection.CreateTables();
     }
 
     @Test
+    @Order(1)
     public void CreateAndGetUserTest()
     {
         User test = new User(1, "JohnSmith", "Password",
@@ -44,6 +36,7 @@ public class TestUsers {
     }
 
     @Test
+    @Order(2)
     public void GetUserTableTest()
     {
         List<User> userList = new ArrayList<>();
@@ -57,7 +50,6 @@ public class TestUsers {
         userList.add(test1);
         userList.add(test2);
 
-        userDAO.AddUser(test1);
         userDAO.AddUser(test2);
 
         List<User> resultList = userDAO.GetUserList();
@@ -66,25 +58,22 @@ public class TestUsers {
     }
 
     @Test
+    @Order(3)
     public void GetUserByUsernamePassword()
     {
         User test = new User(1, "JohnSmith", "Password",
                 "John", "Smith", "Who@email.com");
 
-        userDAO.AddUser(test);
         User result = userDAO.GetUserByUsernamePassword("JohnSmith", "Password");
 
         assertEquals(test.toString(), result.toString());
     }
 
     @Test
+    @Order(4)
     public void UpdateUserTest()
     {
-        User test = new User(1, "JohnSmith", "Password",
-                "John", "Smith", "Who@email.com");
-
-        userDAO.AddUser(test);
-
+        User test = userDAO.GetUser(1);
         test.setUserName("SmithJohn");
 
         userDAO.UpdateUser(test);
@@ -94,12 +83,9 @@ public class TestUsers {
     }
 
     @Test
+    @Order(5)
     public void DeleteUserTest()
     {
-        User test = new User(1, "JohnSmith", "Password",
-                "John", "Smith", "Who@email.com");
-
-        userDAO.AddUser(test);
         userDAO.DeleteUser(1);
         User result = userDAO.GetUser(1);
 
