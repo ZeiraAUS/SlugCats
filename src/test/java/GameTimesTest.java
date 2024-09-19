@@ -14,36 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Order(3)
 public class GameTimesTest {
     UserDAO userDAO = new UserDAO();
     GameDAO gameDAO = new GameDAO();
     GameTimeDAO gameTimeDAO = new GameTimeDAO();
 
-    @BeforeAll
-    public static void RebuildTable()
-    {
-        DatabaseConnection.getInstance();
-        DatabaseConnection.DropTables();
-        DatabaseConnection.CreateTables();
-    }
-
     @Test
     @Order(1)
     public void CreateAndGetGameTimeTest()
     {
-        User user1 = new User(1, "JohnSmith", "Password",
-                "John", "Smith", "Who@email.com");
-        User user2 = new User(2, "SmithJohn", "Password",
-                "Smith", "John", "You@email.com");
-
-        Game game1 = new Game(1, "Rain World", 1234);
-        Game game2 = new Game(2, "World of Warcraft", 5678);
-
-        userDAO.AddUser(user1);
-        userDAO.AddUser(user2);
-        gameDAO.AddGame(game1);
-        gameDAO.AddGame(game2);
-
         GameTime test = new GameTime(1, 1, 1, 100, 100);
 
         gameTimeDAO.AddGameTime(test);

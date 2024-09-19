@@ -11,16 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Order(2)
 public class GamesTest {
     GameDAO gameDAO = new GameDAO();
-
-    @BeforeAll
-    public static void RebuildTable()
-    {
-        DatabaseConnection.getInstance();
-        DatabaseConnection.DropTables();
-        DatabaseConnection.CreateTables();
-    }
 
     @Test
     @Order(1)
@@ -72,8 +65,12 @@ public class GamesTest {
     @Order(4)
     public void DeleteUserTest()
     {
-        gameDAO.DeleteGame(1);
-        Game result = gameDAO.GetGame(1);
+        Game test = new Game(3, "Concord", 1234);
+
+        gameDAO.AddGame(test);
+
+        gameDAO.DeleteGame(3);
+        Game result = gameDAO.GetGame(3);
 
         assertNull(result);
     }

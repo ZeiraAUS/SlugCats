@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Order(1)
 public class UsersTest {
     UserDAO userDAO = new UserDAO();
 
@@ -86,8 +87,13 @@ public class UsersTest {
     @Order(5)
     public void DeleteUserTest()
     {
-        userDAO.DeleteUser(1);
-        User result = userDAO.GetUser(1);
+        User test = new User(3, "DeleteMe", "Password",
+                "Delete", "Me", "No");
+
+        userDAO.AddUser(test);
+
+        userDAO.DeleteUser(3);
+        User result = userDAO.GetUser(3);
 
         assertNull(result);
     }
