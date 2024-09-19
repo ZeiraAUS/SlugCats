@@ -13,11 +13,16 @@ public class CountDown
 {
     int originalHours,originalMins,originalSeconds;
     int hours, mins, seconds;
-    final Runnable windowsSound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
+    final Runnable windowsSound;
     @FXML
     private Label timerLabel;
-    public Timeline timeline = new Timeline();;
+    public Timeline timeline;
 
+    public CountDown()
+    {
+        windowsSound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
+        timeline = new Timeline();
+    }
     public void run() {
 
         LocalTime end = LocalTime.now()
@@ -46,6 +51,21 @@ public class CountDown
     }
     public void setTime(int newHours, int newMins, int newSeconds)
     {
+
+        if(newSeconds > 60)
+        {
+            newMins += (newSeconds - 60) / 60;
+            newSeconds = 60;
+        }
+        if(newMins > 60)
+        {
+            newHours += (newMins - 60) / 60;
+            newMins = 60;
+        }
+        if(newHours > 24)
+        {
+            newHours = 24;
+        }
         originalHours = newHours;
         originalMins = newMins;
         originalSeconds = newSeconds;
@@ -53,7 +73,7 @@ public class CountDown
         mins = originalMins;
         seconds = originalSeconds;
     }
-    public int[] GetTime()
+    public int[] getTime()
     {
         return new int[]{hours,mins,seconds};
     }
@@ -63,7 +83,7 @@ public class CountDown
         mins = originalMins;
         seconds = originalSeconds;
     }
-    public void SetLabels(Label timerLabel)
+    public void setLabels(Label timerLabel)
     {
         this.timerLabel = timerLabel;
     }

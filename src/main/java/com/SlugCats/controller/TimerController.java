@@ -2,7 +2,6 @@ package com.SlugCats.controller;
 import com.SlugCats.Main;
 import com.SlugCats.timetracking.*;
 import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,8 +14,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -65,7 +62,7 @@ public class TimerController {
 
         logoImage.setImage(logo);
 
-        gameLabel.setText(GetGameTitle());
+        gameLabel.setText(getGameTitle());
 
         HBox headerBox = new HBox(20);
         VBox gameBox = new VBox(20);
@@ -128,7 +125,7 @@ public class TimerController {
     }
 
     //NOTE: Include logic for getting the title of the tracked application and return it here.
-    private String GetGameTitle() {
+    private String getGameTitle() {
         //Placeholder
         return "SnailCat TM";
     }
@@ -147,10 +144,12 @@ public class TimerController {
     protected void onSetButtonClick() throws IOException {
         if(countdown.timeline.getStatus() != Animation.Status.RUNNING)
         {
+            setupCountDown();
+            int[] time = countdown.getTime();
             timerLabel.setText(
-                    setHourField.getText() + ":" + setMinuteField.getText() + ":" + setSecondField.getText()
+                    time[0] + ":"  + time[1] + ":" + time[2]
             );
-            SetupCountDown();
+
         }
 
     }
@@ -173,9 +172,9 @@ public class TimerController {
         countdown.resetTime();
         countdown.run();
     }
-    protected void SetupCountDown()
+    protected void setupCountDown()
     {
-        countdown.SetLabels(timerLabel);
+        countdown.setLabels(timerLabel);
         int hour = Integer.parseInt(setHourField.getText());
         int min = Integer.parseInt(setMinuteField.getText());
         int seconds = Integer.parseInt(setSecondField.getText());
