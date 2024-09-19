@@ -32,7 +32,7 @@ public class CountDown
         timeline = new Timeline();
         timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e ->
         {
-            java.time.Duration remaining = java.time.Duration.between(LocalTime.now(), end);
+            java.time.Duration remaining = java.time.Duration.between(LocalTime.now().minusSeconds(1), end);
             if (remaining.isPositive()) {
                 //timerLabel.setText(format(remaining));
                 timerHourLabel.setText(Integer.toString(remaining.toHoursPart()));
@@ -46,6 +46,7 @@ public class CountDown
                 windowsSound.run();
                 timeline.stop();
             }
+
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
