@@ -1,6 +1,8 @@
 package com.SlugCats.controller;
 
 import com.SlugCats.Main;
+import com.SlugCats.timetracking.CountDown;
+import javafx.animation.Animation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -51,7 +53,7 @@ public class TimerController {
     private Button pauseButton;
     @FXML
     private Button resetButton;
-
+    private CountDown countdown = new CountDown();
     @FXML
     public void initialize() {
         // Initialise and set the logo image into the image view.
@@ -59,7 +61,7 @@ public class TimerController {
 
         logoImage.setImage(logo);
 
-        gameLabel.setText(GetGameTitle());
+        gameLabel.setText(getGameTitle());
 
         HBox headerBox = new HBox(20);
         VBox gameBox = new VBox(20);
@@ -121,7 +123,7 @@ public class TimerController {
     }
 
     //NOTE: Include logic for getting the title of the tracked application and return it here.
-    private String GetGameTitle() {
+    private String getGameTitle() {
         //Placeholder
         return "SnailCat TM";
     }
@@ -138,25 +140,43 @@ public class TimerController {
 
     @FXML
     protected void onSetButtonClick() throws IOException {
-        timerLabel.setText(
-                setHourField.getText() + ":" + setMinuteField.getText() + ":" + setSecondField.getText()
-        );
+        if(countdown.timeline.getStatus() != Animation.Status.RUNNING)
+        {
+            setupCountDown();
+            int[] time = countdown.getTime();
+            timerLabel.setText(
+                    time[0] + ":"  + time[1] + ":" + time[2]
+            );
+
+        }
+
     }
 
     //NOTE: Whoever's handling the timer display logic, put it in here VVV
     @FXML
     protected void onPlayButtonClick() throws IOException {
-        //Unpause/Resume the timer logic here
+        countdown.run();
+
     }
 
     @FXML
     protected void onPauseButtonClick() throws IOException {
-        //Pause the timer logic here
+        countdown.timeline.pause();
     }
 
     @FXML
     protected void onResetButtonClick() throws IOException {
-        //Reset the timer logic here
+        countdown.timeline.stop();
+        countdown.resetTime();
+        countdown.run();
+    }
+    protected void setupCountDown()
+    {
+        countdown.setLabels(timerLabel);
+        int hour = Integer.parseInt(setHourField.getText());
+        int min = Integer.parseInt(setMinuteField.getText());
+        int seconds = Integer.parseInt(setSecondField.getText());
+        countdown.setTime(hour,min,seconds);
     }
 
 }

@@ -36,8 +36,10 @@ public class CountDown
         timeline = new Timeline();
         timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), e ->
         {
+
             java.time.Duration remaining = java.time.Duration.between(LocalTime.now().minusSeconds(1), end);
-            if (remaining.isPositive()) {
+
+            if (!remaining.isNegative() && !remaining.isZero()) {
                 timerLabel.setText(format(remaining));
             } else {
                 timerLabel.setText(format(java.time.Duration.ZERO));
