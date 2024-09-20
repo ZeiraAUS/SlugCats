@@ -118,7 +118,7 @@ public class RegisterController {
 
         // Transition to Login window
         Stage stage = (Stage) registerButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
         stage.setResizable(false);
         stage.setScene(scene);
