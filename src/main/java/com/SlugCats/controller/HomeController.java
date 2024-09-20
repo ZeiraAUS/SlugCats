@@ -76,7 +76,7 @@ public class HomeController {
         //...
 
         //set the email into the label
-        usernameLabel.setText("Mackenzie@hotmail.com");
+        //usernameLabel.setText("Mackenzie@hotmail.com");
     }
 
     //NOTE: Include logic of logging the user out.
