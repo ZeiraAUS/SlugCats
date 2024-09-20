@@ -1,5 +1,7 @@
 package com.SlugCats.controller;
 import com.SlugCats.NewAuth.login_status;
+import com.SlugCats.DAOs.*;
+import com.SlugCats.Models.User;
 
 import com.SlugCats.Main;
 import javafx.fxml.FXML;
@@ -44,7 +46,7 @@ public class LoginController {
     private Button loginButton;
     @FXML
     private Button registerButton;
-
+    public static  User user;
     /**
      * Initialise the Login window's components.
      */
@@ -90,7 +92,9 @@ public class LoginController {
         String username = emailField.getText().toString();
         String password = passwordField.getText().toString();
         login_status loginStatus = new login_status();
-        boolean is_login=loginStatus.is_login(username,password);
+        loginStatus.is_login(username,password);
+        boolean is_login=loginStatus.gotLogin_status();
+        user=loginStatus.getUser();
         boolean credentialValidity = is_login;
 
         if (credentialValidity) {
@@ -126,6 +130,10 @@ public class LoginController {
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
         stage.setResizable(false);
         stage.setScene(scene);
+    }
+    static public User gotUser(){
+        return user;
+
     }
 
 }
