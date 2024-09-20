@@ -79,9 +79,11 @@ public class HomeController {
         //get the email of user
         //...
         User user= gotUser();
+        if (user != null) {
         String email=user.getEmail();
+        usernameLabel.setText(email);}
         //set the email into the label
-        usernameLabel.setText(email);
+
     }
 
     //NOTE: Include logic of logging the user out.
