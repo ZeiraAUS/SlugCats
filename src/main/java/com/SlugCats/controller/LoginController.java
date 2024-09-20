@@ -1,5 +1,7 @@
 package com.SlugCats.controller;
 import com.SlugCats.NewAuth.login_status;
+import com.SlugCats.DAOs.*;
+import com.SlugCats.Models.User;
 
 import com.SlugCats.Main;
 import javafx.fxml.FXML;
@@ -30,11 +32,11 @@ public class LoginController {
     @FXML
     private Label loginLabel;
     @FXML
-    private Label emailLabel;
+    private Label usernameLabel;
     @FXML
     private Label passwordLabel;
     @FXML
-    private TextField emailField;
+    private TextField usernameField;
     @FXML
     private PasswordField passwordField;
     // Buttons in HBox
@@ -44,7 +46,7 @@ public class LoginController {
     private Button loginButton;
     @FXML
     private Button registerButton;
-
+    public static  User user;
     /**
      * Initialise the Login window's components.
      */
@@ -59,8 +61,8 @@ public class LoginController {
         VBox vbox = new VBox(20);
         vbox.getChildren().addAll(
                 loginLabel,
-                emailLabel,
-                emailField,
+                usernameLabel,
+                usernameField,
                 passwordLabel,
                 passwordField,
                 buttonBox
@@ -87,10 +89,12 @@ public class LoginController {
         System.out.println(emailInput);
         String passwordInput = passwordField.toString();
         login_status loginStatus = new login_status();*/
-        String username = emailField.getText().toString();
+        String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
         login_status loginStatus = new login_status();
-        boolean is_login=loginStatus.is_login(username,password);
+        loginStatus.is_login(username,password);
+        boolean is_login=loginStatus.gotLogin_status();
+        user=loginStatus.getUser();
         boolean credentialValidity = is_login;
 
         if (credentialValidity) {
@@ -126,6 +130,10 @@ public class LoginController {
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
         stage.setResizable(false);
         stage.setScene(scene);
+    }
+    static public User gotUser(){
+        return user;
+
     }
 
 }

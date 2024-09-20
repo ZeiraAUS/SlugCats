@@ -29,8 +29,8 @@
     <VBox BorderPane.alignment="CENTER" alignment="CENTER" spacing="20.0">
         <Label text="Login" fx:id="loginLabel" style="-fx-font-size: 48px; -fx-font-weight: bold;" alignment="CENTER"/>
 
-        <Label text="Email" fx:id="emailLabel" style="-fx-font-size: 24px;" alignment="CENTER"/>
-        <TextField fx:id="emailField" style="-fx-font-size: 20px;" prefWidth="200"/>
+        <Label text="Username" fx:id="usernameLabel" style="-fx-font-size: 24px;" alignment="CENTER"/>
+        <TextField fx:id="usernameField" style="-fx-font-size: 20px;" prefWidth="200"/>
 
         <Label text="Password" fx:id="passwordLabel" style="-fx-font-size: 24px;" alignment="CENTER"/>
         <PasswordField fx:id="passwordField" style="-fx-font-size: 20px;" prefWidth="200"/>
