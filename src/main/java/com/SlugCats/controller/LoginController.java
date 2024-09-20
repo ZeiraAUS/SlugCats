@@ -30,11 +30,11 @@ public class LoginController {
     @FXML
     private Label loginLabel;
     @FXML
-    private Label emailLabel;
+    private Label usernameLabel;
     @FXML
     private Label passwordLabel;
     @FXML
-    private TextField emailField;
+    private TextField usernameField;
     @FXML
     private PasswordField passwordField;
     // Buttons in HBox
@@ -59,8 +59,8 @@ public class LoginController {
         VBox vbox = new VBox(20);
         vbox.getChildren().addAll(
                 loginLabel,
-                emailLabel,
-                emailField,
+                usernameLabel,
+                usernameField,
                 passwordLabel,
                 passwordField,
                 buttonBox
@@ -87,7 +87,7 @@ public class LoginController {
         System.out.println(emailInput);
         String passwordInput = passwordField.toString();
         login_status loginStatus = new login_status();*/
-        String username = emailField.getText().toString();
+        String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
         login_status loginStatus = new login_status();
         boolean is_login=loginStatus.is_login(username,password);
