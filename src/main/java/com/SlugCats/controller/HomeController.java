@@ -44,7 +44,7 @@ public class HomeController {
         //Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
         logoImage.setImage(logo);
 
-        SetUsername();
+        //SetUsername();
 
         HBox headerBox = new HBox(20);
         headerBox.getChildren().addAll(
@@ -78,8 +78,8 @@ public class HomeController {
         //Example
         //get the email of user
         //...
-        User user= gotUser();
-        String email=user.getEmail();
+        User user = gotUser();
+        String email = user.getEmail();
         //set the email into the label
         usernameLabel.setText(email);
     }
