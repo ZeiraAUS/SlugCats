@@ -1,6 +1,5 @@
 package com.SlugCats.controller;
 
-
 import com.SlugCats.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,18 +15,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import com.SlugCats.auth.Authentication;
+
+/**
+ * The Register Controller handles logic for the Register window.
+ */
 public class RegisterController {
     @FXML
     private BorderPane rootPane;
-
     @FXML
     private ImageView logoImage;
     @FXML
     private Button backButton;
-
     @FXML
     private Label usernameLabel;
     @FXML
@@ -48,23 +48,24 @@ public class RegisterController {
     private Label emailLabel;
     @FXML
     private TextField emailField;
-
     @FXML
     private Button registerButton;
 
+    /**
+     * Initialize the Register window.
+     */
     @FXML
     public void initialize() {
-        // Initialise and set the logo image into the image view.
+        // Initialize the header components.
         Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
-
         logoImage.setImage(logo);
-
         HBox headerBox = new HBox(20);
         headerBox.getChildren().addAll(
                 logoImage,
                 backButton
         );
 
+        // Configure the components of the register form.
         VBox formLabelBox = new VBox(20);
         passwordLabel.setPadding(new Insets(15,0,0,0));
         firstNameLabel.setPadding(new Insets(15,0,0,0));
@@ -78,7 +79,6 @@ public class RegisterController {
                 emailLabel,
                 registerButton
         );
-
         VBox formFieldBox = new VBox(20);
         formFieldBox.getChildren().addAll(
                 usernameField,
@@ -93,9 +93,12 @@ public class RegisterController {
         rootPane.setRight(formFieldBox);
     }
 
+    /**
+     * Transitions user back to the log-in screen when they click the back button.
+     * @throws IOException
+     */
     @FXML
     protected void onBackButtonClick() throws IOException {
-        // Transition to Login window
         Stage stage = (Stage) backButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
@@ -103,10 +106,13 @@ public class RegisterController {
         stage.setScene(scene);
     }
 
+    /**
+     * When the register button is clicked, use the text fields' input to create a new user then transition
+     * the user back to the Log-in window.
+     * @throws IOException
+     */
     @FXML
     protected void onRegisterButtonClick() throws IOException {
-        //ADD ALL YOUR REGISTER LOGIC HERE PLEASE AND THANK YOU
-        //you can get the text from field like example below
         String username = usernameField.getText();
         String Password = passwordField.getText();
         String ConfirmPassword = passwordField.getText();
@@ -116,7 +122,7 @@ public class RegisterController {
         Authentication register=new Authentication();
         register.register(username,Password,ConfirmPassword,firstName,lastName,email);
 
-        // Transition to Login window
+        // Transition back to Log-in Window.
         Stage stage = (Stage) registerButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);

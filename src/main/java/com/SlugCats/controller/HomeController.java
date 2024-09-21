@@ -18,53 +18,47 @@ import java.io.IOException;
 
 import static com.SlugCats.controller.LoginController.gotUser;
 
+/**
+ * HomeController provides the functionality for the Home window.
+ */
 public class HomeController {
-
+    // Components of the Home window.
     @FXML
     private BorderPane rootPane;
-
     @FXML
     private ImageView logoImage;
     @FXML
     private Label usernameLabel;
     @FXML
     private Button logoutButton;
-
     @FXML
     private Button timerButton;
     @FXML
     private Label timerLabel;
 
+    /**
+     * The initialize method includes logic to add graphics and additional functionality to the window components.
+     */
     @FXML
     public void initialize() {
         // Initialise and set the logo image into the image view.
-        //WORKING FOR TEAM
         Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
-        //WORKING FOR AMY because one drive ruins my life
-        //Image logo = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\snailcat.PNG");
         logoImage.setImage(logo);
-
         SetUsername();
-
         HBox headerBox = new HBox(20);
         headerBox.getChildren().addAll(
             logoImage,
             logoutButton,
             usernameLabel
-
         );
         rootPane.setTop(headerBox);
 
         // Timer Button
-        //TEAM
         Image timer = new Image(getClass().getResource("/images/hourglass.PNG").toString(),true);
-        //AMY
-        //Image timer = new Image("C:\\Users\\amy_c\\OneDrive\\Desktop\\ED\\CAB302\\SlugCats\\src\\main\\resources\\images\\hourglass.PNG");
         ImageView timerView = new ImageView(timer);
         timerView.setFitHeight(350.0);
         timerView.setPreserveRatio(true);
         timerButton.setGraphic(timerView);
-
         VBox timerBox = new VBox(20);
         timerBox.getChildren().addAll(
             timerButton,
@@ -73,24 +67,21 @@ public class HomeController {
         rootPane.setLeft(timerBox);
     }
 
-    //NOTE: Whoever is handling the login stuff, please use this function to change the usernameLabel to the currently logged-in user.
+    /**
+     * Gets the username of the logged-in user and sets it to the label.
+     */
     private void SetUsername() {
-        //Example
-        //get the email of user
-        //...
         User user = gotUser();
         String userName = user.getUserName();
-        //set the email into the label
         usernameLabel.setText(userName);
     }
 
-    //NOTE: Include logic of logging the user out.
+    /**
+     * Transition user back to the login screen when the Logout button is clicked.
+     * @throws IOException
+     */
     @FXML
     protected void onLogoutButtonClick() throws IOException {
-        //Logout user logic here VVV
-        //...
-
-        // Transition back to Log in Window
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
@@ -98,9 +89,12 @@ public class HomeController {
         stage.setScene(scene);
     }
 
+    /**
+     * Transitions user to Timer window when they click the Timer button.
+     * @throws IOException
+     */
     @FXML
     protected void onTimerButtonClick() throws IOException {
-        // Transition to Timer window
         Stage stage = (Stage) timerButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("timer-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
