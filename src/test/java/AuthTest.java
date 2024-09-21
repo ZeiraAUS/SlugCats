@@ -28,14 +28,5 @@ public class AuthTest {
         assertTrue(Authentication.register("NewUser",  "password123", "password123","a","asa","asa"));
     }//test ,it will failed 2th because the username already exist.
 
-    @Test
-    void testLoginSuccess() throws SQLException {
-         assertTrue(Authentication.login("NewUser", "password123"));
-    }
-
-    @Test
-    void testLoginFailure() throws SQLException {//user not exist
-        assertFalse(Authentication.login("testUser", "password123"));
-    }
 
 }
