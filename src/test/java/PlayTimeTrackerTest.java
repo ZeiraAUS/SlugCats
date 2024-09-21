@@ -14,7 +14,7 @@ public class PlayTimeTrackerTest {
 
     @Test
     void testTrackPlayTime() {
-        tracker.trackPlayTime();
+        tracker.trackPlayTime(5);
 
         assertNotNull(tracker);
     }

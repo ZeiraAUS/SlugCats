@@ -13,8 +13,9 @@ public class playtimetracker {
         this.processName = processName;
     }
 
-    public void trackPlayTime() {
-        while (true) {
+    public void trackPlayTime(int maxIterations) {
+        int iterations = 0;
+        while (iterations < maxIterations) {
             long loopstartTime = System.currentTimeMillis();
 
             String startTime = getProcessStartTime(processName);
@@ -49,8 +50,10 @@ public class playtimetracker {
                 e.printStackTrace();
             }
 
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
+            iterations++;
+
+            /*System.out.print("\033[H\033[2J");
+            System.out.flush();*/
         }
     }
 
