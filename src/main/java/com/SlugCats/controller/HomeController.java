@@ -11,8 +11,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import com.SlugCats.DAOs.*;
+import com.SlugCats.Models.User;
 
 import java.io.IOException;
+
+import static com.SlugCats.controller.LoginController.gotUser;
 
 public class HomeController {
 
@@ -74,9 +78,10 @@ public class HomeController {
         //Example
         //get the email of user
         //...
-
+        User user = gotUser();
+        String userName = user.getUserName();
         //set the email into the label
-        usernameLabel.setText("Mackenzie@hotmail.com");
+        usernameLabel.setText(userName);
     }
 
     //NOTE: Include logic of logging the user out.
