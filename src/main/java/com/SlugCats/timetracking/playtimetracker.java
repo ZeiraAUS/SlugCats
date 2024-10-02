@@ -24,6 +24,7 @@ public class playtimetracker {
                 /*System.out.println("Start Time for " + processName + ": " + startTime);*/
 
                 LocalDateTime startDateTime = parseDateTime(startTime);
+
                 if (startDateTime != null) {
                     Duration runtime = Duration.between(startDateTime, LocalDateTime.now());
 

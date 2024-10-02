@@ -34,7 +34,11 @@ public class HomeController {
     @FXML
     private Button timerButton;
     @FXML
+    private Button stopwatchButton;
+    @FXML
     private Label timerLabel;
+    @FXML
+    private Label stopwatchLabel;
 
     /**
      * The initialize method includes logic to add graphics and additional functionality to the window components.
@@ -65,6 +69,19 @@ public class HomeController {
             timerLabel
         );
         rootPane.setLeft(timerBox);
+
+        // Stopwatch Button
+        Image stopwatch = new Image(getClass().getResource("/images/hourglass.PNG").toString(), true);  // Add stopwatch image
+        ImageView stopwatchView = new ImageView(stopwatch);
+        stopwatchView.setFitHeight(350.0);
+        stopwatchView.setPreserveRatio(true);
+        stopwatchButton.setGraphic(stopwatchView);
+        VBox stopwatchBox = new VBox(20);
+        stopwatchBox.getChildren().addAll(
+                stopwatchButton,
+                stopwatchLabel
+        );
+        rootPane.setRight(stopwatchBox);
     }
 
     /**
@@ -97,6 +114,15 @@ public class HomeController {
     protected void onTimerButtonClick() throws IOException {
         Stage stage = (Stage) timerButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("timer-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
+        stage.setResizable(false);
+        stage.setScene(scene);
+    }
+
+    @FXML
+    protected void onStopwatchButtonClick() throws IOException {
+        Stage stage = (Stage) stopwatchButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("stopwatch-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
         stage.setResizable(false);
         stage.setScene(scene);

@@ -1,11 +1,11 @@
 package com.SlugCats.timetracking;
 
-public class stopwatch {
+public class Stopwatch {
     private long startTime;
     private long stopTime;
     private boolean isRunning;
 
-    public stopwatch() {
+    public Stopwatch() {
         this.isRunning = false;
     }
 

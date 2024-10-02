@@ -28,4 +28,8 @@
         <Button fx:id="timerButton" prefHeight="100" prefWidth="100" onAction="#onTimerButtonClick"/>
         <Label fx:id="timerLabel" text="Timer" style="-fx-font-size: 48px" alignment="CENTER" textAlignment="CENTER"/>
     </VBox>
+    <VBox BorderPane.alignment="CENTER_RIGHT" fx:id="stopwatchBox">
+        <Button fx:id="stopwatchButton" prefHeight="100" prefWidth="100" onAction="#onStopwatchButtonClick"/>
+        <Label fx:id="stopwatchLabel" text="Stopwatch" style="-fx-font-size: 48px;" alignment="CENTER" textAlignment="CENTER"/>
+    </VBox>
 </BorderPane>

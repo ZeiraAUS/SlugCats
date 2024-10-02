@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.ImageView?>
+
+<!--Root Pane: Holds other panes/boxes and components.-->
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.SlugCats.controller.StopwatchController" fx:id="rootPane">
+    <!--HBox: Holding any components at the top of the window.-->
+    <HBox BorderPane.alignment="TOP_LEFT" fx:id="headerBox">
+        <ImageView fx:id="logoImage"
+                   fitHeight="150.0"
+                   preserveRatio="true"
+                   BorderPane.alignment="TOP_LEFT"
+        />
+        <!--GameBox: Holds the title of the game currently being tracked.-->
+        <VBox fx:id="gameBox">
+            <Label fx:id="playingLabel" style="-fx-font-size: 24px;" text="Currently Tracking:"/>
+            <Label fx:id="gameLabel" style="-fx-font-size: 48px;" text="[Game Detected]"/>
+        </VBox>
+        <Button fx:id="backButton" onAction="#onBackButtonClick" style="-fx-font-size: 24px;" prefWidth="250" text="Back"/>
+    </HBox>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <!--Stopwatch Box: Holds the stopwatch components.-->
+    <VBox BorderPane.alignment="CENTER" fx:id="stopwatchBox">
+        <Label fx:id="stopwatchLabel" style="-fx-font-size: 150px;" text="00:00:00"/>
+        <HBox fx:id="stopwatchSetBox">
+            <Label fx:id="setHourLabel" text="Hours:" style="-fx-font-size: 24px;"/>
+            <TextField fx:id="setHourField" style="-fx-font-size: 24px;" prefWidth="75.0"/>
+            <Label fx:id="setMinuteLabel" text="Minutes:" style="-fx-font-size: 24px;"/>
+            <TextField fx:id="setMinuteField" style="-fx-font-size: 24px;" prefWidth="75.0"/>
+            <Label fx:id="setSecondLabel" text="Seconds:" style="-fx-font-size: 24px;"/>
+            <TextField fx:id="setSecondField" style="-fx-font-size: 24px;" prefWidth="75.0"/>
+            <Button fx:id="setButton" onAction="#onSetButtonClick" prefHeight="50.0" text="Set" prefWidth="75.0" style="-fx-font-size: 24px;"/>
+        </HBox>
+        <!--StopwatchButtonBox: Holds the buttons for the stopwatch.-->
+        <HBox fx:id="stopwatchButtonBox" spacing="20">
+            <Button fx:id="startButton" onAction="#onStartButtonClick" text="Start" style="-fx-font-size: 24px;" prefWidth="100" prefHeight="50"/>
+            <Button fx:id="stopButton" onAction="#onStopButtonClick" text="Stop" style="-fx-font-size: 24px;" prefWidth="100" prefHeight="50"/>
+            <Button fx:id="resetButton" onAction="#onResetButtonClick" text="Reset" style="-fx-font-size: 24px;" prefWidth="100" prefHeight="50"/>
+        </HBox>
+    </VBox>
+</BorderPane>
