@@ -15,6 +15,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import com.SlugCats.gamestracking.GameDetector;
+
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -53,9 +56,12 @@ public class TimerController {
     private Button pauseButton;
     @FXML
     private Button resetButton;
+    @FXML
+    private Button gameDetectButton;
 
     // The countdown object for the timer.
     private CountDown countdown = new CountDown();
+    private String selectedGameTitle = "No Game Detected";
 
     /**
      * Initialize the Timer window.
@@ -75,6 +81,7 @@ public class TimerController {
         headerBox.getChildren().addAll(
                 logoImage,
                 gameBox,
+                gameDetectButton,
                 backButton
         );
 
@@ -128,8 +135,7 @@ public class TimerController {
      * @return
      */
     private String getGameTitle() {
-        // WIP
-        return "SnailCat TM";
+        return selectedGameTitle;
     }
 
     /**
@@ -223,4 +229,30 @@ public class TimerController {
                 time[0] + ":"  + time[1] + ":" + time[2]
         );
     }
+
+    @FXML
+    protected void onGameDetectButtonClick() {
+        GameDetector gameDetector = new GameDetector();
+        File selectedFile = gameDetector.choosefile();
+
+        if (selectedFile != null && selectedFile.exists()) {
+            String gameName = selectedFile.getName();
+            String displayName;
+
+            int lastDotIndex = gameName.lastIndexOf('.');
+            if (lastDotIndex != -1) {
+                displayName = gameName.substring(0, lastDotIndex);
+            } else {
+                displayName = gameName;
+            }
+
+            selectedGameTitle = displayName;
+        } else {
+            selectedGameTitle = "No Game Detected";
+        }
+
+        // Update the label to show just the game name
+        gameLabel.setText(selectedGameTitle);
+    }
+
 }
