@@ -3,6 +3,7 @@ package com.SlugCats.timetracking;
 public class Stopwatch {
     private long startTime;
     private long stopTime;
+    private long totalTime;
     private boolean isRunning;
 
     public Stopwatch() {
@@ -11,7 +12,7 @@ public class Stopwatch {
 
     public void start() {
         if (!isRunning) {
-            startTime = System.currentTimeMillis();
+            startTime = System.currentTimeMillis() - totalTime;;
             isRunning = true;
         }
     }
@@ -19,6 +20,7 @@ public class Stopwatch {
     public void stop() {
         if (isRunning) {
             stopTime = System.currentTimeMillis();
+            totalTime = stopTime - startTime;
             isRunning = false;
         }
     }
@@ -30,10 +32,10 @@ public class Stopwatch {
     }
 
     public String getelapsedTime() {
-        long elaspedTime = isRunning ? System.currentTimeMillis() - startTime : stopTime - startTime;
+        long elaspedTime = isRunning ? System.currentTimeMillis() - startTime : totalTime;
         long hours = (elaspedTime / 3600000) % 24;
         long minutes = (elaspedTime / 60000) % 60;
         long seconds = (elaspedTime / 1000) % 60;
-        return String.format("%02d H : %02d M : %02d S", hours, minutes, seconds);
+        return String.format("%02d: %02d: %02d", hours, minutes, seconds);
     }
 }

@@ -3,7 +3,6 @@ package com.SlugCats.controller;
 import com.SlugCats.Main;
 import com.SlugCats.timetracking.Stopwatch;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,10 +17,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * The Stopwatch Controller handles logic for the Stopwatch Window.
- */
 public class StopwatchController {
+
     @FXML
     private BorderPane rootPane;
     @FXML
@@ -33,7 +30,7 @@ public class StopwatchController {
     @FXML
     private Button backButton;
     @FXML
-    private Label timerLabel;
+    private Label stopwatchLabel;
     @FXML
     private Button startButton;
     @FXML
@@ -41,18 +38,15 @@ public class StopwatchController {
     @FXML
     private Button resetButton;
 
-    // The stopwatch object for the timer.
+    // Stopwatch object for tracking time
     private Stopwatch stopwatch = new Stopwatch();
 
-    // AnimationTimer to continuously update the UI
+    // AnimationTimer for updating UI
     private AnimationTimer timer;
 
-    /**
-     * Initialize the Stopwatch window.
-     */
     @FXML
     public void initialize() {
-        // Initialize and configure components for the header of the window.
+        // Initialize the logo and game title
         Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(), true);
         logoImage.setImage(logo);
         gameLabel.setText(getGameTitle());
@@ -68,36 +62,59 @@ public class StopwatchController {
                 backButton
         );
 
-        // Configure buttons (Start, Stop, Reset) and their actions
-        startButton.setOnAction(event -> onStartButtonClick());
-        stopButton.setOnAction(event -> onStopButtonClick());
-        resetButton.setOnAction(event -> onResetButtonClick());
+        VBox stopwatchBox = new VBox(20);
+
+        // Configure components for the Timer's buttons (Play, Pause and Reset).
+        HBox stopwatchButtonBox = new HBox(20);
+        Image play = new Image(getClass().getResource("/images/play.PNG").toString(),true);
+        Image pause = new Image(getClass().getResource("/images/pause.PNG").toString(),true);
+        Image reset = new Image(getClass().getResource("/images/reset.PNG").toString(),true);
+        ImageView playView = new ImageView(play);
+        ImageView pauseView = new ImageView(pause);
+        ImageView resetView = new ImageView(reset);
+        playView.setFitHeight(150.0);
+        pauseView.setFitHeight(150.0);
+        resetView.setFitHeight(150.0);
+        playView.setPreserveRatio(true);
+        pauseView.setPreserveRatio(true);
+        resetView.setPreserveRatio(true);
+        startButton.setText("");
+        stopButton.setText("");
+        resetButton.setText("");
+        startButton.setGraphic(playView);
+        stopButton.setGraphic(pauseView);
+        resetButton.setGraphic(resetView);
+        stopwatchButtonBox.getChildren().addAll(
+                startButton,
+                stopButton,
+                resetButton
+        );
+        stopwatchBox.getChildren().addAll(
+                stopwatchLabel,
+                stopwatchButtonBox
+        );
 
         rootPane.setTop(headerBox);
-        rootPane.setCenter(timerLabel);
-        rootPane.setBottom(createButtonBox());
+        rootPane.setCenter(stopwatchBox);
 
-        // Create an AnimationTimer to update the timer label every frame
+        // Create an AnimationTimer to update the stopwatch label every frame
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                updateTimerLabel();
+                updateStopwatchLabel();
             }
         };
     }
 
     /**
-     * Fetches the detected executable and return the name for the label.
-     * @return
+     * Get the detected game title for the label.
      */
     private String getGameTitle() {
-        // Placeholder for game title
         return "SnailCat™ Stopwatch";
     }
 
     /**
-     * On back button click, transition back to the home screen.
-     * @throws IOException
+     * Handle back button click and navigate back to the home screen.
      */
     @FXML
     protected void onBackButtonClick() throws IOException {
@@ -109,7 +126,7 @@ public class StopwatchController {
     }
 
     /**
-     * Start the stopwatch when the start button is clicked.
+     * Start the stopwatch and timer when the start button is clicked.
      */
     @FXML
     protected void onStartButtonClick() {
@@ -118,7 +135,7 @@ public class StopwatchController {
     }
 
     /**
-     * Stop the stopwatch when the stop button is clicked.
+     * Stop the stopwatch and timer when the stop button is clicked.
      */
     @FXML
     protected void onStopButtonClick() {
@@ -127,30 +144,18 @@ public class StopwatchController {
     }
 
     /**
-     * Reset the stopwatch when the reset button is clicked.
+     * Reset the stopwatch and update the label when the reset button is clicked.
      */
     @FXML
     protected void onResetButtonClick() {
         stopwatch.reset();
-        updateTimerLabel();
+        updateStopwatchLabel();
     }
 
     /**
      * Update the label displaying the stopwatch's elapsed time.
      */
-    private void updateTimerLabel() {
-        timerLabel.setText(stopwatch.getelapsedTime());
-    }
-
-    /**
-     * Create a box for the buttons (Start, Stop, Reset)
-     */
-    private HBox createButtonBox() {
-        HBox buttonBox = new HBox(20);
-        buttonBox.getChildren().addAll(startButton, stopButton, resetButton);
-        return buttonBox;
-    }
-
-    public void onSetButtonClick(ActionEvent actionEvent) {
+    private void updateStopwatchLabel() {
+        stopwatchLabel.setText(stopwatch.getelapsedTime());
     }
 }
