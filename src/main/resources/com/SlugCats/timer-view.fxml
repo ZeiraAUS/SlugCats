@@ -21,11 +21,9 @@
         <!--GameBox: Holds the title of the game currently being tracked.-->
         <VBox fx:id="gameBox">
             <Label fx:id="playingLabel" style="-fx-font-size: 24px;" text="Currently Tracking:"/>
-            <HBox>
-                <Label fx:id="gameLabel" style="-fx-font-size: 48px;" text="[Game Detected]"/>
-                <Button fx:id="gameDetectButton" onAction="#onGameDetectButtonClick" style="-fx-font-size: 24px;" prefWidth="100" text="Game"/>
-            </HBox>
+            <Label fx:id="gameLabel" style="-fx-font-size: 48px;" text="[Game Detected]"/>
         </VBox>
+        <Button fx:id="gameDetectButton" onAction="#onGameDetectButtonClick" style="-fx-font-size: 24px;" prefWidth="100" text="Game"/>
         <Button fx:id="backButton" onAction="#onBackButtonClick" style="-fx-font-size: 24px;" prefWidth="250" text="Back"/>
     </HBox>
     <padding>
