@@ -36,6 +36,6 @@ public class Stopwatch {
         long hours = (elaspedTime / 3600000) % 24;
         long minutes = (elaspedTime / 60000) % 60;
         long seconds = (elaspedTime / 1000) % 60;
-        return String.format("%02d: %02d: %02d", hours, minutes, seconds);
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 }
