@@ -3,7 +3,7 @@ package com.SlugCats.gamestracking;
 import javax.swing.*;
 import java.io.File;
 
-public class GameDectector {
+public class GameDetector {
     private String gameName;
 
     public File choosefile() {
@@ -17,11 +17,13 @@ public class GameDectector {
     }
 
     public String detectGame(File file) {
-        if (file != null) {
-            String fileName = file.getName();
-            if (fileName.endsWith(".exe")) {
-                gameName = file.getName();
-            }
+        if (file == null || !file.exists()) {
+            return "No game detected";
+        }
+
+        if (file.isFile() && file.getName().endsWith(".exe")) {
+            gameName = file.getName();
+            return "Executable Game File: " + gameName;
         }
 
         return "No game detected";
