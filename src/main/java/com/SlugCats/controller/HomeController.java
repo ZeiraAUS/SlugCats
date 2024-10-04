@@ -71,7 +71,7 @@ public class HomeController {
         rootPane.setLeft(timerBox);
 
         // Stopwatch Button
-        Image stopwatch = new Image(getClass().getResource("/images/hourglass.PNG").toString(), true);  // Add stopwatch image
+        Image stopwatch = new Image(getClass().getResource("/images/stopwatch.PNG").toString(), true);  // Add stopwatch image
         ImageView stopwatchView = new ImageView(stopwatch);
         stopwatchView.setFitHeight(350.0);
         stopwatchView.setPreserveRatio(true);
