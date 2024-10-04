@@ -58,6 +58,8 @@ public class TimerController {
     private Button resetButton;
     @FXML
     private Button gameDetectButton;
+    @FXML
+    private Label selectgameLabel;
 
     // The countdown object for the timer.
     private CountDown countdown = new CountDown();
@@ -78,10 +80,17 @@ public class TimerController {
                 playingLabel,
                 gameLabel
         );
+
+        VBox detectGameBox = new VBox(20);
+        detectGameBox.getChildren().addAll(
+                selectgameLabel,
+                gameDetectButton
+        );
+
         headerBox.getChildren().addAll(
                 logoImage,
                 gameBox,
-                gameDetectButton,
+                detectGameBox,
                 backButton
         );
 
