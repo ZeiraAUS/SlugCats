@@ -37,6 +37,10 @@ public class RegisterController {
     @FXML
     private PasswordField passwordField;
     @FXML
+    private Label confirmPasswordLabel;
+    @FXML
+    private PasswordField confirmPasswordField;
+    @FXML
     private Label firstNameLabel;
     @FXML
     private TextField firstNameField;
@@ -68,12 +72,14 @@ public class RegisterController {
         // Configure the components of the register form.
         VBox formLabelBox = new VBox(20);
         passwordLabel.setPadding(new Insets(15,0,0,0));
+        confirmPasswordLabel.setPadding(new Insets(15,0,0,0));
         firstNameLabel.setPadding(new Insets(15,0,0,0));
         lastNameLabel.setPadding(new Insets(15,0,0,0));
         emailLabel.setPadding(new Insets(15,0,0,0));
         formLabelBox.getChildren().addAll(
                 usernameLabel,
                 passwordLabel,
+                confirmPasswordLabel,
                 firstNameLabel,
                 lastNameLabel,
                 emailLabel,
@@ -83,6 +89,7 @@ public class RegisterController {
         formFieldBox.getChildren().addAll(
                 usernameField,
                 passwordField,
+                confirmPasswordField,
                 firstNameField,
                 lastNameField,
                 emailField

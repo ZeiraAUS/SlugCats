@@ -81,6 +81,11 @@ public class TimerController {
                 gameLabel
         );
 
+        Image selectGame = new Image(getClass().getResource("/images/folder.PNG").toString(),true);
+        ImageView selectView = new ImageView(selectGame);
+        selectView.setFitHeight(25);
+        selectView.setPreserveRatio(true);
+        gameDetectButton.setGraphic(selectView);
         VBox detectGameBox = new VBox(20);
         detectGameBox.getChildren().addAll(
                 selectgameLabel,

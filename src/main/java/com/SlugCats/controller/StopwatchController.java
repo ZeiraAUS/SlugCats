@@ -1,6 +1,7 @@
 package com.SlugCats.controller;
 
 import com.SlugCats.Main;
+import com.SlugCats.gamestracking.GameDetector;
 import com.SlugCats.timetracking.Stopwatch;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class StopwatchController {
@@ -28,6 +30,10 @@ public class StopwatchController {
     @FXML
     private Label playingLabel;
     @FXML
+    private Button gameDetectButton;
+    @FXML
+    private Label selectgameLabel;
+    @FXML
     private Button backButton;
     @FXML
     private Label stopwatchLabel;
@@ -40,6 +46,7 @@ public class StopwatchController {
 
     // Stopwatch object for tracking time
     private Stopwatch stopwatch = new Stopwatch();
+    private String selectedGameTitle = "No Game Detected";
 
     // AnimationTimer for updating UI
     private AnimationTimer timer;
@@ -56,9 +63,20 @@ public class StopwatchController {
                 playingLabel,
                 gameLabel
         );
+        Image selectGame = new Image(getClass().getResource("/images/folder.PNG").toString(),true);
+        ImageView selectView = new ImageView(selectGame);
+        selectView.setFitHeight(25);
+        selectView.setPreserveRatio(true);
+        gameDetectButton.setGraphic(selectView);
+        VBox detectGameBox = new VBox(20);
+        detectGameBox.getChildren().addAll(
+                selectgameLabel,
+                gameDetectButton
+        );
         headerBox.getChildren().addAll(
                 logoImage,
                 gameBox,
+                detectGameBox,
                 backButton
         );
 
@@ -110,7 +128,7 @@ public class StopwatchController {
      * Get the detected game title for the label.
      */
     private String getGameTitle() {
-        return "SnailCat™ Stopwatch";
+        return selectedGameTitle;
     }
 
     /**
@@ -157,5 +175,30 @@ public class StopwatchController {
      */
     private void updateStopwatchLabel() {
         stopwatchLabel.setText(stopwatch.getelapsedTime());
+    }
+
+    @FXML
+    protected void onGameDetectButtonClick() {
+        GameDetector gameDetector = new GameDetector();
+        File selectedFile = gameDetector.choosefile();
+
+        if (selectedFile != null && selectedFile.exists()) {
+            String gameName = selectedFile.getName();
+            String displayName;
+
+            int lastDotIndex = gameName.lastIndexOf('.');
+            if (lastDotIndex != -1) {
+                displayName = gameName.substring(0, lastDotIndex);
+            } else {
+                displayName = gameName;
+            }
+
+            selectedGameTitle = displayName;
+        } else {
+            selectedGameTitle = "No Game Detected";
+        }
+
+        // Update the label to show just the game name
+        gameLabel.setText(selectedGameTitle);
     }
 }

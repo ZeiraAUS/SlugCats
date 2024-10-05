@@ -24,7 +24,7 @@
             <Label fx:id="gameLabel" style="-fx-font-size: 24px;" text="[Game Detected]"/>
             <VBox fx:id="gameDetectBox" spacing="10" alignment="CENTER">
                 <Label fx:id="selectgameLabel" style="-fx-font-size: 20px;" text="Select Game"/>
-                <Button fx:id="gameDetectButton" onAction="#onGameDetectButtonClick" style="-fx-font-size: 24px;" prefWidth="100" text="Game"/>
+                <Button fx:id="gameDetectButton" onAction="#onGameDetectButtonClick" style="-fx-font-size: 24px;" prefWidth="100"/>
             </VBox>
         </VBox>
         <Button fx:id="backButton" onAction="#onBackButtonClick" style="-fx-font-size: 24px;" prefWidth="250" text="Back"/>

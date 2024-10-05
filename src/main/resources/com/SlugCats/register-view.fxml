@@ -26,20 +26,22 @@
     </padding>
     <!--VBox: Holding the Register window labels and button.-->
     <VBox>
-        <Label fx:id="usernameLabel" text="Username:" style="-fx-font-size: 24px;"/>
-        <Label fx:id="passwordLabel" text="Password:" style="-fx-font-size: 24px;"/>
-        <Label fx:id="firstNameLabel" text="First Name:" style="-fx-font-size: 24px;"/>
-        <Label fx:id="lastNameLabel" text="Last Name:" style="-fx-font-size: 24px;"/>
-        <Label fx:id="emailLabel" text="Email:" style="-fx-font-size: 24px;"/>
+        <Label fx:id="usernameLabel" text="Username:" style="-fx-font-size: 20px;"/>
+        <Label fx:id="passwordLabel" text="Password:" style="-fx-font-size: 20px;"/>
+        <Label fx:id="confirmPasswordLabel" text="Confirm Password:" style="-fx-font-size: 20px;"/>
+        <Label fx:id="firstNameLabel" text="First Name:" style="-fx-font-size: 20px;"/>
+        <Label fx:id="lastNameLabel" text="Last Name:" style="-fx-font-size: 20px;"/>
+        <Label fx:id="emailLabel" text="Email:" style="-fx-font-size: 20px;"/>
 
         <Button fx:id="registerButton" style="-fx-font-size: 24px;" prefWidth="250" onAction="#onRegisterButtonClick" text="Register"/>
     </VBox>
     <!--VBox: Holding the text fields for the user to fill out.-->
     <VBox>
-        <TextField fx:id="usernameField" style="-fx-font-size: 24px;" prefWidth="350.0"/>
-        <PasswordField fx:id="passwordField" style="-fx-font-size: 24px;" prefWidth="350.0"/>
-        <TextField fx:id="firstNameField" style="-fx-font-size: 24px;" prefWidth="350.0"/>
-        <TextField fx:id="lastNameField" style="-fx-font-size: 24px;" prefWidth="350.0"/>
-        <TextField fx:id="emailField" style="-fx-font-size: 24px;" prefWidth="350.0"/>
+        <TextField fx:id="usernameField" style="-fx-font-size: 20px;" prefWidth="350.0"/>
+        <PasswordField fx:id="passwordField" style="-fx-font-size: 20px;" prefWidth="350.0"/>
+        <PasswordField fx:id="confirmPasswordField" style="-fx-font-size: 20px;" prefWidth="350"/>
+        <TextField fx:id="firstNameField" style="-fx-font-size: 20px;" prefWidth="350.0"/>
+        <TextField fx:id="lastNameField" style="-fx-font-size: 20px;" prefWidth="350.0"/>
+        <TextField fx:id="emailField" style="-fx-font-size: 20px;" prefWidth="350.0"/>
     </VBox>
 </BorderPane>
