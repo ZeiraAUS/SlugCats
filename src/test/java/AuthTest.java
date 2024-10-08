@@ -1,31 +1,24 @@
 import static org.junit.jupiter.api.Assertions.*;
-
-import com.SlugCats.auth.Authentication;
-
+import com.SlugCats.NewAuth.*;
 import java.sql.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
 public class AuthTest {
     private Connection connection;
-    private Authentication Authentication;
-
+    private register register;
     @BeforeEach
     void setUp() throws SQLException {
-        Authentication = new Authentication();
-    }
+        this.register= new register();    }
 
     @Test
     void testRegisterUserExists() throws SQLException {
       // two password not equal
-             assertFalse(Authentication.register("testUser",  "password123", "password13","a","a","asa"));
+             assertFalse(register.register_a_user("testUser",  "password123", "password13","a","a","asa"));
     }
 
     @Test
     void testRegisterSuccess() throws SQLException {
-        assertTrue(Authentication.register("NewUser",  "password123", "password123","a","asa","asa"));
+        assertTrue(register.register_a_user("NewUser",  "password123", "password123","a","asa","asa"));
     }//test ,it will failed 2th because the username already exist.
 
 

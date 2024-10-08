@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.SlugCats.NewAuth.login_status;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import com.SlugCats.auth.*;
+
 import com.SlugCats.Models.User;
 
 class LoginStatusTest {

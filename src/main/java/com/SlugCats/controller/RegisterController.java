@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import com.SlugCats.auth.Authentication;
+import com.SlugCats.NewAuth.register;
 public class RegisterController {
     @FXML
     private BorderPane rootPane;
@@ -113,8 +113,8 @@ public class RegisterController {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
-        Authentication register=new Authentication();
-        register.register(username,Password,ConfirmPassword,firstName,lastName,email);
+        register register=new register();
+        register.register_a_user(username,Password,ConfirmPassword,firstName,lastName,email);
 
         // Transition to Login window
         Stage stage = (Stage) registerButton.getScene().getWindow();

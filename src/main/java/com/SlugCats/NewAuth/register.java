@@ -11,8 +11,7 @@ public class register extends Authentication{
         }
         //String hashed = BCrypt.hashpw(password, BCrypt.gensalt()); //try hash I will do it later
         User useradd=new User( userName, password, firstName,lastName, email);
-        boolean isRigster=register(useradd);
+        boolean isRigster=super.register(useradd);
         return isRigster;
-
     }
 }
