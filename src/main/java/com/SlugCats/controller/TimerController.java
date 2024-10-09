@@ -5,6 +5,7 @@ import com.SlugCats.timetracking.CountDown;
 import javafx.animation.Animation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -94,9 +95,9 @@ public class TimerController {
 
         headerBox.getChildren().addAll(
                 logoImage,
+                backButton,
                 gameBox,
-                detectGameBox,
-                backButton
+                detectGameBox
         );
 
         // Configure labels and fields for setting timer display.
@@ -139,6 +140,10 @@ public class TimerController {
                 timerSetBox,
                 timerButtonBox
         );
+
+        timerLabel.setPadding(new Insets(0.0,0.0,0.0,200));
+        timerSetBox.setPadding(new Insets(0.0,0.0,0.0,140));
+        timerButtonBox.setPadding(new Insets(0.0,0.0,0.0,197));
 
         rootPane.setTop(headerBox);
         rootPane.setCenter(timerBox);

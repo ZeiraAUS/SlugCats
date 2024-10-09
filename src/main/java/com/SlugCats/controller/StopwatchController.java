@@ -6,6 +6,7 @@ import com.SlugCats.timetracking.Stopwatch;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -75,9 +76,9 @@ public class StopwatchController {
         );
         headerBox.getChildren().addAll(
                 logoImage,
+                backButton,
                 gameBox,
-                detectGameBox,
-                backButton
+                detectGameBox
         );
 
         VBox stopwatchBox = new VBox(20);
@@ -111,6 +112,9 @@ public class StopwatchController {
                 stopwatchLabel,
                 stopwatchButtonBox
         );
+
+        stopwatchLabel.setPadding(new Insets(0.0,0.0,0.0,200));
+        stopwatchButtonBox.setPadding(new Insets(0.0,0.0,0.0,185));
 
         rootPane.setTop(headerBox);
         rootPane.setCenter(stopwatchBox);
