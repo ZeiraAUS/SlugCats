@@ -29,6 +29,8 @@ public class RegisterController {
     @FXML
     private Button backButton;
     @FXML
+    private Label registrationLabel;
+    @FXML
     private Label usernameLabel;
     @FXML
     private TextField usernameField;
@@ -66,7 +68,8 @@ public class RegisterController {
         HBox headerBox = new HBox(20);
         headerBox.getChildren().addAll(
                 logoImage,
-                backButton
+                backButton,
+                registrationLabel
         );
 
         // Configure the components of the register form.

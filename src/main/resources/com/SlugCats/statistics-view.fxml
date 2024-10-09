@@ -25,6 +25,7 @@
                    BorderPane.alignment="TOP_LEFT"
         />
         <Button fx:id="backButton" onAction="#onBackButtonClick" style="-fx-font-size: 24px;" prefWidth="250" text="Back"/>
+        <Label fx:id="statisticsLabel" style="-fx-font-size: 35px;" text="Statistics"/>
     </HBox>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>

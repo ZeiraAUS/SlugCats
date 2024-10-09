@@ -24,13 +24,15 @@ import java.io.File;
 import java.io.IOException;
 
 public class StatisticsController {
-    // Components of the Home window.
+    // Components of the Statistics window.
     @FXML
     private BorderPane rootPane;
     @FXML
     private ImageView logoImage;
     @FXML
     private Button backButton;
+    @FXML
+    private Label statisticsLabel;
     @FXML
     private Tab dailyTab;
     @FXML
@@ -66,7 +68,8 @@ public class StatisticsController {
         HBox headerBox = new HBox(20);
         headerBox.getChildren().addAll(
                 logoImage,
-                backButton
+                backButton,
+                statisticsLabel
         );
         rootPane.setTop(headerBox);
 
