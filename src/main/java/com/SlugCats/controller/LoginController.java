@@ -1,4 +1,5 @@
 package com.SlugCats.controller;
+import com.SlugCats.NewAuth.LoginStatus;
 import com.SlugCats.NewAuth.login_status;
 import com.SlugCats.DAOs.*;
 import com.SlugCats.Models.User;
@@ -89,13 +90,19 @@ public class LoginController {
         System.out.println(emailInput);
         String passwordInput = passwordField.toString();
         login_status loginStatus = new login_status();*/
+        boolean credentialValidity;
+        if(if_already_login()!=null){
+            user=if_already_login();
+            credentialValidity=true;
+            System.out.println("keep logged in working");
+        }else{
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
         login_status loginStatus = new login_status();
         loginStatus.is_login(username,password);
         boolean is_login=loginStatus.gotLogin_status();
         user=loginStatus.getUser();
-        boolean credentialValidity = is_login;
+        credentialValidity = is_login;}
 
         if (credentialValidity) {
             Stage stage = (Stage) loginButton.getScene().getWindow();
@@ -110,6 +117,16 @@ public class LoginController {
 
     }
 
+    private User if_already_login(){
+        String  username=LoginStatus.getLoggedInUsername();
+        if(username==null){
+
+            return null;
+        }
+        UserDAO userDAO=new UserDAO();
+        User loginUser= userDAO.getUserByUsername(username);
+        return loginUser;
+    }
     // please insert your authentication logic here
     private boolean AuthenticateUser(String emailInput, String passwordInput) {
         login_status loginStatus = new login_status();
