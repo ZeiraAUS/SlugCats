@@ -61,7 +61,7 @@ public class SaltDAO implements ISaltDAO {
                         rs.getString("Salt")
                 );
             }
-            // 关闭 ResultSet 和 PreparedStatement
+
             getSalt.close();
             rs.close();
         } catch (SQLException sqlEx) {

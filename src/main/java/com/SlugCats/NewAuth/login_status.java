@@ -37,7 +37,8 @@ public class login_status implements LoginInterface{
         this.login_status=true;
         this.username=username;
         System.out.println("login_status: "+login_status);
-        return true;
+        LoginStatus.setLoginStatus(username);
+        return login_status;
     }
     @Override
     public User getUser(){
