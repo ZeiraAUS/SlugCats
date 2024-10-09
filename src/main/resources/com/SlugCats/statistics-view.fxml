@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<!--Root Pane: Holds other panes/boxes and components.-->
+<BorderPane
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.SlugCats.controller.StatisticsController">
-
-</AnchorPane>
+            fx:controller="com.SlugCats.controller.StatisticsController"
+            fx:id="rootPane">
+    <!--HBox: Holding any components at the top of the window.-->
+    <HBox BorderPane.alignment="TOP_LEFT" fx:id="headerBox">
+        <ImageView fx:id="logoImage"
+                   fitHeight="150.0"
+                   preserveRatio="true"
+                   BorderPane.alignment="TOP_LEFT"
+        />
+        <Button fx:id="backButton" onAction="#onBackButtonClick" style="-fx-font-size: 24px;" prefWidth="250" text="Back"/>
+    </HBox>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <TabPane fx:id="statisticsPane">
+        <Tab text="Daily" fx:id="dailyTab" style="-fx-font-size: 19px;" onSelectionChanged="#onDailyTabSelection">
+            <Label text="[Insert Daily Stats Here]" fx:id="dailyStatLabel" style="-fx-font-size: 18px;"/>
+        </Tab>
+        <Tab text="Weekly" fx:id="weeklyTab" style="-fx-font-size: 19px;" onSelectionChanged="#onWeeklyTabSelection">
+            <Label text="[Insert Weekly Stats Here]" fx:id="weeklyStatLabel" style="-fx-font-size: 18px;"/>
+        </Tab>
+        <Tab text="Monthly" fx:id="monthlyTab" style="-fx-font-size: 19px;" onSelectionChanged="#onMonthlyTabSelection">
+            <Label text="[Insert Monthly Stats Here]" fx:id="monthlyStatLabel" style="-fx-font-size: 18px;"/>
+        </Tab>
+        <Tab text="Yearly" fx:id="yearlyTab" style="-fx-font-size: 19px;" onSelectionChanged="#onYearlyTabSelection">
+            <Label text="[Insert Yearly Stats Here]" fx:id="yearlyStatLabel" style="-fx-font-size: 18px;"/>
+        </Tab>
+        <Tab text="Game Specific" fx:id="gameTab" style="-fx-font-size: 19px;" onSelectionChanged="#onGameTabSelection">
+            <VBox fx:id="gameTabBox">
+                <HBox fx:id="selectGameBox">
+                    <Button text="Select Game" fx:id="selectButton" onAction="#onSelectButtonClick"/>
+                    <Label text="   Game Selected: [Game Selected]" fx:id="gameLabel" style="-fx-font-size: 20px;"/>
+                </HBox>
+                <Label text="[Insert Game Specific Stats Here]" fx:id="gameStatLabel" style="-fx-font-size: 18px;"/>
+            </VBox>
+        </Tab>
+    </TabPane>
+</BorderPane>
