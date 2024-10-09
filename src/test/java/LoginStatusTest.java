@@ -22,7 +22,7 @@ class LoginStatusTest {
     @Test
     void testLoginSuccess() {
         // Simulate a successful login directly
-        boolean result = loginStatus.is_login("NewUser", "password123");
+        boolean result = loginStatus.is_login("NewUser1111", "password123");
 
         // Assert the login status and username
         assertTrue(result, "Login should be successful");

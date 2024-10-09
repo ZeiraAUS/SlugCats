@@ -18,7 +18,7 @@ public class AuthTest {
 
     @Test
     void testRegisterSuccess() throws SQLException {
-        assertTrue(register.register_a_user("NewUser",  "password123", "password123","a","asa","asa"));
+        assertTrue(register.register_a_user("NewUser1111",  "password123", "password123","a","asa","asa"));
     }//test ,it will failed 2th because the username already exist.
 
 

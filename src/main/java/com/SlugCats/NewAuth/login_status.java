@@ -1,5 +1,7 @@
 package com.SlugCats.NewAuth;
+import com.SlugCats.DAOs.SaltDAO;
 import com.SlugCats.Models.User;
+import com.SlugCats.Models.salt;
 
 public class login_status implements LoginInterface{
     private boolean login_status;
@@ -19,7 +21,14 @@ public class login_status implements LoginInterface{
     @Override
     public boolean  is_login(String username, String password){
         Authentication userlogin=new Authentication();
-        User user=userlogin.login(username,password);
+        SaltDAO saltDAO=new SaltDAO();
+        salt salt=saltDAO.GetSalt(username);
+        String saltpassword= salt.getSalt();
+        if(salt==null){
+            System.out.println("User not found");
+        }
+        String hash_password =Hash_salt.generateHash(password, saltpassword);
+        User user=userlogin.login(username,hash_password);
         if(user==null){
             System.out.println("User not found");
             return false;

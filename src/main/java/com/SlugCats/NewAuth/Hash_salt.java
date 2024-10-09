@@ -6,15 +6,15 @@ import java.util.Base64;
 
 
 public class Hash_salt {
-    private static String getSalt() {
+    public static String getSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         return Base64.getEncoder().encodeToString(salt);
     }// we need to change the user model to store it. do it later
 
-    private static String generateHash(String password) {
-        String salt="dadahdhaafj";// change it later
+    public static String generateHash(String password,String salt) {
+
         String hashedPassword = null;
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
