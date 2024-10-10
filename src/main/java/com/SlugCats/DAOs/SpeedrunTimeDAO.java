@@ -4,6 +4,7 @@ import com.SlugCats.Models.SpeedrunTime;
 import com.SlugCats.DatabaseConnection;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class SpeedrunTimeDAO implements ISpeedrunTImeDAO{
                             "GameId INTEGER NOT NULL, " +
                             "BestTime INTEGER NOT NULL, " +
                             "LastRunTime INTEGER NOT NULL, " +
+                            "CreatedDateTime VARCHAR NOT NULL, " +
                             "FOREIGN KEY (UserId) REFERENCES Users(UserId), " +
                             "FOREIGN KEY (GameId) REFERENCES Games(GameId)" +
                             ")"
@@ -43,14 +45,15 @@ public class SpeedrunTimeDAO implements ISpeedrunTImeDAO{
         try
         {
             PreparedStatement insertSpeedrunTime = connection.prepareStatement(
-                    "INSERT INTO SpeedrunTimes (UserId, GameId, BestTime, LastRunTime) " +
-                            "VALUES (?, ?, ?, ?)"
+                    "INSERT INTO SpeedrunTimes (UserId, GameId, BestTime, LastRunTime, CreatedDateTime) " +
+                            "VALUES (?, ?, ?, ?, ?)"
             );
 
             insertSpeedrunTime.setInt(1, speedrunTime.getUserId());
             insertSpeedrunTime.setInt(2, speedrunTime.getGameId());
             insertSpeedrunTime.setLong(3, speedrunTime.getBestTime());
             insertSpeedrunTime.setLong(4, speedrunTime.getLastRunTime());
+            insertSpeedrunTime.setString(5, speedrunTime.getCreatedDateTime().toString());
             insertSpeedrunTime.execute();
         }
         catch (SQLException sqlEx)
@@ -74,7 +77,8 @@ public class SpeedrunTimeDAO implements ISpeedrunTImeDAO{
                         rs.getInt("UserId"),
                         rs.getInt("GameId"),
                         rs.getLong("BestTime"),
-                        rs.getLong("LastRunTime")
+                        rs.getLong("LastRunTime"),
+                        LocalDateTime.parse(rs.getString("CreatedDateTime"))
                 );
             }
         }
@@ -100,7 +104,8 @@ public class SpeedrunTimeDAO implements ISpeedrunTImeDAO{
                                 rs.getInt("UserId"),
                                 rs.getInt("GameId"),
                                 rs.getLong("BestTime"),
-                                rs.getLong("LastRunTime")
+                                rs.getLong("LastRunTime"),
+                                LocalDateTime.parse(rs.getString("CreatedDateTime"))
                         )
                 );
             }
@@ -129,7 +134,8 @@ public class SpeedrunTimeDAO implements ISpeedrunTImeDAO{
                                 rs.getInt("UserId"),
                                 rs.getInt("GameId"),
                                 rs.getLong("BestTime"),
-                                rs.getLong("LastRunTime")
+                                rs.getLong("LastRunTime"),
+                                LocalDateTime.parse(rs.getString("CreatedDateTime"))
                         )
                 );
             }
@@ -158,7 +164,8 @@ public class SpeedrunTimeDAO implements ISpeedrunTImeDAO{
                                 rs.getInt("UserId"),
                                 rs.getInt("GameId"),
                                 rs.getLong("BestTime"),
-                                rs.getLong("LastRunTime")
+                                rs.getLong("LastRunTime"),
+                                LocalDateTime.parse(rs.getString("CreatedDateTime"))
                         )
                 );
             }
@@ -176,13 +183,14 @@ public class SpeedrunTimeDAO implements ISpeedrunTImeDAO{
         {
             PreparedStatement updateSpeedrunTime = connection.prepareStatement(
                     "UPDATE SpeedrunTimes SET UserId = ?, GameId = ?, BestTime = ?, " +
-                            "LastRunTime = ? WHERE SpeedrunTimeId = ?"
+                            "LastRunTime = ?, CreatedDateTime = ? WHERE SpeedrunTimeId = ?"
             );
             updateSpeedrunTime.setInt(1, speedrunTime.getUserId());
             updateSpeedrunTime.setInt(2, speedrunTime.getGameId());
             updateSpeedrunTime.setLong(3, speedrunTime.getBestTime());
             updateSpeedrunTime.setLong(4, speedrunTime.getLastRunTime());
-            updateSpeedrunTime.setInt(5, speedrunTime.getSpeedrunTimeId());
+            updateSpeedrunTime.setString(5, speedrunTime.getCreatedDateTime().toString());
+            updateSpeedrunTime.setInt(6, speedrunTime.getSpeedrunTimeId());
             updateSpeedrunTime.execute();
         }
         catch (SQLException sqlEx)
