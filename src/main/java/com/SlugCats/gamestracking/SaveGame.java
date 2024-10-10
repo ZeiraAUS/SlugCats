@@ -21,15 +21,30 @@ public class SaveGame {
             return false;
         }
 
+        Game existingGame = getExistingGame(gameName);
+
+        if (existingGame != null) {
+            System.out.println("Game already exists: " + existingGame.getGameName());
+            return false;
+        }
+
         Game newGame = new Game(gameName, gameProcess);
 
         try {
             gameDAO.AddGame(newGame);
-            System.out.println("Game saved successfully.");
             return true;
         } catch (Exception e) {
-            System.err.println("Failed to save game: " + e.getMessage());
             return false;
         }
     }
+
+    private Game getExistingGame(String gameName) {
+        for (Game game : gameDAO.GetGameList()) {
+            if (game.getGameName().equalsIgnoreCase(gameName)) {
+                return game; // Return the existing game
+            }
+        }
+        return null; // Game does not exist
+    }
 }
+
