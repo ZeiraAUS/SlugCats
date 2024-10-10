@@ -23,10 +23,12 @@ public class login_status implements LoginInterface{
         Authentication userlogin=new Authentication();
         SaltDAO saltDAO=new SaltDAO();
         salt salt=saltDAO.GetSalt(username);
-        String saltpassword= salt.getSalt();
+
         if(salt==null){
             System.out.println("User not found");
+            return false;
         }
+        String saltpassword= salt.getSalt();
         String hash_password =Hash_salt.generateHash(password, saltpassword);
         User user=userlogin.login(username,hash_password);
         if(user==null){
