@@ -9,12 +9,12 @@ public class PlayTimeTrackerTest {
     private playtimetracker tracker;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         tracker = new playtimetracker();
     }
 
     @Test
-    void testTrackPlayTime() {
+    public void testTrackPlayTime() {
         // Simulate user input by setting "idea64.exe" as the process name via System.in
         String simulatedInput = "idea64.exe\n";
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
@@ -26,7 +26,7 @@ public class PlayTimeTrackerTest {
     }
 
     @Test
-    void testGetProcessStartTime() {
+    public void testGetProcessStartTime() {
         String startTime = playtimetracker.getProcessStartTime("idea64.exe");
 
         assertNotNull(startTime);
@@ -34,7 +34,7 @@ public class PlayTimeTrackerTest {
     }
 
     @Test
-    void testParseDateTime() {
+    public void testParseDateTime() {
         String wmicDateTime = "20240101123000";
         LocalDateTime parsedDateTime = playtimetracker.parseDateTime(wmicDateTime);
 

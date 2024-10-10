@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 import com.SlugCats.auth.*;
 import com.SlugCats.Models.User;
 
-class LoginStatusTest {
+public class LoginStatusTest {
 
     private login_status loginStatus;
     private User testUser;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         loginStatus = new login_status();
         // Assuming User class has a constructor that takes username and password
 
@@ -20,7 +20,7 @@ class LoginStatusTest {
 
 
     @Test
-    void testLoginSuccess() {
+    public void testLoginSuccess() {
         // Simulate a successful login directly
         boolean result = loginStatus.is_login("NewUser", "password123");
 
@@ -32,7 +32,7 @@ class LoginStatusTest {
 
 
     @Test
-    void testLoginFailure() {
+    public void testLoginFailure() {
         boolean result = loginStatus.is_login("invalidUser", "wrongPassword");
         assertFalse(result, "Login should fail for invalid credentials");
         assertNull(loginStatus.getUser(), "User should be null after failed login");
@@ -40,7 +40,7 @@ class LoginStatusTest {
     }
 
     @Test
-    void testLogout() {
+    public void testLogout() {
         // Simulate a successful login
         loginStatus.is_login("testUser", "password");
 
