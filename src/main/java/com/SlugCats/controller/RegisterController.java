@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-import com.SlugCats.auth.Authentication;
+import com.SlugCats.NewAuth.register;
 
 /**
  * The Register Controller handles logic for the Register window.
@@ -132,20 +132,14 @@ public class RegisterController {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
-        if (Objects.equals(Password, ConfirmPassword)) {
-            Authentication register=new Authentication();
-            register.register(username,Password,ConfirmPassword,firstName,lastName,email);
+        register register=new register();
+        register.register_a_user(username,Password,ConfirmPassword,firstName,lastName,email);
 
-            // Transition back to Log-in Window.
-            Stage stage = (Stage) registerButton.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-            stage.setResizable(false);
-            stage.setScene(scene);
-        }
-        else {
-            confirmPasswordLabel.setText("Passwords did not match.");
-            confirmPasswordLabel.setTextFill(Color.RED);
-        }
+        // Transition back to Log-in Window.
+        Stage stage = (Stage) registerButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
+        stage.setResizable(false);
+        stage.setScene(scene);
     }
 }
