@@ -2,6 +2,7 @@ package com.SlugCats.controller;
 
 import com.SlugCats.Main;
 import com.SlugCats.gamestracking.GameDetector;
+import com.SlugCats.gamestracking.SaveGame;
 import com.SlugCats.timetracking.Stopwatch;
 import com.SlugCats.timetracking.playtimemonitoring;
 import javafx.animation.AnimationTimer;
@@ -199,6 +200,20 @@ public class StopwatchController {
             }
 
             selectedGameTitle = displayName;
+            String processName = selectedFile.getName();
+
+            SaveGame newGame = new SaveGame();
+
+            boolean isSaved = newGame.saveGame(selectedGameTitle, processName);
+
+            //Can remove in the future - it was for debugging
+            if (isSaved) {
+                System.out.println("Game saved.");
+            }
+            else {
+                System.out.println("Gamesave failed");
+            }
+
             playtimemonitoring.startTracking(selectedFile.getName());
 
         } else {
