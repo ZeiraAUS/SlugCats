@@ -1,4 +1,5 @@
 package com.SlugCats.controller;
+import com.SlugCats.DAOs.UserDAO;
 import com.SlugCats.NewAuth.LoginStatus;
 import com.SlugCats.NewAuth.login_status;
 import com.SlugCats.Models.User;
@@ -123,8 +124,8 @@ public class LoginController {
     private boolean AuthenticateUser(String emailInput, String passwordInput) {
 
         login_status loginStatus = new login_status();
-        System.out.println(usernameInput);
-        boolean is_login=loginStatus.is_login(usernameInput,passwordInput);
+        System.out.println(emailInput);
+        boolean is_login=loginStatus.is_login(emailInput,passwordInput);
         System.out.println(is_login);
         return is_login;
     }
