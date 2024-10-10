@@ -15,12 +15,24 @@ public class GameDetectorTest {
 
     @Test
     public void TestDetectExeFile() {
-        //Before testing this out, please create JUnit configuration with chrome.exe path in environment variables
-        String chromePath = System.getenv("CHROME_EXE_PATH");
-        assertNotNull(chromePath, "CHROME_EXE_PATH environment variable is not set");
+        File mockExeFile = new File("chrome.exe") {
+            @Override
+            public boolean exists() {
+                return true;
+            }
 
-        File exeFile = new File(chromePath);
-        String result = gameDetector.detectGame(exeFile);
+            @Override
+            public boolean isFile() {
+                return true;
+            }
+
+            @Override
+            public String getName() {
+                return "chrome.exe";
+            }
+        };
+
+        String result = gameDetector.detectGame(mockExeFile);
 
         assertEquals("Executable Game File: chrome.exe", result);
         assertEquals("chrome.exe", gameDetector.getGameName());
