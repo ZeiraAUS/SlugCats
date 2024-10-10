@@ -38,6 +38,8 @@
             <Button text="Login" fx:id="loginButton" style="-fx-font-size: 24px;" prefWidth="250" onAction="#onLoginButtonClick"/>
             <Button text="Register" fx:id="registerButton" style="-fx-font-size: 24px;" prefWidth="250" onAction="#onRegisterButtonClick"/>
         </HBox>
+
+        <Button fx:id="resetButton" text="Forgot Password?" style="-fx-font-size: 18px;" prefWidth="175" onAction="#onResetButtonClick"/>
     </VBox>
 </BorderPane>
 
