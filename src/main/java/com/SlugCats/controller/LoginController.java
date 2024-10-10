@@ -1,7 +1,9 @@
 package com.SlugCats.controller;
+import com.SlugCats.DAOs.UserDAO;
 import com.SlugCats.NewAuth.LoginStatus;
 import com.SlugCats.NewAuth.login_status;
 import com.SlugCats.Models.User;
+import com.SlugCats.DAOs.*;
 
 import com.SlugCats.Main;
 import javafx.fxml.FXML;
@@ -118,16 +120,7 @@ public class LoginController {
         User loginUser= userDAO.getUserByUsername(username);
         return loginUser;
     }
-    // please insert your authentication logic here
-    private boolean AuthenticateUser(String emailInput, String passwordInput) {
-
-        login_status loginStatus = new login_status();
-        System.out.println(usernameInput);
-        boolean is_login=loginStatus.is_login(usernameInput,passwordInput);
-        System.out.println(is_login);
-        return is_login;
-    }
-
+   
     /**
      * When the register button is clicked, transition the user to the register window.
      * @throws IOException
