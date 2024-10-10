@@ -1,6 +1,7 @@
 package com.SlugCats.controller;
 
 import com.SlugCats.Main;
+import com.SlugCats.NewAuth.LoginStatus;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -95,6 +96,7 @@ public class HomeController {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
         stage.setResizable(false);
+        LoginStatus.logout();
         stage.setScene(scene);
     }
 

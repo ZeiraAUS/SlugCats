@@ -37,6 +37,19 @@ public class LoginStatus {
             }
         }
     }
+    public static void logout() {
+        File file = new File(LOGIN_STATUS_FILE);
+        if (file.exists()) {
+            if (file.delete()) {
+                System.out.println("Login status file successfully deleted.");
+            } else {
+                System.out.println("Failed to delete login status file.");
+            }
+        } else {
+            System.out.println("No login status file to delete.");
+        }
+    }
+
 
 
 }

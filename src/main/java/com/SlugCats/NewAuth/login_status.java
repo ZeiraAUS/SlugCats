@@ -64,6 +64,7 @@ public class login_status implements LoginInterface{
         login_status=false;
         User=null;
         username=null;
+        LoginStatus.logout();
         System.out.println("Logged out successfully");
     }
 }
