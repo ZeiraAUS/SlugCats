@@ -5,6 +5,7 @@ import com.SlugCats.timetracking.CountDown;
 import javafx.animation.Animation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,13 +16,17 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import com.SlugCats.gamestracking.GameDetector;
 
+import java.io.File;
 import java.io.IOException;
 
+/**
+ * The Timer Controller handles logic for the Timer Window.
+ */
 public class TimerController {
     @FXML
     private BorderPane rootPane;
-
     @FXML
     private ImageView logoImage;
     @FXML
@@ -30,7 +35,6 @@ public class TimerController {
     private Label playingLabel;
     @FXML
     private Button backButton;
-
     @FXML
     private Label timerLabel;
     @FXML
@@ -53,30 +57,51 @@ public class TimerController {
     private Button pauseButton;
     @FXML
     private Button resetButton;
+    @FXML
+    private Button gameDetectButton;
+    @FXML
+    private Label selectgameLabel;
+
+    // The countdown object for the timer.
     private CountDown countdown = new CountDown();
+    private String selectedGameTitle = "No Game Detected";
+
+    /**
+     * Initialize the Timer window.
+     */
     @FXML
     public void initialize() {
-        // Initialise and set the logo image into the image view.
+        // Initialize and configure components for the header of the window.
         Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
-
         logoImage.setImage(logo);
-
         gameLabel.setText(getGameTitle());
-
         HBox headerBox = new HBox(20);
         VBox gameBox = new VBox(20);
         gameBox.getChildren().addAll(
                 playingLabel,
                 gameLabel
         );
-        headerBox.getChildren().addAll(
-                logoImage,
-                gameBox,
-                backButton
+
+        Image selectGame = new Image(getClass().getResource("/images/folder.PNG").toString(),true);
+        ImageView selectView = new ImageView(selectGame);
+        selectView.setFitHeight(25);
+        selectView.setPreserveRatio(true);
+        gameDetectButton.setGraphic(selectView);
+        VBox detectGameBox = new VBox(20);
+        detectGameBox.getChildren().addAll(
+                selectgameLabel,
+                gameDetectButton
         );
 
-        VBox timerBox = new VBox(20);
+        headerBox.getChildren().addAll(
+                logoImage,
+                backButton,
+                gameBox,
+                detectGameBox
+        );
 
+        // Configure labels and fields for setting timer display.
+        VBox timerBox = new VBox(20);
         HBox timerSetBox = new HBox(20);
         timerSetBox.getChildren().addAll(
                 setHourLabel,
@@ -88,13 +113,11 @@ public class TimerController {
                 setButton
         );
 
+        // Configure components for the Timer's buttons (Play, Pause and Reset).
         HBox timerButtonBox = new HBox(20);
-        // Timer Buttons Button
-        //TEAM
         Image play = new Image(getClass().getResource("/images/play.PNG").toString(),true);
         Image pause = new Image(getClass().getResource("/images/pause.PNG").toString(),true);
         Image reset = new Image(getClass().getResource("/images/reset.PNG").toString(),true);
-
         ImageView playView = new ImageView(play);
         ImageView pauseView = new ImageView(pause);
         ImageView resetView = new ImageView(reset);
@@ -118,19 +141,28 @@ public class TimerController {
                 timerButtonBox
         );
 
+        timerLabel.setPadding(new Insets(0.0,0.0,0.0,200));
+        timerSetBox.setPadding(new Insets(0.0,0.0,0.0,140));
+        timerButtonBox.setPadding(new Insets(0.0,0.0,0.0,197));
+
         rootPane.setTop(headerBox);
         rootPane.setCenter(timerBox);
     }
 
-    //NOTE: Include logic for getting the title of the tracked application and return it here.
+    /**
+     * Fetches the detected executable and return the name for the label.
+     * @return
+     */
     private String getGameTitle() {
-        //Placeholder
-        return "SnailCat TM";
+        return selectedGameTitle;
     }
 
+    /**
+     * On back button click, transition back to the home screen.
+     * @throws IOException
+     */
     @FXML
     protected void onBackButtonClick() throws IOException {
-        // Transition to Timer window
         Stage stage = (Stage) backButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
@@ -138,18 +170,23 @@ public class TimerController {
         stage.setScene(scene);
     }
 
+    /**
+     * Set the timer time when the set button is clicked.
+     * @throws IOException
+     */
     @FXML
     protected void onSetButtonClick() throws IOException {
         if(countdown.timeline.getStatus() != Animation.Status.RUNNING)
         {
             setupCountDown();
             setTimeLabel();
-
         }
-
     }
 
-    //NOTE: Whoever's handling the timer display logic, put it in here VVV
+    /**
+     * Play/Unpause the timer countdown when the play button is clicked.
+     * @throws IOException
+     */
     @FXML
     protected void onPlayButtonClick() throws IOException {
         if(countdown.Active)
@@ -158,6 +195,10 @@ public class TimerController {
         }
     }
 
+    /**
+     * Pause the timer's countdown when the pause button is clicked.
+     * @throws IOException
+     */
     @FXML
     protected void onPauseButtonClick() throws IOException {
         if(countdown.Active)
@@ -168,6 +209,10 @@ public class TimerController {
         }
     }
 
+    /**
+     * Reset the timer countdown when the reset button is clicked.
+     * @throws IOException
+     */
     @FXML
     protected void onResetButtonClick() throws IOException {
         if(countdown.Active)
@@ -179,6 +224,10 @@ public class TimerController {
         }
 
     }
+
+    /**
+     * Set the user's input for the timer.
+     */
     protected void setupCountDown()
     {
         countdown.setLabels(timerLabel);
@@ -188,6 +237,10 @@ public class TimerController {
         countdown.setTime(hour,min,seconds);
         countdown.Active = true;
     }
+
+    /**
+     * Set the timer's display label as the countdown functions.
+     */
     protected void setTimeLabel()
     {
         int[] time = countdown.getTime();
@@ -195,4 +248,30 @@ public class TimerController {
                 time[0] + ":"  + time[1] + ":" + time[2]
         );
     }
+
+    @FXML
+    protected void onGameDetectButtonClick() {
+        GameDetector gameDetector = new GameDetector();
+        File selectedFile = gameDetector.choosefile();
+
+        if (selectedFile != null && selectedFile.exists()) {
+            String gameName = selectedFile.getName();
+            String displayName;
+
+            int lastDotIndex = gameName.lastIndexOf('.');
+            if (lastDotIndex != -1) {
+                displayName = gameName.substring(0, lastDotIndex);
+            } else {
+                displayName = gameName;
+            }
+
+            selectedGameTitle = displayName;
+        } else {
+            selectedGameTitle = "No Game Detected";
+        }
+
+        // Update the label to show just the game name
+        gameLabel.setText(selectedGameTitle);
+    }
+
 }

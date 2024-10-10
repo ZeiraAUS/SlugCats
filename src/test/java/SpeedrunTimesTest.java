@@ -21,17 +21,20 @@ public class SpeedrunTimesTest {
     GameDAO gameDAO = new GameDAO();
     SpeedrunTimeDAO speedrunTimeDAO = new SpeedrunTimeDAO();
 
+    static SpeedrunTime test1;
+    static SpeedrunTime test2;
+
     @Test
     @Order(1)
     public void CreateAndGetSpeedrunTimeTest()
     {
-        SpeedrunTime test = new SpeedrunTime(1, 1, 1, 100, 100);
+        test1 = new SpeedrunTime(1, 1, 1, 100, 100);
 
-        speedrunTimeDAO.AddSpeedrunTime(test);
+        speedrunTimeDAO.AddSpeedrunTime(test1);
 
         SpeedrunTime result = speedrunTimeDAO.GetSpeedrunTime(1);
 
-        assertEquals(test.toString(), result.toString());
+        assertEquals(test1.toString(), result.toString());
     }
 
     @Test
@@ -40,9 +43,7 @@ public class SpeedrunTimesTest {
     {
         List<SpeedrunTime> speedrunTimeList = new ArrayList<>();
 
-        SpeedrunTime test1 = new SpeedrunTime(1, 1, 1, 100, 100);
-
-        SpeedrunTime test2 = new SpeedrunTime(2, 2, 2, 500, 500);
+        test2 = new SpeedrunTime(2, 2, 2, 500, 500);
 
         speedrunTimeList.add(test1);
         speedrunTimeList.add(test2);
@@ -58,36 +59,33 @@ public class SpeedrunTimesTest {
     @Order(3)
     public void GetSpeedrunTimeListByUserTest()
     {
-        SpeedrunTime speedrunTime = new SpeedrunTime(1, 1, 1, 100, 100);
-        List<SpeedrunTime> test = new ArrayList<>();
-        test.add(speedrunTime);
+        List<SpeedrunTime> testList = new ArrayList<>();
+        testList.add(test1);
 
         List<SpeedrunTime> result = speedrunTimeDAO.GetSpeedrunTimeListByUser(1);
 
-        assertEquals(test.toString(), result.toString());
+        assertEquals(testList.toString(), result.toString());
     }
 
     @Test
     @Order(4)
     public void GetSpeedrunTimeListByGameTest()
     {
-        SpeedrunTime speedrunTime = new SpeedrunTime(2, 2, 2, 500, 500);
-        List<SpeedrunTime> test = new ArrayList<>();
-        test.add(speedrunTime);
+        List<SpeedrunTime> testList = new ArrayList<>();
+        testList.add(test2);
 
         List<SpeedrunTime> result = speedrunTimeDAO.GetSpeedrunTimeListByGame(2);
 
-        assertEquals(test.toString(), result.toString());
+        assertEquals(testList.toString(), result.toString());
     }
 
     @Test
     @Order(4)
     public void UpdateGameTimeTest()
     {
-        SpeedrunTime test = speedrunTimeDAO.GetSpeedrunTime(1);
-        test.setLastRunTime(111);
+        test1.setLastRunTime(111);
 
-        speedrunTimeDAO.UpdateSpeedrunTime(test);
+        speedrunTimeDAO.UpdateSpeedrunTime(test1);
         SpeedrunTime result = speedrunTimeDAO.GetSpeedrunTime(1);
 
         assertEquals(111, result.getLastRunTime());

@@ -1,11 +1,14 @@
 package com.SlugCats.Models;
 
+import java.time.LocalDateTime;
+
 public class GameTime {
     private int GameTimeId;
     private int UserId;
     private int GameId;
     private long TotalPlaytime;
     private long LastSessionPlaytime;
+    private LocalDateTime CreatedDateTime;
 
     public GameTime(int gameTimeId, int userId, int gameId, long totalPlaytime, long lastSessionPlaytime) {
         GameTimeId = gameTimeId;
@@ -13,6 +16,16 @@ public class GameTime {
         GameId = gameId;
         TotalPlaytime = totalPlaytime;
         LastSessionPlaytime = lastSessionPlaytime;
+        CreatedDateTime = LocalDateTime.now();
+    }
+
+    public GameTime(int gameTimeId, int userId, int gameId, long totalPlaytime, long lastSessionPlaytime, LocalDateTime createdDateTime) {
+        GameTimeId = gameTimeId;
+        UserId = userId;
+        GameId = gameId;
+        TotalPlaytime = totalPlaytime;
+        LastSessionPlaytime = lastSessionPlaytime;
+        CreatedDateTime = createdDateTime;
     }
 
     public GameTime(int userId, int gameId, long totalPlaytime, long lastSessionPlaytime) {
@@ -20,6 +33,7 @@ public class GameTime {
         GameId = gameId;
         TotalPlaytime = totalPlaytime;
         LastSessionPlaytime = lastSessionPlaytime;
+        CreatedDateTime = LocalDateTime.now();
     }
 
     public int getGameTimeId() {
@@ -57,14 +71,22 @@ public class GameTime {
         LastSessionPlaytime = lastSessionPlaytime;
     }
 
+    public LocalDateTime getCreatedDateTime() {
+        return CreatedDateTime;
+    }
+    public void setCreatedDateTime(LocalDateTime createdDateTime) {
+        CreatedDateTime = createdDateTime;
+    }
+
     @Override
     public String toString() {
         return "GameTime{" +
-                "TimerID=" + GameTimeId +
-                ", UserID=" + UserId +
-                ", GameID=" + GameId +
+                "GameTimeId=" + GameTimeId +
+                ", UserId=" + UserId +
+                ", GameId=" + GameId +
                 ", TotalPlaytime=" + TotalPlaytime +
                 ", LastSessionPlaytime=" + LastSessionPlaytime +
+                ", CreatedDateTime=" + CreatedDateTime +
                 '}';
     }
 }

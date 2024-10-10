@@ -18,4 +18,5 @@ module com.SlugCats {
     exports com.SlugCats.NewAuth;
     exports com.SlugCats.DAOs;
     exports com.SlugCats.timetracking;
+    exports com.SlugCats.gamestracking;
 }

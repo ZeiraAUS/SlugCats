@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import com.SlugCats.timetracking.CountDown;
+
 public class TimerTest
 {
     CountDown countDown;
@@ -12,7 +13,7 @@ public class TimerTest
     }
 
     @Test
-    void TestSetNumbers()
+    public void TestSetNumbers()
     {
         countDown.setTime(23,120,65);
         int[] time = countDown.getTime();
@@ -24,7 +25,7 @@ public class TimerTest
         assertEquals(time[2],60);
     }
     @Test
-    void TestResetNumbers()
+    public void TestResetNumbers()
     {
         countDown.setTime(2,30,25);
         countDown.resetTime();

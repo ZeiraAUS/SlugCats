@@ -9,13 +9,11 @@ import java.time.format.DateTimeFormatter;
 public class playtimetracker {
     private String processName;
 
-    public playtimetracker(String processName) {
-        this.processName = processName;
+    public playtimetracker() {
     }
 
-    public void trackPlayTime(int maxIterations) {
-        int iterations = 0;
-        while (iterations < maxIterations) {
+    public void trackPlayTime() {
+        while (true) {
             long loopstartTime = System.currentTimeMillis();
 
             String startTime = getProcessStartTime(processName);
@@ -24,6 +22,7 @@ public class playtimetracker {
                 /*System.out.println("Start Time for " + processName + ": " + startTime);*/
 
                 LocalDateTime startDateTime = parseDateTime(startTime);
+
                 if (startDateTime != null) {
                     Duration runtime = Duration.between(startDateTime, LocalDateTime.now());
 
@@ -50,10 +49,8 @@ public class playtimetracker {
                 e.printStackTrace();
             }
 
-            iterations++;
-
-            /*System.out.print("\033[H\033[2J");
-            System.out.flush();*/
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
         }
     }
 

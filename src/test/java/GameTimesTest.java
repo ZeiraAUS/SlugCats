@@ -20,17 +20,20 @@ public class GameTimesTest {
     GameDAO gameDAO = new GameDAO();
     GameTimeDAO gameTimeDAO = new GameTimeDAO();
 
+    static GameTime test1;
+    static GameTime test2;
+
     @Test
     @Order(1)
     public void CreateAndGetGameTimeTest()
     {
-        GameTime test = new GameTime(1, 1, 1, 100, 100);
+        test1 = new GameTime(1, 1, 1, 100, 100);
 
-        gameTimeDAO.AddGameTime(test);
+        gameTimeDAO.AddGameTime(test1);
 
         GameTime result = gameTimeDAO.GetGameTime(1);
 
-        assertEquals(test.toString(), result.toString());
+        assertEquals(test1.toString(), result.toString());
     }
 
     @Test
@@ -39,9 +42,7 @@ public class GameTimesTest {
     {
         List<GameTime> gameTimeList = new ArrayList<>();
 
-        GameTime test1 = new GameTime(1, 1, 1, 100, 100);
-
-        GameTime test2 = new GameTime(2, 2, 2, 500, 500);
+        test2 = new GameTime(2, 2, 2, 500, 500);
 
         gameTimeList.add(test1);
         gameTimeList.add(test2);
@@ -57,23 +58,22 @@ public class GameTimesTest {
     @Order(3)
     public void GetGameTimeListByUserTest()
     {
-        GameTime gameTime = new GameTime(1, 1, 1, 100, 100);
-        List<GameTime> test = new ArrayList<>();
-        test.add(gameTime);
+        List<GameTime> testList = new ArrayList<>();
+        testList.add(test1);
 
         List<GameTime> result = gameTimeDAO.GetGameTimeListByUser(1);
 
-        assertEquals(test.toString(), result.toString());
+        assertEquals(testList.toString(), result.toString());
     }
 
     @Test
     @Order(4)
     public void UpdateGameTimeTest()
     {
-        GameTime test = gameTimeDAO.GetGameTime(1);
-        test.setLastSessionPlaytime(111);
+        test1 = gameTimeDAO.GetGameTime(1);
+        test1.setLastSessionPlaytime(111);
 
-        gameTimeDAO.UpdateGameTime(test);
+        gameTimeDAO.UpdateGameTime(test1);
         GameTime result = gameTimeDAO.GetGameTime(1);
 
         assertEquals(111, result.getLastSessionPlaytime());

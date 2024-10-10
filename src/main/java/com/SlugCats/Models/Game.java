@@ -3,15 +3,15 @@ package com.SlugCats.Models;
 public class Game {
     private int GameId;
     private String GameName;
-    private int GameProcess;
+    private String GameProcess;
 
-    public Game(int gameId, String gameName, int gameProcess) {
+    public Game(int gameId, String gameName, String gameProcess) {
         GameId = gameId;
         GameName = gameName;
         GameProcess = gameProcess;
     }
 
-    public Game(String gameName, int gameProcess) {
+    public Game(String gameName, String gameProcess) {
         GameName = gameName;
         GameProcess = gameProcess;
     }
@@ -30,10 +30,10 @@ public class Game {
         GameName = gameName;
     }
 
-    public int getGameProcess() {
+    public String getGameProcess() {
         return GameProcess;
     }
-    public void setGameProcess(int gameProcess) {
+    public void setGameProcess(String gameProcess) {
         GameProcess = gameProcess;
     }
 
