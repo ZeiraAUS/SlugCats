@@ -16,8 +16,8 @@ public class CountDown
     final Runnable windowsSound;
     @FXML
     private Label timerLabel;
-    public Timeline timeline;
-    public boolean Active = false;
+    private Timeline timeline;
+    private boolean Active = false;
 
     public CountDown()
     {
@@ -104,4 +104,18 @@ public class CountDown
                 remaining.toSecondsPart()
         );
     }
+    public Timeline getTimeline()
+    {
+        return timeline;
+    }
+    public boolean getActive()
+    {
+        return Active;
+    }
+
+    public void setActive(boolean active)
+    {
+        Active = active;
+    }
+
 }

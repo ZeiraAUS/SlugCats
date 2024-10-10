@@ -176,7 +176,7 @@ public class TimerController {
      */
     @FXML
     protected void onSetButtonClick() throws IOException {
-        if(countdown.timeline.getStatus() != Animation.Status.RUNNING)
+        if(countdown.getTimeline().getStatus() != Animation.Status.RUNNING)
         {
             setupCountDown();
             setTimeLabel();
@@ -189,7 +189,7 @@ public class TimerController {
      */
     @FXML
     protected void onPlayButtonClick() throws IOException {
-        if(countdown.Active)
+        if(countdown.getActive())
         {
             countdown.run();
         }
@@ -201,9 +201,9 @@ public class TimerController {
      */
     @FXML
     protected void onPauseButtonClick() throws IOException {
-        if(countdown.Active)
+        if(countdown.getActive())
         {
-            countdown.timeline.pause();
+            countdown.getTimeline().pause();
             String[] timeLabel = timerLabel.getText().split(":");
             countdown.pauseTime(Integer.parseInt(timeLabel[0]),Integer.parseInt(timeLabel[1]),Integer.parseInt(timeLabel[2]));
         }
@@ -215,9 +215,9 @@ public class TimerController {
      */
     @FXML
     protected void onResetButtonClick() throws IOException {
-        if(countdown.Active)
+        if(countdown.getActive())
         {
-            countdown.timeline.stop();
+            countdown.getTimeline().stop();
             countdown.resetTime();
             setTimeLabel();
             countdown.run();
@@ -235,7 +235,7 @@ public class TimerController {
         int min = Integer.parseInt(setMinuteField.getText());
         int seconds = Integer.parseInt(setSecondField.getText());
         countdown.setTime(hour,min,seconds);
-        countdown.Active = true;
+        countdown.setActive(true);
     }
 
     /**
