@@ -3,18 +3,24 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.SlugCats.timetracking.playtimetracker;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.io.ByteArrayInputStream;
 
 public class PlayTimeTrackerTest {
     private playtimetracker tracker;
 
     @BeforeEach
     void setUp() {
-        tracker = new playtimetracker("idea64.exe");
+        tracker = new playtimetracker();
     }
 
     @Test
     void testTrackPlayTime() {
-        tracker.trackPlayTime(5);
+        // Simulate user input by setting "idea64.exe" as the process name via System.in
+        String simulatedInput = "idea64.exe\n";
+        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
+
+        // Call trackPlayTime without the iterations parameter, now loop until the process stops
+        tracker.trackPlayTime();
 
         assertNotNull(tracker);
     }
