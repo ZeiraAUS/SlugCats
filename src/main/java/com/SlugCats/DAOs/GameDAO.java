@@ -24,7 +24,7 @@ public class GameDAO implements IGameDAO {
                     "CREATE TABLE IF NOT EXISTS Games (" +
                             "GameId INTEGER PRIMARY KEY AUTOINCREMENT, " +
                             "GameName VARCHAR NOT NULL, " +
-                            "GameProcess INTEGER NOT NULL" +
+                            "GameProcess VARCHAR NOT NULL" +
                             ")"
             );
         }
@@ -43,7 +43,7 @@ public class GameDAO implements IGameDAO {
             );
 
             insertGame.setString(1, game.getGameName());
-            insertGame.setInt(2, game.getGameProcess());
+            insertGame.setString(2, game.getGameProcess());
             insertGame.execute();
         }
         catch (SQLException sqlEx)
@@ -64,7 +64,7 @@ public class GameDAO implements IGameDAO {
                 return new Game(
                         rs.getInt("GameId"),
                         rs.getString("GameName"),
-                        rs.getInt("GameProcess")
+                        rs.getString("GameProcess")
                 );
             }
         }
@@ -88,7 +88,7 @@ public class GameDAO implements IGameDAO {
                         new Game(
                                 rs.getInt("GameId"),
                                 rs.getString("GameName"),
-                                rs.getInt("GameProcess")
+                                rs.getString("GameProcess")
                         )
                 );
             }
@@ -108,7 +108,7 @@ public class GameDAO implements IGameDAO {
                     "UPDATE Games SET GameName = ?, GameProcess = ? WHERE GameId = ?"
             );
             updateGame.setString(1, game.getGameName());
-            updateGame.setInt(2, game.getGameProcess());
+            updateGame.setString(2, game.getGameProcess());
             updateGame.setInt(3, game.getGameId());
             updateGame.execute();
         }
