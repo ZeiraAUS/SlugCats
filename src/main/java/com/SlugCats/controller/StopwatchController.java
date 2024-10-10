@@ -3,6 +3,7 @@ package com.SlugCats.controller;
 import com.SlugCats.Main;
 import com.SlugCats.gamestracking.GameDetector;
 import com.SlugCats.timetracking.Stopwatch;
+import com.SlugCats.timetracking.playtimemonitoring;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -198,6 +199,8 @@ public class StopwatchController {
             }
 
             selectedGameTitle = displayName;
+            playtimemonitoring.startTracking(selectedFile.getName());
+
         } else {
             selectedGameTitle = "No Game Detected";
         }

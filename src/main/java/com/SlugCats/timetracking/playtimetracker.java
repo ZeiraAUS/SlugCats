@@ -9,7 +9,8 @@ import java.time.format.DateTimeFormatter;
 public class playtimetracker {
     private String processName;
 
-    public playtimetracker() {
+    public playtimetracker(String processName) {
+        this.processName = processName;
     }
 
     public void trackPlayTime() {
@@ -19,7 +20,6 @@ public class playtimetracker {
             String startTime = getProcessStartTime(processName);
 
             if (startTime != null && !startTime.isEmpty()) {
-                /*System.out.println("Start Time for " + processName + ": " + startTime);*/
 
                 LocalDateTime startDateTime = parseDateTime(startTime);
 

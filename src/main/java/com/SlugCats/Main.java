@@ -2,6 +2,7 @@ package com.SlugCats;
 
 import com.SlugCats.DAOs.UserDAO;
 import com.SlugCats.Models.User;
+import com.SlugCats.timetracking.playtimemonitoring;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -35,4 +36,11 @@ public class Main extends Application {
 
         launch();
     }
+
+    @Override
+    public void stop() throws Exception {
+        playtimemonitoring.stopTracking();
+        super.stop();
+    }
+
 }

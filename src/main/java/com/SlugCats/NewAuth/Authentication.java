@@ -4,7 +4,6 @@ import com.SlugCats.Models.User;
 
 public class Authentication implements Authentication_function {
 
-
     @Override
     public User login(String username, String password) {
         // login by user DAO
