@@ -13,18 +13,18 @@ public class AuthTest {
     private Authentication Authentication;
 
     @BeforeEach
-    void setUp() throws SQLException {
+    public void setUp() throws SQLException {
         Authentication = new Authentication();
     }
 
     @Test
-    void testRegisterUserExists() throws SQLException {
+    public void testRegisterUserExists() throws SQLException {
       // two password not equal
              assertFalse(Authentication.register("testUser",  "password123", "password13","a","a","asa"));
     }
 
     @Test
-    void testRegisterSuccess() throws SQLException {
+    public void testRegisterSuccess() throws SQLException {
         assertTrue(Authentication.register("NewUser",  "password123", "password123","a","asa","asa"));
     }//test ,it will failed 2th because the username already exist.
 
