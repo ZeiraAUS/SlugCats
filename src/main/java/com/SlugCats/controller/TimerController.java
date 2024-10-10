@@ -2,6 +2,7 @@ package com.SlugCats.controller;
 
 import com.SlugCats.Main;
 import com.SlugCats.timetracking.CountDown;
+import com.SlugCats.timetracking.playtimemonitoring;
 import javafx.animation.Animation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -266,6 +267,8 @@ public class TimerController {
             }
 
             selectedGameTitle = displayName;
+            playtimemonitoring.startTracking(selectedFile.getName());
+
         } else {
             selectedGameTitle = "No Game Detected";
         }
