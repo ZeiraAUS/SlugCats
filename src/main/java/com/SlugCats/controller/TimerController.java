@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import com.SlugCats.gamestracking.GameDetector;
+import com.SlugCats.gamestracking.SaveGame;
 
 import java.io.File;
 import java.io.IOException;
@@ -251,7 +252,7 @@ public class TimerController {
     }
 
     @FXML
-    protected void onGameDetectButtonClick() {
+    protected void onGameDetectButtonClick() throws IOException {
         GameDetector gameDetector = new GameDetector();
         File selectedFile = gameDetector.choosefile();
 
@@ -267,13 +268,24 @@ public class TimerController {
             }
 
             selectedGameTitle = displayName;
+            String processName = selectedFile.getName();
+
+            SaveGame newGame = new SaveGame();
+
+            boolean isSaved = newGame.saveGame(selectedGameTitle, processName);
+
+            if (isSaved) {
+                System.out.println("Game successfully saved.");
+            } else {
+                System.out.println("Failed to save game.");
+            }
+
             playtimemonitoring.startTracking(selectedFile.getName());
 
         } else {
             selectedGameTitle = "No Game Detected";
         }
 
-        // Update the label to show just the game name
         gameLabel.setText(selectedGameTitle);
     }
 
