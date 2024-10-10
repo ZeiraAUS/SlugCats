@@ -125,7 +125,7 @@ public class RegisterController {
     protected void onRegisterButtonClick() throws IOException {
         String username = usernameField.getText();
         String Password = passwordField.getText();
-        String ConfirmPassword = passwordField.getText();
+        String ConfirmPassword = confirmPasswordField.getText();
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
