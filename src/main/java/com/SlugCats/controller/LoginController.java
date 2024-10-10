@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -42,6 +43,9 @@ public class LoginController {
     private Button loginButton;
     @FXML
     private Button registerButton;
+    @FXML
+    private Button resetButton;
+
     public static  User user;
 
     /**
@@ -60,7 +64,8 @@ public class LoginController {
                 usernameField,
                 passwordLabel,
                 passwordField,
-                buttonBox
+                buttonBox,
+                resetButton
         );
         rootPane.setCenter(vbox);
     }
@@ -88,7 +93,9 @@ public class LoginController {
             stage.setScene(scene);
         }
         else {
-            // Error pop-up when user credentials are invalid. WIP
+            // Error pop-up when user credentials are invalid.
+            loginButton.setText("Invalid Credentials");
+            loginButton.setTextFill(Color.RED);
         }
 
     }
@@ -123,4 +130,12 @@ public class LoginController {
         return user;
     }
 
+    @FXML
+    protected void onResetButtonClick() throws IOException {
+        Stage stage = (Stage) registerButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("reset-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
+        stage.setResizable(false);
+        stage.setScene(scene);
+    }
 }
