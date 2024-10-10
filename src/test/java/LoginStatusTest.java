@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.SlugCats.NewAuth.login_status;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import com.SlugCats.auth.*;
+
 import com.SlugCats.Models.User;
 
 public class LoginStatusTest {
@@ -22,7 +22,7 @@ public class LoginStatusTest {
     @Test
     public void testLoginSuccess() {
         // Simulate a successful login directly
-        boolean result = loginStatus.is_login("NewUser", "password123");
+        boolean result = loginStatus.is_login("NewUser1111", "password123");
 
         // Assert the login status and username
         assertTrue(result, "Login should be successful");

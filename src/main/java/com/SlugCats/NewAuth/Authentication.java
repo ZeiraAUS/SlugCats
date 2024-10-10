@@ -18,8 +18,10 @@ public class Authentication implements Authentication_function {
         UserDAO userDAO=new UserDAO();
         if (userDAO.GetUserByUsernamePassword(user.getUserName(), user.getPassword()) == null) {
             userDAO.AddUser(user);
+            System.out.println("User " + user.getUserName() + " registered successfully");
             return true;
         }
+        System.out.println("User " + user.getUserName() + " already registered successfully");
         return false;}
 
 }

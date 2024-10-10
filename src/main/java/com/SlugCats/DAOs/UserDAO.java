@@ -123,6 +123,34 @@ public class UserDAO implements IUserDAO{
         }
         return null;
     }
+    public User getUserByUsername(String username) {
+        try {
+            PreparedStatement getUser = connection.prepareStatement(
+                    "SELECT * FROM Users WHERE UserName = ?"
+            );
+            getUser.setString(1, username);
+            ResultSet rs = getUser.executeQuery();
+
+            if (rs.next()) {
+                User user = new User(
+                        rs.getInt("UserId"),
+                        rs.getString("UserName"),
+                        rs.getString("Password"),
+                        rs.getString("FirstName"),
+                        rs.getString("LastName"),
+                        rs.getString("Email")
+                );
+                rs.close();
+                getUser.close();
+                return user;
+            }
+            rs.close();
+            getUser.close();
+        } catch (SQLException sqlEx) {
+            System.err.println("SQL error: " + sqlEx.getMessage());
+        }
+        return null;
+    }
 
     @Override
     public List<User> GetUserList() {

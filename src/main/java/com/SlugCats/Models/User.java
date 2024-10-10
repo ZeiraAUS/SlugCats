@@ -67,6 +67,10 @@ public class User {
         Email = email;
     }
 
+    public void  changePassword(String newPassword) {
+        Password = newPassword;
+    }
+
     @Override
     public String toString() {
         return "User{" +
