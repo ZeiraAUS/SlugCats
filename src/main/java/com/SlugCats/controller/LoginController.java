@@ -1,6 +1,9 @@
 package com.SlugCats.controller;
+import com.SlugCats.DAOs.UserDAO;
+import com.SlugCats.NewAuth.LoginStatus;
 import com.SlugCats.NewAuth.login_status;
 import com.SlugCats.Models.User;
+import com.SlugCats.DAOs.*;
 
 import com.SlugCats.Main;
 import javafx.fxml.FXML;
@@ -71,13 +74,26 @@ public class LoginController {
      */
     @FXML
     protected void onLoginButtonClick() throws IOException {
+
+        //NOTE: Put your login logic here. - You can reorganise my placeholder logic if you need to.
+       /* String emailInput = emailField.toString();
+        System.out.println(emailInput);
+        String passwordInput = passwordField.toString();
+        login_status loginStatus = new login_status();*/
+        boolean credentialValidity;
+        if(if_already_login()!=null){
+            user=if_already_login();
+            credentialValidity=true;
+            System.out.println("keep logged in working");
+        }else{
+
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
         login_status loginStatus = new login_status();
         loginStatus.is_login(username,password);
         boolean is_login=loginStatus.gotLogin_status();
         user=loginStatus.getUser();
-        boolean credentialValidity = is_login;
+        credentialValidity = is_login;}
 
         // If credentials are valid, log them in, otherwise display a prompt.
         if (credentialValidity) {
@@ -93,20 +109,18 @@ public class LoginController {
 
     }
 
-    /**
-     * Authenticate the user with their input from the text fields.
-     * @param usernameInput User input from username field.
-     * @param passwordInput User input from password field.
-     * @return
-     */
-    private boolean AuthenticateUser(String usernameInput, String passwordInput) {
-        login_status loginStatus = new login_status();
-        System.out.println(usernameInput);
-        boolean is_login=loginStatus.is_login(usernameInput,passwordInput);
-        System.out.println(is_login);
-        return is_login;
-    }
 
+    private User if_already_login(){
+        String  username=LoginStatus.getLoggedInUsername();
+        if(username==null){
+
+            return null;
+        }
+        UserDAO userDAO=new UserDAO();
+        User loginUser= userDAO.getUserByUsername(username);
+        return loginUser;
+    }
+   
     /**
      * When the register button is clicked, transition the user to the register window.
      * @throws IOException

@@ -14,7 +14,7 @@ module com.SlugCats {
     exports com.SlugCats.controller;
     opens com.SlugCats.controller to javafx.fxml;
     exports com.SlugCats.Models;
-    exports com.SlugCats.auth;
+
     exports com.SlugCats.NewAuth;
     exports com.SlugCats.DAOs;
     exports com.SlugCats.timetracking;

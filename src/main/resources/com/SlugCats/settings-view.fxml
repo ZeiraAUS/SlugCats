@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.ImageView?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.SlugCats.controller.SettingsController">
+<!--Root Pane-->
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ComboBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.SlugCats.controller.SettingsController" fx:id="rootPane">
+    <!--HeaderBox: Holding any components at the top of the window.-->
+    <HBox BorderPane.alignment="TOP_LEFT" fx:id="headerBox">
+        <ImageView fx:id="logoImage"
+                   fitHeight="150.0"
+                   preserveRatio="true"
+                   BorderPane.alignment="TOP_LEFT"
+        />
+        <Button fx:id="backButton" text="Back" style="-fx-font-size: 24px;" prefWidth="250" onAction="#onBackButtonClick"/>
+        <Label fx:id="settingsLabel" style="-fx-font-size: 35px;" text="Settings"/>
+    </HBox>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <!--VBox: Holding the Settings window labels and button.-->
+    <VBox>
+        <Label fx:id="volumeLabel" text="Alert Volume:" style="-fx-font-size: 20px;"/>
+        <Label fx:id="soundLabel" text="Custom Alert Sound:" style="-fx-font-size: 20px;"/>
+        <Label fx:id="visibilityLabel" text="Overlay Visibility:" style="-fx-font-size: 20px;"/>
+        <Label fx:id="startLabel" text="Start:" style="-fx-font-size: 20px;"/>
+        <Label fx:id="pauseLabel" text="Pause:" style="-fx-font-size: 20px;"/>
+        <Label fx:id="resetLabel" text="Reset:" style="-fx-font-size: 20px;"/>
+        <Label fx:id="themeLabel" text="Theme:" style="-fx-font-size: 20px;"/>
 
-</AnchorPane>
+        <Button fx:id="saveButton" style="-fx-font-size: 24px;" prefWidth="250" onAction="#onSaveButtonClick" text="Save"/>
+    </VBox>
+
+    <!--VBox: Holding the text fields for the user to fill out.-->
+    <VBox>
+        <TextField fx:id="volumeField" style="-fx-font-size: 16px;" prefWidth="175.0" text="[Volume%]"/>
+        <Button fx:id="soundButton" style="-fx-font-size: 16px;" prefWidth="175.0" onAction="#onSoundButtonClick"/>
+        <TextField fx:id="visibilityField" style="-fx-font-size: 16px;" prefWidth="175.0" text="[Visibility%]"/>
+        <Button fx:id="startSetButton" style="-fx-font-size: 16px;" prefWidth="175.0" text="Set" onAction="#onStartSetButtonClick"/>
+        <Button fx:id="pauseSetButton" style="-fx-font-size: 16px;" prefWidth="175.0" text="Set" onAction="#onPauseSetButtonClick"/>
+        <Button fx:id="resetSetButton" style="-fx-font-size: 16px;" prefWidth="175.0" text="Set" onAction="#onResetSetButtonClick"/>
+        <ComboBox fx:id="themeCBox" style="-fx-font-size: 16px;" prefWidth="175.0"/>
+    </VBox>
+</BorderPane>

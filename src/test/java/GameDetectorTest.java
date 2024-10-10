@@ -9,12 +9,12 @@ public class GameDetectorTest {
     GameDetector gameDetector;
 
     @BeforeEach
-    void Initialise() {
+    public void Initialise() {
         gameDetector = new GameDetector();
     }
 
     @Test
-    void TestDetectExeFile() {
+    public void TestDetectExeFile() {
         //Before testing this out, please create JUnit configuration with chrome.exe path in environment variables
         String chromePath = System.getenv("CHROME_EXE_PATH");
         assertNotNull(chromePath, "CHROME_EXE_PATH environment variable is not set");
@@ -27,7 +27,7 @@ public class GameDetectorTest {
     }
 
     @Test
-    void TestDetectNonExeFile() {
+    public void TestDetectNonExeFile() {
         File txtFile = new File("document.txt");
 
         String result = gameDetector.detectGame(txtFile);
@@ -38,7 +38,7 @@ public class GameDetectorTest {
     }
 
     @Test
-    void TestNoFileSelected() {
+    public void TestNoFileSelected() {
         String result = gameDetector.detectGame(null);
 
         assertEquals("No game detected", result);
