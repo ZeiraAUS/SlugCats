@@ -4,6 +4,7 @@ import com.SlugCats.Models.GameTime;
 import com.SlugCats.DatabaseConnection;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class GameTimeDAO implements IGameTimeDAO{
                             "GameId INTEGER NOT NULL, " +
                             "TotalPlaytime INTEGER NOT NULL, " +
                             "LastSessionPlaytime INTEGER NOT NULL, " +
+                            "CreatedDateTime VARCHAR NOT NULL, " +
                             "FOREIGN KEY (UserId) REFERENCES Users(UserId), " +
                             "FOREIGN KEY (GameId) REFERENCES Games(GameId)" +
                             ")"
@@ -43,14 +45,15 @@ public class GameTimeDAO implements IGameTimeDAO{
         try
         {
             PreparedStatement insertGameTime = connection.prepareStatement(
-                    "INSERT INTO GameTimes (UserId, GameId, TotalPlaytime, LastSessionPlaytime) " +
-                            "VALUES (?, ?, ?, ?)"
+                    "INSERT INTO GameTimes (UserId, GameId, TotalPlaytime, LastSessionPlaytime, CreatedDateTime) " +
+                            "VALUES (?, ?, ?, ?, ?)"
             );
 
             insertGameTime.setInt(1, gameTime.getUserId());
             insertGameTime.setInt(2, gameTime.getGameId());
             insertGameTime.setLong(3, gameTime.getTotalPlaytime());
             insertGameTime.setLong(4, gameTime.getLastSessionPlaytime());
+            insertGameTime.setString(5, gameTime.getCreatedDateTime().toString());
             insertGameTime.execute();
         }
         catch (SQLException sqlEx)
@@ -74,7 +77,8 @@ public class GameTimeDAO implements IGameTimeDAO{
                         rs.getInt("UserId"),
                         rs.getInt("GameId"),
                         rs.getLong("TotalPlaytime"),
-                        rs.getLong("LastSessionPlaytime")
+                        rs.getLong("LastSessionPlaytime"),
+                        LocalDateTime.parse(rs.getString("CreatedDateTime"))
                 );
             }
         }
@@ -100,7 +104,8 @@ public class GameTimeDAO implements IGameTimeDAO{
                                 rs.getInt("UserId"),
                                 rs.getInt("GameId"),
                                 rs.getLong("TotalPlaytime"),
-                                rs.getLong("LastSessionPlaytime")
+                                rs.getLong("LastSessionPlaytime"),
+                                LocalDateTime.parse(rs.getString("CreatedDateTime"))
                         )
                 );
             }
@@ -129,7 +134,8 @@ public class GameTimeDAO implements IGameTimeDAO{
                                 rs.getInt("UserId"),
                                 rs.getInt("GameId"),
                                 rs.getLong("TotalPlaytime"),
-                                rs.getLong("LastSessionPlaytime")
+                                rs.getLong("LastSessionPlaytime"),
+                                LocalDateTime.parse(rs.getString("CreatedDateTime"))
                         )
                 );
             }
@@ -147,13 +153,15 @@ public class GameTimeDAO implements IGameTimeDAO{
         {
             PreparedStatement updateGameTime = connection.prepareStatement(
                     "UPDATE GameTimes SET UserId = ?, GameId = ?, TotalPlaytime = ?, " +
-                            "LastSessionPlaytime = ? WHERE GameTimeId = ?"
+                            "LastSessionPlaytime = ?, CreatedDateTime = ? WHERE GameTimeId = ?"
             );
             updateGameTime.setInt(1, gameTime.getUserId());
             updateGameTime.setInt(2, gameTime.getGameId());
             updateGameTime.setLong(3, gameTime.getTotalPlaytime());
             updateGameTime.setLong(4, gameTime.getLastSessionPlaytime());
-            updateGameTime.setInt(5, gameTime.getGameTimeId());
+            updateGameTime.setString(5, gameTime.getCreatedDateTime().toString());
+            updateGameTime.setInt(6, gameTime.getGameTimeId());
+
             updateGameTime.execute();
         }
         catch (SQLException sqlEx)

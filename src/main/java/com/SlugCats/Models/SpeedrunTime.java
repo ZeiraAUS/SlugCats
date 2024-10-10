@@ -1,11 +1,14 @@
 package com.SlugCats.Models;
 
+import java.time.LocalDateTime;
+
 public class SpeedrunTime {
     private int SpeedrunTimeId;
     private int UserId;
     private int GameId;
     private long BestTime;
     private long LastRunTime;
+    private LocalDateTime CreatedDateTime;
 
     public SpeedrunTime(int speedrunTimeId, int userId, int gameId, long bestTime, long lastRunTime) {
         SpeedrunTimeId = speedrunTimeId;
@@ -13,6 +16,16 @@ public class SpeedrunTime {
         GameId = gameId;
         BestTime = bestTime;
         LastRunTime = lastRunTime;
+        CreatedDateTime = LocalDateTime.now();
+    }
+
+    public SpeedrunTime(int speedrunTimeId, int userId, int gameId, long bestTime, long lastRunTime, LocalDateTime createdDateTime) {
+        SpeedrunTimeId = speedrunTimeId;
+        UserId = userId;
+        GameId = gameId;
+        BestTime = bestTime;
+        LastRunTime = lastRunTime;
+        CreatedDateTime = createdDateTime;
     }
 
     public SpeedrunTime(int userId, int gameId, long bestTime, long lastRunTime) {
@@ -20,6 +33,7 @@ public class SpeedrunTime {
         GameId = gameId;
         BestTime = bestTime;
         LastRunTime = lastRunTime;
+        CreatedDateTime = LocalDateTime.now();
     }
 
     public int getSpeedrunTimeId() {
@@ -57,14 +71,22 @@ public class SpeedrunTime {
         LastRunTime = lastRunTime;
     }
 
+    public LocalDateTime getCreatedDateTime() {
+        return CreatedDateTime;
+    }
+    public void setCreatedDateTime(LocalDateTime createdDateTime) {
+        CreatedDateTime = createdDateTime;
+    }
+
     @Override
     public String toString() {
         return "SpeedrunTime{" +
-                "SpeedrunTimeID=" + SpeedrunTimeId +
-                ", UserID=" + UserId +
-                ", GameID=" + GameId +
+                "SpeedrunTimeId=" + SpeedrunTimeId +
+                ", UserId=" + UserId +
+                ", GameId=" + GameId +
                 ", BestTime=" + BestTime +
                 ", LastRunTime=" + LastRunTime +
+                ", CreatedDateTime=" + CreatedDateTime +
                 '}';
     }
 }

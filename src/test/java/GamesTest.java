@@ -19,7 +19,7 @@ public class GamesTest {
     @Order(1)
     public void CreateAndGetGameTest()
     {
-        Game test = new Game(1, "Rain World", 1234);
+        Game test = new Game(1, "Rain World", "1234");
 
         gameDAO.AddGame(test);
 
@@ -34,9 +34,9 @@ public class GamesTest {
     {
         List<Game> gameList = new ArrayList<>();
 
-        Game test1 = new Game(1, "Rain World", 1234);
+        Game test1 = new Game(1, "Rain World", "1234");
 
-        Game test2 = new Game(2, "World of Warcraft", 5678);
+        Game test2 = new Game(2, "World of Warcraft", "5678");
 
         gameList.add(test1);
         gameList.add(test2);
@@ -65,7 +65,7 @@ public class GamesTest {
     @Order(4)
     public void DeleteUserTest()
     {
-        Game test = new Game(3, "Concord", 1234);
+        Game test = new Game(3, "Concord", "1234");
 
         gameDAO.AddGame(test);
 
