@@ -2,6 +2,7 @@ package com.SlugCats.gamestracking;
 
 import com.SlugCats.DAOs.GameDAO;
 import com.SlugCats.Models.Game;
+import java.util.List;
 
 public class SaveGame {
     private GameDAO gameDAO;
@@ -10,41 +11,25 @@ public class SaveGame {
         this.gameDAO = new GameDAO();
     }
 
-    public boolean saveGame(String gameName, String gameProcess) {
-        if (gameName == null || gameName.isEmpty()) {
-            System.out.println("Game name cannot be empty.");
-            return false;
-        }
+    public void saveGame(String gameName, String gameProcess) {
+        List<Game> games = gameDAO.GetGameList();
+        boolean gameExists = games.stream().anyMatch(game -> game.getGameName().equalsIgnoreCase(gameName));
 
-        if (gameProcess == null || gameProcess.isEmpty()) {
-            System.out.println("Game process cannot be empty.");
-            return false;
-        }
-
-        Game existingGame = getExistingGame(gameName);
-
-        if (existingGame != null) {
-            System.out.println("Game already exists: " + existingGame.getGameName());
-            return false;
-        }
-
-        Game newGame = new Game(gameName, gameProcess);
-
-        try {
+        if (!gameExists) {
+            Game newGame = new Game(gameName, gameProcess);
             gameDAO.AddGame(newGame);
-            return true;
-        } catch (Exception e) {
-            return false;
+        } else {
+            System.out.println("Game already exists: " + gameName);
         }
     }
 
     private Game getExistingGame(String gameName) {
         for (Game game : gameDAO.GetGameList()) {
             if (game.getGameName().equalsIgnoreCase(gameName)) {
-                return game; // Return the existing game
+                return game;
             }
         }
-        return null; // Game does not exist
+        return null;
     }
 }
 

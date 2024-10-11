@@ -272,13 +272,7 @@ public class TimerController {
 
             SaveGame newGame = new SaveGame();
 
-            boolean isSaved = newGame.saveGame(selectedGameTitle, processName);
-
-            if (isSaved) {
-                System.out.println("Game successfully saved.");
-            } else {
-                System.out.println("Failed to save game.");
-            }
+            newGame.saveGame(selectedGameTitle, processName);
 
             playtimemonitoring.startTracking(selectedFile.getName());
 

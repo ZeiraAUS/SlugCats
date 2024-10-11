@@ -204,15 +204,7 @@ public class StopwatchController {
 
             SaveGame newGame = new SaveGame();
 
-            boolean isSaved = newGame.saveGame(selectedGameTitle, processName);
-
-            //Can remove in the future - it was for debugging
-            if (isSaved) {
-                System.out.println("Game saved.");
-            }
-            else {
-                System.out.println("Gamesave failed");
-            }
+            newGame.saveGame(selectedGameTitle, processName);
 
             playtimemonitoring.startTracking(selectedFile.getName());
 
