@@ -1,0 +1,8 @@
+module:com.SlugCats
+com.SlugCats
+com.SlugCats.controller
+com.SlugCats.DAOs
+com.SlugCats.gamestracking
+com.SlugCats.Models
+com.SlugCats.NewAuth
+com.SlugCats.timetracking
