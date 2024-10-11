@@ -1,6 +1,7 @@
 package com.SlugCats.controller;
 
 import com.SlugCats.Main;
+import com.SlugCats.NewAuth.Change;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -97,12 +98,18 @@ public class ResetController {
 
         if (Objects.equals(password, confirmPassword)) {
             // Reset Password Logic uijvwhbcnwijcbewiubceiw :)
-
+            //Change resetPassword = new Change();
+            boolean isChanged=Change.resetpassword(username, password,confirmPassword );
+            if (isChanged) {
             Stage stage = (Stage) resetButton.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
             stage.setResizable(false);
-            stage.setScene(scene);
+            stage.setScene(scene);}else{
+                confirmPasswordLabel.setText("Not find user");
+                confirmPasswordLabel.setTextFill(Color.RED);
+
+            }
         }
         else {
             confirmPasswordLabel.setText("Passwords did not match.");

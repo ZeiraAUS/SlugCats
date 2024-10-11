@@ -45,9 +45,8 @@ jobs:
     needs: build
     steps:
     - name: Deploy JavaDoc 🚀
-      uses: MathieuSoysal/Javadoc-publisher.yml@v2.3.0
+      run: mvn javadoc:javadoc
+    - name: Publish Javadoc
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        javadoc-branch: javadoc
-        java-version: 21
-        target-folder: javadoc 
+        folder: target/docs/javadoc
