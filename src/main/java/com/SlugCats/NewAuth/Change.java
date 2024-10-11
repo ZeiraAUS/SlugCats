@@ -2,6 +2,7 @@ package com.SlugCats.NewAuth;
 
 import com.SlugCats.DAOs.*;
 import com.SlugCats.Models.User;
+import com.SlugCats.Models.salt;
 
 public class Change {
     public static boolean resetpassword(String username,String password,String ConfirmPassword){// not complete
@@ -16,9 +17,21 @@ public class Change {
             System.out.println("User not found.");
             return false;
         }
-        System.out.println("User found.");
-        String salt = Hash_salt.getSalt();
-        String hashedPassword=Hash_salt.generateHash(password, salt);
+
+        SaltDAO saltDAO=new SaltDAO();
+        salt salt=saltDAO.GetSalt(username);
+
+        if(salt==null){
+            System.out.println("User not found");
+            return false;
+        }
+        String saltpassword= salt.getSalt();
+        String hash_password =Hash_salt.generateHash(password, saltpassword);
+
+        user.changePassword(hash_password);
+        userDAO.UpdateUser(user);
+
+
 
         user.changePassword(hashedPassword);
         userDAO.UpdateUser(user);
