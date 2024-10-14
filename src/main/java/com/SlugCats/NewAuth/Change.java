@@ -32,10 +32,6 @@ public class Change {
         userDAO.UpdateUser(user);
 
 
-
-        user.changePassword(hashedPassword);
-        userDAO.UpdateUser(user);
-
         return true;
     }
 }
