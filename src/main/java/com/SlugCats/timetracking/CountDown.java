@@ -24,6 +24,11 @@ public class CountDown
         windowsSound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
         timeline = new Timeline();
     }
+
+    /**
+     * used to start the countdown timer
+     * automatically updates the timer per second
+     */
     public void run() {
         LocalTime end = LocalTime.now()
                 .plusHours(hours)
@@ -53,12 +58,26 @@ public class CountDown
 
 
     }
+
+    /**
+     * used to set time to a specified time in the format of HH:MM:SS
+     * @param newHours
+     * @param newMins
+     * @param newSeconds
+     */
     public void pauseTime(int newHours, int newMins, int newSeconds)
     {
         hours = newHours;
         mins = newMins;
         seconds = newSeconds;
     }
+
+    /**
+     * used to set the time to a new time and automatically converts the time into the proper format
+     * @param newHours
+     * @param newMins
+     * @param newSeconds
+     */
     public void setTime(int newHours, int newMins, int newSeconds)
     {
 
@@ -83,20 +102,40 @@ public class CountDown
         mins = originalMins;
         seconds = originalSeconds;
     }
+
+    /**
+     * getter for the current time
+     * @return
+     */
     public int[] getTime()
     {
         return new int[]{hours,mins,seconds};
     }
+
+    /**
+     * resets the current time to the time that the countdown was set to
+     */
     public void resetTime()
     {
         hours = originalHours;
         mins = originalMins;
         seconds = originalSeconds;
     }
+
+    /**
+     * intialises the timer label
+     * @param timerLabel
+     */
     public void setLabels(Label timerLabel)
     {
         this.timerLabel = timerLabel;
     }
+
+    /**
+     * formats a time correctly
+     * @param remaining
+     * @return
+     */
     private String format(java.time.Duration remaining) {
         return String.format("%02d:%02d:%02d",
                 remaining.toHoursPart(),
@@ -104,15 +143,29 @@ public class CountDown
                 remaining.toSecondsPart()
         );
     }
+
+    /**
+     * getter for the timeline object
+     * @return
+     */
     public Timeline getTimeline()
     {
         return timeline;
     }
+
+    /**
+     * getter for the active bool
+     * @return
+     */
     public boolean getActive()
     {
         return Active;
     }
 
+    /**
+     * setter for the active bool
+     * @param active
+     */
     public void setActive(boolean active)
     {
         Active = active;

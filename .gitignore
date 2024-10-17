@@ -40,3 +40,4 @@ build/
 ### Database ###
 *.db
 SlugCatsDatabase.db
+/JavaDocs/
