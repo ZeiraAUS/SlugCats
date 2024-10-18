@@ -1,6 +1,7 @@
 package com.SlugCats.controller;
 
 import com.SlugCats.Main;
+import com.SlugCats.Models.GameTime;
 import com.SlugCats.gamestracking.GameDetector;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,9 @@ import com.SlugCats.Models.User;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StatisticsController {
     // Components of the Statistics window.
@@ -184,5 +188,25 @@ public class StatisticsController {
         }
 
         gameStatLabel.setText(gameStats);
+    }
+
+    private List<GameTime> GetGameTimesThisMonth()
+    {
+        GameTimeDAO _repo = new GameTimeDAO();
+        List<GameTime> sortedGameTimeList = new ArrayList<>();
+
+        List<GameTime> gameTimeList = _repo.GetGameTimeListByUser(LoginController.user.getUserId());
+        if (!gameTimeList.isEmpty()) {
+            for (int i = 0; i < gameTimeList.size(); i++) {
+                GameTime gameTime = gameTimeList.get(i);
+
+                if (gameTime.getCreatedDateTime().isBefore(LocalDateTime.now()) &&
+                        gameTime.getCreatedDateTime().isAfter(LocalDateTime.now().withDayOfMonth(1))) {
+                    sortedGameTimeList.add(gameTime);
+                }
+            }
+        }
+
+        return sortedGameTimeList;
     }
 }
