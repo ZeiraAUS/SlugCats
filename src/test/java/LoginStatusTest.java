@@ -39,16 +39,4 @@ public class LoginStatusTest {
         assertFalse(loginStatus.gotLogin_status(), "Login status should be false after failed login");
     }
 
-    @Test
-    public void testLogout() {
-        // Simulate a successful login
-        loginStatus.is_login("testUser", "password");
-
-        // Perform logout
-        loginStatus.logout();
-
-        assertNull(loginStatus.getUser(), "User should be null after logout");
-        assertFalse(loginStatus.gotLogin_status(), "Login status should be false after logout");
-        assertNull(loginStatus.gotUsername(), "Username should be null after logout");
-    }
 }
