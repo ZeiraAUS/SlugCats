@@ -27,46 +27,24 @@ import java.io.IOException;
  * The Timer Controller handles logic for the Timer Window.
  */
 public class TimerController {
+    // Components of the timer window.
     @FXML
     private BorderPane rootPane;
     @FXML
     private ImageView logoImage;
     @FXML
-    private Label gameLabel;
+    private Label gameLabel, playingLabel, timerLabel, setHourLabel, setMinuteLabel, setSecondLabel, selectgameLabel;
     @FXML
-    private Label playingLabel;
+    private Button backButton, setButton, playButton, pauseButton, resetButton, gameDetectButton;
     @FXML
-    private Button backButton;
-    @FXML
-    private Label timerLabel;
-    @FXML
-    private Label setHourLabel;
-    @FXML
-    private TextField setHourField;
-    @FXML
-    private Label setMinuteLabel;
-    @FXML
-    private TextField setMinuteField;
-    @FXML
-    private Label setSecondLabel;
-    @FXML
-    private TextField setSecondField;
-    @FXML
-    private Button setButton;
-    @FXML
-    private Button playButton;
-    @FXML
-    private Button pauseButton;
-    @FXML
-    private Button resetButton;
-    @FXML
-    private Button gameDetectButton;
-    @FXML
-    private Label selectgameLabel;
+    private TextField setHourField, setMinuteField, setSecondField;
 
     // The countdown object for the timer.
     private CountDown countdown = new CountDown();
     private String selectedGameTitle = "No Game Detected";
+
+    // Class for configuring controller components.
+    private Components components = new Components();
 
     /**
      * Initialize the Timer window.
@@ -74,8 +52,7 @@ public class TimerController {
     @FXML
     public void initialize() {
         // Initialize and configure components for the header of the window.
-        Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
-        logoImage.setImage(logo);
+        components.setLogoImage(logoImage);
         gameLabel.setText(getGameTitle());
         HBox headerBox = new HBox(20);
         VBox gameBox = new VBox(20);
@@ -117,21 +94,9 @@ public class TimerController {
 
         // Configure components for the Timer's buttons (Play, Pause and Reset).
         HBox timerButtonBox = new HBox(20);
-        Image play = new Image(getClass().getResource("/images/play.PNG").toString(),true);
-        Image pause = new Image(getClass().getResource("/images/pause.PNG").toString(),true);
-        Image reset = new Image(getClass().getResource("/images/reset.PNG").toString(),true);
-        ImageView playView = new ImageView(play);
-        ImageView pauseView = new ImageView(pause);
-        ImageView resetView = new ImageView(reset);
-        playView.setFitHeight(150.0);
-        pauseView.setFitHeight(150.0);
-        resetView.setFitHeight(150.0);
-        playView.setPreserveRatio(true);
-        pauseView.setPreserveRatio(true);
-        resetView.setPreserveRatio(true);
-        playButton.setGraphic(playView);
-        pauseButton.setGraphic(pauseView);
-        resetButton.setGraphic(resetView);
+        components.setButtonImage(playButton,"/images/play.PNG", 150);
+        components.setButtonImage(pauseButton,"/images/pause.PNG", 150);
+        components.setButtonImage(resetButton,"/images/reset.PNG",150);
         timerButtonBox.getChildren().addAll(
                 playButton,
                 pauseButton,
@@ -165,11 +130,7 @@ public class TimerController {
      */
     @FXML
     protected void onBackButtonClick() throws IOException {
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(backButton,"home-view.fxml");
     }
 
     /**

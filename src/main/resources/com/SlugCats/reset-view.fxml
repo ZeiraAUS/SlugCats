@@ -7,11 +7,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.image.ImageView?>
-
-<!--Root Pane-->
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
 
+<!--Root Pane-->
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.SlugCats.controller.ResetController" fx:id="rootPane">
     <!--HeaderBox: Holding any components at the top of the window.-->
     <HBox BorderPane.alignment="TOP_LEFT" fx:id="headerBox">
@@ -26,6 +25,7 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
+
     <!--VBox: Holding the Reset window labels and button.-->
     <VBox>
         <Label fx:id="usernameLabel" text="Username:" style="-fx-font-size: 20px;"/>

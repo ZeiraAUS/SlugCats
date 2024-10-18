@@ -31,11 +31,7 @@ public class LoginController {
     @FXML
     private ImageView logoImage;
     @FXML
-    private Label loginLabel;
-    @FXML
-    private Label usernameLabel;
-    @FXML
-    private Label passwordLabel;
+    private Label loginLabel, usernameLabel, passwordLabel;
     @FXML
     private TextField usernameField;
     @FXML
@@ -43,23 +39,20 @@ public class LoginController {
     @FXML
     private HBox buttonBox;
     @FXML
-    private Button loginButton;
-    @FXML
-    private Button registerButton;
-    @FXML
-    private Button resetButton;
+    private Button loginButton, registerButton,resetButton;
 
-    public static  User user;
+    public static User user;
+
+    // Class for configuring controller components.
+    private Components components = new Components();
 
     /**
      * Initialise the Login window's components.
      */
     @FXML
     public void initialize() {
-        // Configure the logo image.
-        Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
-        logoImage.setImage(logo);
-        // Add components of the login window to the root pane.
+        components.setLogoImage(logoImage);
+
         VBox vbox = new VBox(20);
         vbox.getChildren().addAll(
                 loginLabel,
@@ -79,12 +72,6 @@ public class LoginController {
      */
     @FXML
     protected void onLoginButtonClick() throws IOException {
-
-        //NOTE: Put your login logic here. - You can reorganise my placeholder logic if you need to.
-       /* String emailInput = emailField.toString();
-        System.out.println(emailInput);
-        String passwordInput = passwordField.toString();
-        login_status loginStatus = new login_status();*/
         boolean credentialValidity;
         if(if_already_login()!=null){
             user=if_already_login();
@@ -102,11 +89,7 @@ public class LoginController {
 
         // If credentials are valid, log them in, otherwise display a prompt.
         if (credentialValidity) {
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-            stage.setResizable(false);
-            stage.setScene(scene);
+            components.changeView(loginButton,"home-view.fxml");
         }
         else {
             // Error pop-up when user credentials are invalid.
@@ -116,7 +99,10 @@ public class LoginController {
 
     }
 
-
+    /**
+     * If user is already logged in, get their username.
+     * @return
+     */
     private User if_already_login(){
         String  username=LoginStatus.getLoggedInUsername();
         if(username==null){
@@ -134,22 +120,23 @@ public class LoginController {
      */
     @FXML
     protected void onRegisterButtonClick() throws IOException {
-        Stage stage = (Stage) registerButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("register-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(registerButton,"register-view.fxml");
     }
+
+    /**
+     * Get the user.
+     * @return
+     */
     static public User gotUser(){
         return user;
     }
 
+    /**
+     * Transitions user to reset password window.
+     * @throws IOException
+     */
     @FXML
     protected void onResetButtonClick() throws IOException {
-        Stage stage = (Stage) registerButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("reset-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(resetButton,"reset-view.fxml");
     }
 }

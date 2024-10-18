@@ -23,6 +23,7 @@
     <padding>
         <Insets bottom="20.0" left="100.0" right="100.0" top="150.0"/>
     </padding>
+
     <!--Interactable Pane: Sets components in a vertical format.-->
     <VBox BorderPane.alignment="CENTER" alignment="CENTER" spacing="20.0">
         <Label text="Login" fx:id="loginLabel" style="-fx-font-size: 48px; -fx-font-weight: bold;" alignment="CENTER"/>

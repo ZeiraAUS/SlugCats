@@ -31,15 +31,10 @@ public class HomeController {
     @FXML
     private Label usernameLabel;
     @FXML
-    private Button logoutButton;
-    @FXML
-    private Button settingsButton;
-    @FXML
-    private Button timerButton;
-    @FXML
-    private Button stopwatchButton;
-    @FXML
-    private Button statisticsButton;
+    private Button logoutButton, settingsButton, timerButton, stopwatchButton, statisticsButton;
+
+    // Class for configuring controller components.
+    private Components components = new Components();
 
     /**
      * The initialize method includes logic to add graphics and additional functionality to the window components.
@@ -47,16 +42,11 @@ public class HomeController {
     @FXML
     public void initialize() {
         // Initialise and set the logo image into the image view.
-        Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
-        logoImage.setImage(logo);
+        components.setLogoImage(logoImage);
         SetUsername();
         HBox headerBox = new HBox(20);
         VBox headerButtonsBox = new VBox(20);
-        Image settings = new Image(getClass().getResource("/images/cog.PNG").toString(),true);
-        ImageView settingsView = new ImageView(settings);
-        settingsView.setFitHeight(50.0);
-        settingsView.setPreserveRatio(true);
-        settingsButton.setGraphic(settingsView);
+        components.setButtonImage(settingsButton,"/images/cog.PNG",50);
         headerButtonsBox.getChildren().addAll(
                 logoutButton,
                 settingsButton
@@ -71,24 +61,12 @@ public class HomeController {
         // Home Screen Buttons
         HBox buttonsBox = new HBox(20);
         // Timer Button
-        Image timer = new Image(getClass().getResource("/images/hourglass.PNG").toString(),true);
-        ImageView timerView = new ImageView(timer);
-        timerView.setFitHeight(375.0);
-        timerView.setPreserveRatio(true);
-        timerButton.setGraphic(timerView);
+        components.setButtonImage(timerButton,"/images/hourglass.PNG",375);
         timerButton.setContentDisplay(ContentDisplay.TOP);
 
         // Stopwatch and Statistics Buttons
-        Image stopwatch = new Image(getClass().getResource("/images/stopwatch.PNG").toString(), true);
-        Image statistics = new Image(getClass().getResource("/images/statistics.PNG").toString(), true);
-        ImageView stopwatchView = new ImageView(stopwatch);
-        ImageView statisticsView = new ImageView(statistics);
-        stopwatchView.setFitHeight(193.0);
-        statisticsView.setFitHeight(192.0);
-        stopwatchView.setPreserveRatio(true);
-        statisticsView.setPreserveRatio(true);
-        stopwatchButton.setGraphic(stopwatchView);
-        statisticsButton.setGraphic(statisticsView);
+        components.setButtonImage(stopwatchButton,"/images/stopwatch.PNG",193);
+        components.setButtonImage(statisticsButton,"/images/statistics.PNG",192);
 
         VBox subButtonsBox = new VBox(20);
         subButtonsBox.getChildren().addAll(
@@ -118,12 +96,7 @@ public class HomeController {
      */
     @FXML
     protected void onLogoutButtonClick() throws IOException {
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        LoginStatus.logout();
-        stage.setScene(scene);
+        components.changeView(logoutButton,"login-view.fxml");
     }
 
     /**
@@ -132,37 +105,33 @@ public class HomeController {
      */
     @FXML
     protected void onTimerButtonClick() throws IOException {
-        Stage stage = (Stage) timerButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("timer-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(timerButton,"timer-view.fxml");
     }
 
+    /**
+     * Transitions user to Stopwatch window.
+     * @throws IOException
+     */
     @FXML
     protected void onStopwatchButtonClick() throws IOException {
-        Stage stage = (Stage) stopwatchButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("stopwatch-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(stopwatchButton,"stopwatch-view.fxml");
     }
 
+    /**
+     * Transitions user to Statistics window.
+     * @throws IOException
+     */
     @FXML
     protected void onStatisticsButtonClick() throws IOException {
-        Stage stage = (Stage) statisticsButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("statistics-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(statisticsButton,"statistics-view.fxml");
     }
 
+    /**
+     * Transitions user to Settings window.
+     * @throws IOException
+     */
     @FXML
     protected void onSettingsButtonClick() throws IOException {
-        Stage stage = (Stage) settingsButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("settings-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(settingsButton,"settings-view.fxml");
     }
 }

@@ -30,12 +30,11 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
+
+    <!--Statistics Pane: Holds the different tabs that contain the user's data.-->
     <TabPane fx:id="statisticsPane">
         <Tab text="Daily" fx:id="dailyTab" style="-fx-font-size: 19px;" onSelectionChanged="#onDailyTabSelection">
             <Label text="[Insert Daily Stats Here]" fx:id="dailyStatLabel" style="-fx-font-size: 18px;"/>
-        </Tab>
-        <Tab text="Weekly" fx:id="weeklyTab" style="-fx-font-size: 19px;" onSelectionChanged="#onWeeklyTabSelection">
-            <Label text="[Insert Weekly Stats Here]" fx:id="weeklyStatLabel" style="-fx-font-size: 18px;"/>
         </Tab>
         <Tab text="Monthly" fx:id="monthlyTab" style="-fx-font-size: 19px;" onSelectionChanged="#onMonthlyTabSelection">
             <Label text="[Insert Monthly Stats Here]" fx:id="monthlyStatLabel" style="-fx-font-size: 18px;"/>

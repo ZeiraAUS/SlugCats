@@ -8,8 +8,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.image.ImageView?>
 
+<!--Root Pane: Holds all other components of the stopwatch view.-->
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.SlugCats.controller.StopwatchController" fx:id="rootPane">
-    <!--Header Box-->
+    <!--Header Box: Holds header components.-->
     <HBox BorderPane.alignment="TOP_LEFT" fx:id="headerBox" spacing="20">
         <ImageView fx:id="logoImage" fitHeight="150.0" preserveRatio="true"/>
         <VBox fx:id="gameBox">
@@ -23,13 +24,13 @@
         <Button fx:id="backButton" onAction="#onBackButtonClick" style="-fx-font-size: 24px;" prefWidth="250" text="Back"/>
     </HBox>
 
-    <!--Stopwatch Box-->
+    <!--Stopwatch Box: Holds the stopwatch display and buttons.-->
     <VBox BorderPane.alignment="CENTER" fx:id="stopwatchBox" spacing="20">
         <Label fx:id="stopwatchLabel" style="-fx-font-size: 150px;" text="00:00:00"/>
         <HBox fx:id="stopwatchButtonBox" spacing="20">
-            <Button fx:id="startButton" onAction="#onStartButtonClick" text="Start" style="-fx-font-size: 24px;" prefWidth="100" prefHeight="50"/>
-            <Button fx:id="stopButton" onAction="#onStopButtonClick" text="Stop" style="-fx-font-size: 24px;" prefWidth="100" prefHeight="50"/>
-            <Button fx:id="resetButton" onAction="#onResetButtonClick" text="Reset" style="-fx-font-size: 24px;" prefWidth="100" prefHeight="50"/>
+            <Button fx:id="startButton" onAction="#onStartButtonClick" style="-fx-font-size: 24px;" prefWidth="100" prefHeight="50"/>
+            <Button fx:id="stopButton" onAction="#onStopButtonClick" style="-fx-font-size: 24px;" prefWidth="100" prefHeight="50"/>
+            <Button fx:id="resetButton" onAction="#onResetButtonClick" style="-fx-font-size: 24px;" prefWidth="100" prefHeight="50"/>
         </HBox>
     </VBox>
 

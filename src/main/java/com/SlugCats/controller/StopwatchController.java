@@ -22,30 +22,19 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Handles the stopwatch view logic.
+ */
 public class StopwatchController {
-
+    // Components for the Stopwatch window.
     @FXML
     private BorderPane rootPane;
     @FXML
     private ImageView logoImage;
     @FXML
-    private Label gameLabel;
+    private Label gameLabel, playingLabel, selectgameLabel, stopwatchLabel;
     @FXML
-    private Label playingLabel;
-    @FXML
-    private Button gameDetectButton;
-    @FXML
-    private Label selectgameLabel;
-    @FXML
-    private Button backButton;
-    @FXML
-    private Label stopwatchLabel;
-    @FXML
-    private Button startButton;
-    @FXML
-    private Button stopButton;
-    @FXML
-    private Button resetButton;
+    private Button gameDetectButton, backButton, startButton, stopButton, resetButton;
 
     // Stopwatch object for tracking time
     private Stopwatch stopwatch = new Stopwatch();
@@ -54,11 +43,16 @@ public class StopwatchController {
     // AnimationTimer for updating UI
     private AnimationTimer timer;
 
+    // Class for configuring controller components.
+    private Components components = new Components();
+
+    /**
+     * Initialize components for the stopwatch window.
+     */
     @FXML
     public void initialize() {
         // Initialize the logo and game title
-        Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(), true);
-        logoImage.setImage(logo);
+        components.setLogoImage(logoImage);
         gameLabel.setText(getGameTitle());
         HBox headerBox = new HBox(20);
         VBox gameBox = new VBox(20);
@@ -66,11 +60,8 @@ public class StopwatchController {
                 playingLabel,
                 gameLabel
         );
-        Image selectGame = new Image(getClass().getResource("/images/folder.PNG").toString(),true);
-        ImageView selectView = new ImageView(selectGame);
-        selectView.setFitHeight(25);
-        selectView.setPreserveRatio(true);
-        gameDetectButton.setGraphic(selectView);
+
+        components.setButtonImage(gameDetectButton,"/images/folder.PNG",25);
         VBox detectGameBox = new VBox(20);
         detectGameBox.getChildren().addAll(
                 selectgameLabel,
@@ -87,24 +78,9 @@ public class StopwatchController {
 
         // Configure components for the Timer's buttons (Play, Pause and Reset).
         HBox stopwatchButtonBox = new HBox(20);
-        Image play = new Image(getClass().getResource("/images/play.PNG").toString(),true);
-        Image pause = new Image(getClass().getResource("/images/pause.PNG").toString(),true);
-        Image reset = new Image(getClass().getResource("/images/reset.PNG").toString(),true);
-        ImageView playView = new ImageView(play);
-        ImageView pauseView = new ImageView(pause);
-        ImageView resetView = new ImageView(reset);
-        playView.setFitHeight(150.0);
-        pauseView.setFitHeight(150.0);
-        resetView.setFitHeight(150.0);
-        playView.setPreserveRatio(true);
-        pauseView.setPreserveRatio(true);
-        resetView.setPreserveRatio(true);
-        startButton.setText("");
-        stopButton.setText("");
-        resetButton.setText("");
-        startButton.setGraphic(playView);
-        stopButton.setGraphic(pauseView);
-        resetButton.setGraphic(resetView);
+        components.setButtonImage(startButton,"/images/play.PNG", 150);
+        components.setButtonImage(stopButton,"/images/pause.PNG", 150);
+        components.setButtonImage(resetButton,"/images/reset.PNG",150);
         stopwatchButtonBox.getChildren().addAll(
                 startButton,
                 stopButton,
@@ -142,15 +118,11 @@ public class StopwatchController {
      */
     @FXML
     protected void onBackButtonClick() throws IOException {
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(backButton,"home-view.fxml");
     }
 
     /**
-     * Start the stopwatch and timer when the start button is clicked.
+     * Start the stopwatch when the start button is clicked.
      */
     @FXML
     protected void onStartButtonClick() {

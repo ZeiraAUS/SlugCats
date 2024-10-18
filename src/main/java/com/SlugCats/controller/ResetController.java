@@ -22,6 +22,9 @@ import com.SlugCats.Models.User;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Handles the reset view's logic.
+ */
 public class ResetController {
     // Components of the Reset window.
     @FXML
@@ -29,29 +32,24 @@ public class ResetController {
     @FXML
     private ImageView logoImage;
     @FXML
-    private Button backButton;
+    private Button backButton, resetButton;
     @FXML
-    private Label resetLabel;
-    @FXML
-    private Label usernameLabel;
+    private Label resetLabel, usernameLabel, passwordLabel, confirmPasswordLabel;
     @FXML
     private TextField usernameField;
     @FXML
-    private Label passwordLabel;
-    @FXML
-    private PasswordField passwordField;
-    @FXML
-    private Label confirmPasswordLabel;
-    @FXML
-    private PasswordField confirmPasswordField;
-    @FXML
-    private Button resetButton;
+    private PasswordField passwordField, confirmPasswordField;
 
+    // Class for configuring controller components.
+    private Components components = new Components();
+
+    /**
+     * Initialize the Reset window components.
+     */
     @FXML
     public void initialize() {
         // Initialise and set the logo image into the image view.
-        Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
-        logoImage.setImage(logo);
+        components.setLogoImage(logoImage);
         HBox headerBox = new HBox(20);
         headerBox.getChildren().addAll(
                 logoImage,
@@ -81,15 +79,19 @@ public class ResetController {
         rootPane.setRight(formFieldBox);
     }
 
+    /**
+     * Transitions user back to log in screen.
+     * @throws IOException
+     */
     @FXML
     protected void onBackButtonClick() throws IOException {
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(backButton,"login-view.fxml");
     }
 
+    /**
+     * Reset the user's password with their new one.
+     * @throws IOException
+     */
     @FXML
     protected void onResetButtonClick() throws IOException {
         String username = usernameField.getText();
@@ -97,18 +99,14 @@ public class ResetController {
         String confirmPassword = confirmPasswordField.getText();
 
         if (Objects.equals(password, confirmPassword)) {
-            // Reset Password Logic uijvwhbcnwijcbewiubceiw :)
             //Change resetPassword = new Change();
             boolean isChanged=Change.resetpassword(username, password,confirmPassword );
             if (isChanged) {
-            Stage stage = (Stage) resetButton.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-            stage.setResizable(false);
-            stage.setScene(scene);}else{
-                confirmPasswordLabel.setText("Not find user");
+                components.changeView(resetButton,"login-view.fxml");
+            }
+            else{
+                confirmPasswordLabel.setText("User Does Not Exist");
                 confirmPasswordLabel.setTextFill(Color.RED);
-
             }
         }
         else {
