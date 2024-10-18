@@ -20,7 +20,7 @@ public class LoginStatusTest {
         loginStatus = new login_status();
         this.register= new register();
         // Assuming User class has a constructor that takes username and password
-
+        register.register_a_user("NewUser",  "password123", "password123","a","asa","asa");
     }
     @Test
     public void testRegisterUserExists() throws SQLException {
@@ -31,7 +31,7 @@ public class LoginStatusTest {
     @Test
 
     public void testRegisterSuccess() throws SQLException {
-        assertTrue(register.register_a_user("NewUser",  "password123", "password123","a","asa","asa"));
+        assertTrue(register.register_a_user("NewUser1",  "password123", "password123","a","asa","asa"));
 
     }
 
