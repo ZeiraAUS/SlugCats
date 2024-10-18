@@ -30,41 +30,24 @@ public class StatisticsController {
     @FXML
     private ImageView logoImage;
     @FXML
-    private Button backButton;
+    private Button backButton, selectButton;
     @FXML
-    private Label statisticsLabel;
+    private Label statisticsLabel, dailyStatLabel, weeklyStatLabel, monthlyStatLabel, yearlyStatLabel, gameLabel, gameStatLabel;
     @FXML
-    private Tab dailyTab;
-    @FXML
-    private Label dailyStatLabel;
-    @FXML
-    private Tab weeklyTab;
-    @FXML
-    private Label weeklyStatLabel;
-    @FXML
-    private Tab monthlyTab;
-    @FXML
-    private Label monthlyStatLabel;
-    @FXML
-    private Tab yearlyTab;
-    @FXML
-    private Label yearlyStatLabel;
-    @FXML
-    private Tab gameTab;
-    @FXML
-    private Button selectButton;
-    @FXML
-    private Label gameLabel;
-    @FXML
-    private Label gameStatLabel;
+    private Tab dailyTab, monthlyTab, yearlyTab, gameTab;
 
     private String displayName;
 
+    // Class for configuring controller components.
+    private Components components = new Components();
+
+    /**
+     * Initialize Statistics window components.
+     */
     @FXML
     public void initialize() {
         // Initialise and set the logo image into the image view.
-        Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
-        logoImage.setImage(logo);
+        components.setLogoImage(logoImage);
         HBox headerBox = new HBox(20);
         headerBox.getChildren().addAll(
                 logoImage,
@@ -75,14 +58,9 @@ public class StatisticsController {
 
         Insets tabPadding = new Insets(25.0,0.0,0.0,15.0);
         dailyStatLabel.setPadding(tabPadding);
-        weeklyStatLabel.setPadding(tabPadding);
         monthlyStatLabel.setPadding(tabPadding);
         yearlyStatLabel.setPadding(tabPadding);
-        Image selectGame = new Image(getClass().getResource("/images/folder.PNG").toString(),true);
-        ImageView selectView = new ImageView(selectGame);
-        selectView.setFitHeight(25);
-        selectView.setPreserveRatio(true);
-        selectButton.setGraphic(selectView);
+        components.setButtonImage(selectButton,"/images/folder.PNG",25);
         HBox selectGameBox = new HBox();
         selectGameBox.getChildren().addAll(
                 selectButton,
@@ -99,10 +77,9 @@ public class StatisticsController {
         TabPane statisticsPane = new TabPane();
         statisticsPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
         statisticsPane.setTabMinHeight(200.0);
-        statisticsPane.setTabMinWidth(165);
+        statisticsPane.setTabMinWidth(215);
         statisticsPane.getTabs().addAll(
                 dailyTab,
-                weeklyTab,
                 monthlyTab,
                 yearlyTab,
                 gameTab
@@ -110,15 +87,19 @@ public class StatisticsController {
         rootPane.setCenter(statisticsPane);
     }
 
+    /**
+     * Transitions user back to home view.
+     * @throws IOException
+     */
     @FXML
     protected void onBackButtonClick() throws IOException {
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(backButton,"home-view.fxml");
     }
 
+    /**
+     * Allows user to select a specific game to view the statistics of.
+     * @throws IOException
+     */
     @FXML
     protected void onSelectButtonClick() throws IOException {
         GameDetector gameDetector = new GameDetector();
@@ -147,6 +128,11 @@ public class StatisticsController {
 
     // NOTE TO TEAM: So these methods detect when a tab has been selected.
     // Put logic here to load in the statistics for each tab. You can use \n for the labels for next line as well.
+
+    /**
+     * When user selects the daily tab, display statistics for that day.
+     * @throws IOException
+     */
     @FXML
     protected void onDailyTabSelection() throws IOException {
         String dailyStats = "[Insert Daily Stats Here]";
@@ -154,15 +140,10 @@ public class StatisticsController {
         dailyStatLabel.setText(dailyStats.toString());
     }
 
-    @FXML
-    protected void onWeeklyTabSelection() throws IOException {
-        String weeklyStats = "[Insert Weekly Stats Here]";
-
-        //Logic to get and set weekly stats here etc.
-
-        weeklyStatLabel.setText(weeklyStats);
-    }
-
+    /**
+     * When user selects the monthly tab, display statistics for that month.
+     * @throws IOException
+     */
     @FXML
     protected void onMonthlyTabSelection() throws IOException {
         String monthlyStats = "[Insert Monthly Stats Here]";
@@ -172,6 +153,10 @@ public class StatisticsController {
         monthlyStatLabel.setText(monthlyStats);
     }
 
+    /**
+     * When user selects the yearly tab, display statistics for that year.
+     * @throws IOException
+     */
     @FXML
     protected void onYearlyTabSelection() throws IOException {
         String yearlyStats = "[Insert Yearly Stats Here]";
@@ -181,6 +166,10 @@ public class StatisticsController {
         yearlyStatLabel.setText(yearlyStats);
     }
 
+    /**
+     * When user selects the game tab, display statistics for the game tab once they have also selected a game to view.
+     * @throws IOException
+     */
     @FXML
     protected void onGameTabSelection() throws IOException {
         String gameStats = "[Insert Game Specific Stats Here]";

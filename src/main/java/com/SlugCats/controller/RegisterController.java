@@ -30,35 +30,16 @@ public class RegisterController {
     @FXML
     private ImageView logoImage;
     @FXML
-    private Button backButton;
+    private Button backButton, registerButton;
     @FXML
-    private Label registrationLabel;
+    private Label registrationLabel, usernameLabel, passwordLabel, confirmPasswordLabel, firstNameLabel, lastNameLabel, emailLabel;
     @FXML
-    private Label usernameLabel;
+    private TextField usernameField, firstNameField, lastNameField, emailField;
     @FXML
-    private TextField usernameField;
-    @FXML
-    private Label passwordLabel;
-    @FXML
-    private PasswordField passwordField;
-    @FXML
-    private Label confirmPasswordLabel;
-    @FXML
-    private PasswordField confirmPasswordField;
-    @FXML
-    private Label firstNameLabel;
-    @FXML
-    private TextField firstNameField;
-    @FXML
-    private Label lastNameLabel;
-    @FXML
-    private TextField lastNameField;
-    @FXML
-    private Label emailLabel;
-    @FXML
-    private TextField emailField;
-    @FXML
-    private Button registerButton;
+    private PasswordField passwordField, confirmPasswordField;
+
+    // Class for configuring controller components.
+    private Components components = new Components();
 
     /**
      * Initialize the Register window.
@@ -66,8 +47,7 @@ public class RegisterController {
     @FXML
     public void initialize() {
         // Initialize the header components.
-        Image logo = new Image(getClass().getResource("/images/snailcat.PNG").toString(),true);
-        logoImage.setImage(logo);
+        components.setLogoImage(logoImage);
         HBox headerBox = new HBox(20);
         headerBox.getChildren().addAll(
                 logoImage,
@@ -112,11 +92,7 @@ public class RegisterController {
      */
     @FXML
     protected void onBackButtonClick() throws IOException {
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(backButton,"login-view.fxml");
     }
 
     /**
@@ -136,10 +112,6 @@ public class RegisterController {
         register.register_a_user(username,Password,ConfirmPassword,firstName,lastName,email);
 
         // Transition back to Log-in Window.
-        Stage stage = (Stage) registerButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setResizable(false);
-        stage.setScene(scene);
+        components.changeView(registerButton,"login-view.fxml");
     }
 }

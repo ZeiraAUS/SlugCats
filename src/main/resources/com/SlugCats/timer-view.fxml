@@ -18,6 +18,7 @@
                    preserveRatio="true"
                    BorderPane.alignment="TOP_LEFT"
         />
+
         <!--GameBox: Holds the title of the game currently being tracked.-->
         <VBox fx:id="gameBox">
             <Label fx:id="playingLabel" style="-fx-font-size: 24px;" text="Currently Tracking:"/>
@@ -32,9 +33,11 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
+
     <!--Timer Box: Holds the timer's components.-->
     <VBox BorderPane.alignment="CENTER" fx:id="timerBox">
         <Label fx:id="timerLabel" style="-fx-font-size: 150px;" text="00:00:00"/>
+
         <!--TimerSetBox: Holds the labels and fields for the user to set a time.-->
         <HBox fx:id="timerSetBox">
             <Label fx:id="setHourLabel" text="Hours:" style="-fx-font-size: 24px;"/>
@@ -45,6 +48,7 @@
             <TextField fx:id="setSecondField" style="-fx-font-size: 24px;" prefWidth="75.0"/>
             <Button fx:id="setButton" onAction="#onSetButtonClick" prefHeight="50.0" text="Set" prefWidth="75.0" style="-fx-font-size: 24px;"/>
         </HBox>
+
         <!--TimerButtonBox: Holds the buttons for the timer.-->
         <HBox fx:id="timerButtonBox">
             <Button fx:id="playButton" onAction="#onPlayButtonClick"/>
