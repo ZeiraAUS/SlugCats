@@ -151,9 +151,7 @@ public class StatisticsController {
     protected void onDailyTabSelection() throws IOException {
         String dailyStats = "[Insert Daily Stats Here]";
 
-        //Logic to get and set daily stats here etc.
-
-        dailyStatLabel.setText(dailyStats);
+        dailyStatLabel.setText(dailyStats.toString());
     }
 
     @FXML

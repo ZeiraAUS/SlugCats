@@ -8,12 +8,14 @@ import java.time.format.DateTimeFormatter;
 
 public class playtimetracker {
     private String processName;
+    private long playTime;
 
     public playtimetracker(String processName) {
         this.processName = processName;
+        this.playTime = 0;
     }
 
-    public void trackPlayTime() {
+    public long trackPlayTime() {
         while (true) {
             long loopstartTime = System.currentTimeMillis();
 
@@ -25,6 +27,9 @@ public class playtimetracker {
 
                 if (startDateTime != null) {
                     Duration runtime = Duration.between(startDateTime, LocalDateTime.now());
+
+                    playTime = runtime.getSeconds();
+                    playtimemonitoring.trackedPlayTime = playTime;
 
                     System.out.println(processName + ": " +
                             runtime.toHoursPart() + " H " +
@@ -46,12 +51,15 @@ public class playtimetracker {
                 }
 
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
+                break;
             }
 
             System.out.print("\033[H\033[2J");
             System.out.flush();
         }
+
+        return playTime;
     }
 
     public static String getProcessStartTime(String processName) {

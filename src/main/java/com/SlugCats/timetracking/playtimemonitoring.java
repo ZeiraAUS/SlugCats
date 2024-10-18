@@ -3,6 +3,7 @@ package com.SlugCats.timetracking;
 public class playtimemonitoring {
     private static playtimetracker tracker;
     private static Thread trackerThread;
+    public static long trackedPlayTime;
 
     private playtimemonitoring() {}
 
@@ -27,4 +28,9 @@ public class playtimemonitoring {
     public static boolean isTracking() {
         return trackerThread != null && trackerThread.isAlive();
     }
+
+    public static long getTrackedPlayTime() {
+        return trackedPlayTime;
+    }
+
 }

@@ -1,8 +1,12 @@
 package com.SlugCats.controller;
 
 import com.SlugCats.Main;
+import com.SlugCats.Models.Game;
+import com.SlugCats.Models.GameTime;
+import com.SlugCats.Models.User;
 import com.SlugCats.gamestracking.GameDetector;
 import com.SlugCats.gamestracking.SaveGame;
+import com.SlugCats.timetracking.GameTimeManager;
 import com.SlugCats.timetracking.Stopwatch;
 import com.SlugCats.timetracking.playtimemonitoring;
 import javafx.animation.AnimationTimer;
@@ -21,6 +25,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+
+import static com.SlugCats.controller.LoginController.gotUser;
 
 public class StopwatchController {
 
@@ -190,29 +196,73 @@ public class StopwatchController {
 
         if (selectedFile != null && selectedFile.exists()) {
             String gameName = selectedFile.getName();
-            String displayName;
-
-            int lastDotIndex = gameName.lastIndexOf('.');
-            if (lastDotIndex != -1) {
-                displayName = gameName.substring(0, lastDotIndex);
-            } else {
-                displayName = gameName;
-            }
+            String displayName = extractGameTitle(gameName);
 
             selectedGameTitle = displayName;
             String processName = selectedFile.getName();
 
-            SaveGame newGame = new SaveGame();
+            saveGameDetails(selectedGameTitle, processName);
 
-            newGame.saveGame(selectedGameTitle, processName);
+            Game existingGame = new SaveGame().gotGame(selectedGameTitle);
+            int gameId = (existingGame != null) ? existingGame.getGameId() : -1;
 
-            playtimemonitoring.startTracking(selectedFile.getName());
+            User user = gotUser();
+            int userId = user.getUserId();
+
+            GameTimeManager newGameTime = new GameTimeManager();
+            newGameTime.saveGameTime(userId, gameId);
+
+            playtimemonitoring.startTracking(processName);
+
+            Thread trackerThread = new Thread(() -> {
+                try {
+                    while (playtimemonitoring.isTracking()) {
+                        Thread.sleep(1000);
+                    }
+
+                    long lastSessionPlayTime = playtimemonitoring.getTrackedPlayTime();
+
+                    if (lastSessionPlayTime != -1) {
+                        GameTimeManager gameTimeManager = new GameTimeManager();
+
+                        GameTime existingGameTime = gameTimeManager.getGameTime(userId, gameId);
+                        long totalPlayTime = existingGameTime != null ? existingGameTime.getLastSessionPlaytime() : 0;
+
+                        totalPlayTime += lastSessionPlayTime;
+
+                        gameTimeManager.updateGameTime(userId, gameId, totalPlayTime, lastSessionPlayTime);
+
+                        System.out.println("Tracked playtime updated: " + lastSessionPlayTime + " seconds.");
+                    } else {
+                        System.out.println("Error retrieving tracked playtime.");
+                    }
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            trackerThread.setDaemon(true);
+            trackerThread.start();
 
         } else {
             selectedGameTitle = "No Game Detected";
         }
 
-        // Update the label to show just the game name
         gameLabel.setText(selectedGameTitle);
+    }
+
+    private String extractGameTitle(String gameName) {
+        int lastDotIndex = gameName.lastIndexOf('.');
+        if (lastDotIndex != -1) {
+            return gameName.substring(0, lastDotIndex);
+        } else {
+            return gameName;
+        }
+    }
+
+    private void saveGameDetails(String gameTitle, String processName) {
+        SaveGame newGame = new SaveGame();
+        newGame.saveGame(gameTitle, processName);
     }
 }

@@ -2,6 +2,8 @@ package com.SlugCats.gamestracking;
 
 import com.SlugCats.DAOs.GameDAO;
 import com.SlugCats.Models.Game;
+import com.SlugCats.Models.User;
+
 import java.util.List;
 
 public class SaveGame {
@@ -21,15 +23,21 @@ public class SaveGame {
         } else {
             System.out.println("Game already exists: " + gameName);
         }
+
     }
 
-    private Game getExistingGame(String gameName) {
+    public Game getExistingGame(String gameName) {
         for (Game game : gameDAO.GetGameList()) {
             if (game.getGameName().equalsIgnoreCase(gameName)) {
                 return game;
             }
         }
+
         return null;
+    }
+
+    public Game gotGame(String gameTitle) {
+        return getExistingGame(gameTitle);
     }
 }
 
