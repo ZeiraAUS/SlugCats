@@ -262,7 +262,6 @@ public class TimerController {
 
                         gameTimeManager.updateGameTime(userId, gameId, totalPlayTime, lastSessionPlayTime);
 
-                        System.out.println("Tracked playtime updated: " + lastSessionPlayTime + " seconds.");
                     } else {
                         System.out.println("Error retrieving tracked playtime.");
                     }
