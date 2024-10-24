@@ -8,10 +8,19 @@ import java.util.List;
 public class GameTimeManager {
     private GameTimeDAO gameTimeDAO;
 
+    /**
+     * Constructs a new GameTimeManager and initializes the GameTimeDAO for database interactions.
+     */
     public GameTimeManager() {
         this.gameTimeDAO = new GameTimeDAO();
     }
 
+    /**
+     * Saves a new game time entry for a specific user and game if it does not already exist.
+     *
+     * @param userId The ID of the user.
+     * @param gameId The ID of the game.
+     */
     public void saveGameTime(int userId, int gameId) {
         List<GameTime> userGameTimes = gameTimeDAO.GetGameTimeListByUser(userId);
 
@@ -26,6 +35,14 @@ public class GameTimeManager {
         }
     }
 
+    /**
+     * Updates the game time entry for a specific user and game with the total and session playtime.
+     *
+     * @param userId The ID of the user.
+     * @param gameId The ID of the game.
+     * @param totalPlaytime The total playtime for the game.
+     * @param sessionPlaytime The playtime for the current session.
+     */
     public void updateGameTime(int userId, int gameId, long totalPlaytime, long sessionPlaytime) {
         List<GameTime> userGameTimes = gameTimeDAO.GetGameTimeListByUser(userId);
 
@@ -43,6 +60,13 @@ public class GameTimeManager {
         }
     }
 
+    /**
+     * Retrieves the game time entry for a specific user and game.
+     *
+     * @param userId The ID of the user.
+     * @param gameId The ID of the game.
+     * @return The GameTime object containing the playtime information, or null if not found.
+     */
     public GameTime getGameTime(int userId, int gameId) {
         List<GameTime> gameTimes = gameTimeDAO.GetGameTimeListByUser(userId);
 
