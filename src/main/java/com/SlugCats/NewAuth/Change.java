@@ -6,7 +6,7 @@ import com.SlugCats.Models.salt;
 
 public class Change {
     public static boolean resetpassword(String username,String password,String ConfirmPassword){// not complete
-        if (!password.equals(ConfirmPassword)) {
+        if (!password.equals(ConfirmPassword)) {// Check if passwords match
             System.out.println("Password and confirm password do not match.");
             return false;
 
@@ -20,7 +20,7 @@ public class Change {
 
         SaltDAO saltDAO=new SaltDAO();
         salt salt=saltDAO.GetSalt(username);
-
+        //use exist salt
         if(salt==null){
             System.out.println("User not found");
             return false;

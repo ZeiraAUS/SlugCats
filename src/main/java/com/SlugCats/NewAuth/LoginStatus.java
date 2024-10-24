@@ -3,10 +3,11 @@ package com.SlugCats.NewAuth;
 import java.io.*;
 
 public class LoginStatus {
+    //to check login status and keep login
     private static final String LOGIN_STATUS_FILE = "login_status.txt";
 
 
-    public static String getLoggedInUsername() {
+    public static String getLoggedInUsername() {// method to check login status and username
         File file = new File(LOGIN_STATUS_FILE);
         if (file.exists()) {
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -19,7 +20,7 @@ public class LoginStatus {
     }
 
 
-    public static void setLoginStatus(String username) {
+    public static void setLoginStatus(String username) {//set login status, needn't input username and password again
         File file = new File(LOGIN_STATUS_FILE);
         if (username != null && !username.isEmpty()) {
 
@@ -37,7 +38,7 @@ public class LoginStatus {
             }
         }
     }
-    public static void logout() {
+    public static void logout() {//delect the login status
         File file = new File(LOGIN_STATUS_FILE);
         if (file.exists()) {
             if (file.delete()) {
