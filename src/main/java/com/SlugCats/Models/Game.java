@@ -5,12 +5,23 @@ public class Game {
     private String GameName;
     private String GameProcess;
 
+    /**
+     * Constructor for the Game object.
+     * @param gameId The ID of the Game object.
+     * @param gameName The name of game.
+     * @param gameProcess The process name of the game.
+     */
     public Game(int gameId, String gameName, String gameProcess) {
         GameId = gameId;
         GameName = gameName;
         GameProcess = gameProcess;
     }
 
+    /**
+     * Constructor for the Game object.
+     * @param gameName The name of game.
+     * @param gameProcess The process name of the game.
+     */
     public Game(String gameName, String gameProcess) {
         GameName = gameName;
         GameProcess = gameProcess;
@@ -18,9 +29,6 @@ public class Game {
 
     public int getGameId() {
         return GameId;
-    }
-    public void setGameId(int gameId) {
-        GameId = gameId;
     }
 
     public String getGameName() {

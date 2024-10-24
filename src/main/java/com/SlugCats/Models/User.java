@@ -8,6 +8,15 @@ public class User {
     private String LastName;
     private String Email;
 
+    /**
+     * The constructor for the User object.
+     * @param userId The ID of the User object.
+     * @param userName The username of the User.
+     * @param password The password of the User.
+     * @param firstName The first name of the User.
+     * @param lastName The last name of the User.
+     * @param email The email of the User.
+     */
     public User(int userId, String userName, String password, String firstName, String lastName, String email) {
         UserId = userId;
         UserName = userName;
@@ -17,6 +26,14 @@ public class User {
         Email = email;
     }
 
+    /**
+     * The constructor for the User object.
+     * @param userName The username of the User.
+     * @param password The password of the User.
+     * @param firstName The first name of the User.
+     * @param lastName The last name of the User.
+     * @param email The email of the User.
+     */
     public User(String userName, String password, String firstName, String lastName, String email) {
         UserName = userName;
         Password = password;

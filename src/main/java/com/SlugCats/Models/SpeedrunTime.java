@@ -10,6 +10,14 @@ public class SpeedrunTime {
     private long LastRunTime;
     private LocalDateTime CreatedDateTime;
 
+    /**
+     * Constructor for the SpeedrunTime object.
+     * @param speedrunTimeId The ID of the SpeedrunTime object.
+     * @param userId The ID of the related User object.
+     * @param gameId The ID of the related Game object.
+     * @param bestTime The best speedrun time.
+     * @param lastRunTime the speedrun time of the last run.
+     */
     public SpeedrunTime(int speedrunTimeId, int userId, int gameId, long bestTime, long lastRunTime) {
         SpeedrunTimeId = speedrunTimeId;
         UserId = userId;
@@ -19,6 +27,15 @@ public class SpeedrunTime {
         CreatedDateTime = LocalDateTime.now();
     }
 
+    /**
+     * Constructor for the SpeedrunTime object.
+     * @param speedrunTimeId The ID of the SpeedrunTime object.
+     * @param userId The ID of the related User object.
+     * @param gameId The ID of the related Game object.
+     * @param bestTime The best speedrun time.
+     * @param lastRunTime the speedrun time of the last run.
+     * @param createdDateTime The DateTime that the SpeedrunTime was created at.
+     */
     public SpeedrunTime(int speedrunTimeId, int userId, int gameId, long bestTime, long lastRunTime, LocalDateTime createdDateTime) {
         SpeedrunTimeId = speedrunTimeId;
         UserId = userId;
@@ -28,6 +45,13 @@ public class SpeedrunTime {
         CreatedDateTime = createdDateTime;
     }
 
+    /**
+     * Constructor for the SpeedrunTime object.
+     * @param userId The ID of the related User object.
+     * @param gameId The ID of the related Game object.
+     * @param bestTime The best speedrun time.
+     * @param lastRunTime the speedrun time of the last run.
+     */
     public SpeedrunTime(int userId, int gameId, long bestTime, long lastRunTime) {
         UserId = userId;
         GameId = gameId;

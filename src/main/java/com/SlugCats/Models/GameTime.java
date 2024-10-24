@@ -10,6 +10,14 @@ public class GameTime {
     private long LastSessionPlaytime;
     private LocalDateTime CreatedDateTime;
 
+    /**
+     * Constructor for the GameTime object.
+     * @param gameTimeId The ID of the GameTime object.
+     * @param userId The ID of the related User object.
+     * @param gameId The ID of the related Game object.
+     * @param totalPlaytime The total playtime.
+     * @param lastSessionPlaytime The playtime of the last session.
+     */
     public GameTime(int gameTimeId, int userId, int gameId, long totalPlaytime, long lastSessionPlaytime) {
         GameTimeId = gameTimeId;
         UserId = userId;
@@ -19,6 +27,15 @@ public class GameTime {
         CreatedDateTime = LocalDateTime.now();
     }
 
+    /**
+     * Constructor for the GameTime object.
+     * @param gameTimeId The ID of the GameTime object.
+     * @param userId The ID of the related User object.
+     * @param gameId The ID of the related Game object.
+     * @param totalPlaytime The total playtime.
+     * @param lastSessionPlaytime The playtime of the last session.
+     * @param createdDateTime The DateTime that the GameTime was created at.
+     */
     public GameTime(int gameTimeId, int userId, int gameId, long totalPlaytime, long lastSessionPlaytime, LocalDateTime createdDateTime) {
         GameTimeId = gameTimeId;
         UserId = userId;
@@ -28,6 +45,13 @@ public class GameTime {
         CreatedDateTime = createdDateTime;
     }
 
+    /**
+     * Constructor for the GameTime object.
+     * @param userId The ID of the related User object.
+     * @param gameId The ID of the related Game object.
+     * @param totalPlaytime The total playtime.
+     * @param lastSessionPlaytime The playtime of the last session.
+     */
     public GameTime(int userId, int gameId, long totalPlaytime, long lastSessionPlaytime) {
         UserId = userId;
         GameId = gameId;
