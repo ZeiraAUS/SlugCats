@@ -43,6 +43,7 @@ public class Stopwatch {
     public void reset() {
         startTime = 0;
         stopTime = 0;
+        totalTime = 0;
         isRunning = false;
     }
 
