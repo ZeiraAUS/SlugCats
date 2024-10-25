@@ -42,14 +42,5 @@
         <Tab text="Yearly" fx:id="yearlyTab" style="-fx-font-size: 19px;" onSelectionChanged="#onYearlyTabSelection">
             <Label text="[Insert Yearly Stats Here]" fx:id="yearlyStatLabel" style="-fx-font-size: 18px;"/>
         </Tab>
-        <Tab text="Game Specific" fx:id="gameTab" style="-fx-font-size: 19px;" onSelectionChanged="#onGameTabSelection">
-            <VBox fx:id="gameTabBox">
-                <HBox fx:id="selectGameBox">
-                    <Button text="Select Game" fx:id="selectButton" onAction="#onSelectButtonClick"/>
-                    <Label text="   Game Selected: [Game Selected]" fx:id="gameLabel" style="-fx-font-size: 20px;"/>
-                </HBox>
-                <Label text="[Insert Game Specific Stats Here]" fx:id="gameStatLabel" style="-fx-font-size: 18px;"/>
-            </VBox>
-        </Tab>
     </TabPane>
 </BorderPane>
