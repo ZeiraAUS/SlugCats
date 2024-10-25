@@ -41,11 +41,11 @@
         <!--TimerSetBox: Holds the labels and fields for the user to set a time.-->
         <HBox fx:id="timerSetBox">
             <Label fx:id="setHourLabel" text="Hours:" style="-fx-font-size: 24px;"/>
-            <TextField fx:id="setHourField" style="-fx-font-size: 24px;" prefWidth="75.0"/>
+            <TextField fx:id="setHourField" style="-fx-font-size: 24px;" prefWidth="75.0" text="00"/>
             <Label fx:id="setMinuteLabel" text="Minutes:" style="-fx-font-size: 24px;"/>
-            <TextField fx:id="setMinuteField" style="-fx-font-size: 24px;" prefWidth="75.0"/>
+            <TextField fx:id="setMinuteField" style="-fx-font-size: 24px;" prefWidth="75.0" text="00"/>
             <Label fx:id="setSecondLabel" text="Seconds:" style="-fx-font-size: 24px;"/>
-            <TextField fx:id="setSecondField" style="-fx-font-size: 24px;" prefWidth="75.0"/>
+            <TextField fx:id="setSecondField" style="-fx-font-size: 24px;" prefWidth="75.0" text="00"/>
             <Button fx:id="setButton" onAction="#onSetButtonClick" prefHeight="50.0" text="Set" prefWidth="75.0" style="-fx-font-size: 24px;"/>
         </HBox>
 

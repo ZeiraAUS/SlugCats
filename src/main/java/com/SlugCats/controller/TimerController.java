@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import com.SlugCats.gamestracking.GameDetector;
 import com.SlugCats.gamestracking.SaveGame;
@@ -47,11 +48,11 @@ public class TimerController {
     private TextField setHourField, setMinuteField, setSecondField;
 
     // The countdown object for the timer.
-    private CountDown countdown = new CountDown();
+    private final CountDown countdown = new CountDown();
     private String selectedGameTitle = "No Game Detected";
 
     // Class for configuring controller components.
-    private Components components = new Components();
+    private final Components components = new Components();
 
     /**
      * Initialize the Timer window.
@@ -198,15 +199,39 @@ public class TimerController {
     /**
      * Set the user's input for the timer.
      */
-    protected void setupCountDown()
-    {
+    protected void setupCountDown() {
         countdown.setLabels(timerLabel);
-        int hour = Integer.parseInt(setHourField.getText());
-        int min = Integer.parseInt(setMinuteField.getText());
-        int seconds = Integer.parseInt(setSecondField.getText());
-        countdown.setTime(hour,min,seconds);
-        countdown.setActive(true);
+        String hour = setHourField.getText();
+        String min = setMinuteField.getText();
+        String seconds = setSecondField.getText();
+
+        // Check if all inputs are valid integers
+        if (isValidInteger(hour) && isValidInteger(min) && isValidInteger(seconds)) {
+            int hourTime = Integer.parseInt(hour);
+            int minTime = Integer.parseInt(min);
+            int secTime = Integer.parseInt(seconds);
+
+            countdown.setTime(hourTime, minTime, secTime);
+            countdown.setActive(true);
+        } else {
+            setButton.setTextFill(Color.RED);
+        }
     }
+
+    /**
+     * Check time validity.
+     * @param time String to check.
+     * @return Validity of time.
+     */
+    private boolean isValidInteger(String time) {
+        try {
+            Integer.parseInt(time);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 
     /**
      * Set the timer's display label as the countdown functions.
