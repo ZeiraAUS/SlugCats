@@ -55,7 +55,7 @@ public class StopwatchController {
 
     // Stopwatch object for tracking time
     private Stopwatch stopwatch = new Stopwatch();
-    private String selectedGameTitle = "No Game Detected";
+    private String selectedGameTitle = "Select .EXE";
 
     // AnimationTimer for updating UI
     private AnimationTimer timer;

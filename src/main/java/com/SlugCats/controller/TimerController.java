@@ -49,7 +49,7 @@ public class TimerController {
 
     // The countdown object for the timer.
     private final CountDown countdown = new CountDown();
-    private String selectedGameTitle = "No Game Detected";
+    private String selectedGameTitle = "Select .EXE";
 
     // Class for configuring controller components.
     private final Components components = new Components();
