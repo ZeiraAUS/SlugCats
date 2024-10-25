@@ -41,11 +41,6 @@ public class playtimetracker {
 
                     playTime = runtime.getSeconds();
                     playtimemonitoring.trackedPlayTime = playTime;
-
-                    System.out.println(processName + ": " +
-                            runtime.toHoursPart() + " H " +
-                            runtime.toMinutesPart() + " M " +
-                            runtime.toSecondsPart() + " S ");
                 }
             }
             else {
