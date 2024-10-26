@@ -69,11 +69,7 @@ public class TimerController {
                 gameLabel
         );
 
-        Image selectGame = new Image(getClass().getResource("/images/folder.PNG").toString(),true);
-        ImageView selectView = new ImageView(selectGame);
-        selectView.setFitHeight(25);
-        selectView.setPreserveRatio(true);
-        gameDetectButton.setGraphic(selectView);
+        components.setButtonImage(gameDetectButton,"/images/folder.PNG",25);
         VBox detectGameBox = new VBox(20);
         detectGameBox.getChildren().addAll(
                 selectgameLabel,
@@ -193,7 +189,6 @@ public class TimerController {
             setTimeLabel();
             countdown.run();
         }
-
     }
 
     /**
@@ -244,6 +239,10 @@ public class TimerController {
         );
     }
 
+    /**
+     * Open explorer for user to select a game to track.
+     * @throws IOException
+     */
     @FXML
     protected void onGameDetectButtonClick() throws IOException {
         playtimemonitoring.stopTracking();
@@ -277,7 +276,6 @@ public class TimerController {
                     while (playtimemonitoring.isTracking()) {
                         Thread.sleep(1000);
                     }
-
                     long lastSessionPlayTime = playtimemonitoring.getTrackedPlayTime();
 
                     if (lastSessionPlayTime != -1) {
@@ -293,22 +291,23 @@ public class TimerController {
                     } else {
                         System.out.println("Error retrieving tracked playtime.");
                     }
-
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             });
-
             trackerThread.setDaemon(true);
             trackerThread.start();
-
         } else {
             selectedGameTitle = "No Game Detected";
         }
-
         gameLabel.setText(selectedGameTitle);
     }
 
+    /**
+     * Extract game name from the selected executable file.
+     * @param gameName Name of the EXE
+     * @return The name of the game without file type.
+     */
     private String extractGameTitle(String gameName) {
         int lastDotIndex = gameName.lastIndexOf('.');
         if (lastDotIndex != -1) {
@@ -318,6 +317,11 @@ public class TimerController {
         }
     }
 
+    /**
+     * Save the selected game.
+     * @param gameTitle Name of the Game
+     * @param processName Name of the Detected Process
+     */
     private void saveGameDetails(String gameTitle, String processName) {
         SaveGame newGame = new SaveGame();
         newGame.saveGame(gameTitle, processName);

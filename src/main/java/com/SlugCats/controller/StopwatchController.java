@@ -28,8 +28,10 @@ import java.io.IOException;
 
 import static com.SlugCats.controller.LoginController.gotUser;
 
+/**
+ * Handles logic for stopwatch view.
+ */
 public class StopwatchController {
-
     @FXML
     private BorderPane rootPane;
     @FXML
@@ -49,6 +51,9 @@ public class StopwatchController {
     // Class for configuring controller components.
     private Components components = new Components();
 
+    /**
+     * Initializes stopwatch view components and additional logic.
+     */
     @FXML
     public void initialize() {
         // Initialize the logo and game title
@@ -154,6 +159,9 @@ public class StopwatchController {
         stopwatchLabel.setText(stopwatch.getelapsedTime());
     }
 
+    /**
+     * On Game Detect button click, open explorer to allow user to select a game to track.
+     */
     @FXML
     protected void onGameDetectButtonClick() {
         playtimemonitoring.stopTracking();
@@ -219,6 +227,11 @@ public class StopwatchController {
         gameLabel.setText(selectedGameTitle);
     }
 
+    /**
+     * Extract the name of the executable selected by user to track.
+     * @param gameName Name of the executable.
+     * @return The game name without file type.
+     */
     private String extractGameTitle(String gameName) {
         int lastDotIndex = gameName.lastIndexOf('.');
         if (lastDotIndex != -1) {
@@ -228,6 +241,11 @@ public class StopwatchController {
         }
     }
 
+    /**
+     * Save the tracked game.
+     * @param gameTitle Name of the game.
+     * @param processName Name of the process detected.
+     */
     private void saveGameDetails(String gameTitle, String processName) {
         SaveGame newGame = new SaveGame();
         newGame.saveGame(gameTitle, processName);
