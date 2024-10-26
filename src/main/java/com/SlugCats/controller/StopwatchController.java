@@ -191,6 +191,9 @@ public class StopwatchController {
 
     @FXML
     protected void onGameDetectButtonClick() {
+        playtimemonitoring.stopTracking();
+        playtimemonitoring.trackedPlayTime = 0;
+
         GameDetector gameDetector = new GameDetector();
         File selectedFile = gameDetector.choosefile();
 
