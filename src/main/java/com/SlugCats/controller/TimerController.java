@@ -246,6 +246,9 @@ public class TimerController {
 
     @FXML
     protected void onGameDetectButtonClick() throws IOException {
+        playtimemonitoring.stopTracking();
+        playtimemonitoring.trackedPlayTime = 0;
+
         GameDetector gameDetector = new GameDetector();
         File selectedFile = gameDetector.choosefile();
 

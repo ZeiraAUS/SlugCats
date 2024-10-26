@@ -34,8 +34,8 @@ public class playtimemonitoring {
     public static void stopTracking() {
         if (trackerThread != null && trackerThread.isAlive()) {
             trackerThread.interrupt();
-            tracker = null;
         }
+        tracker = null;
     }
 
     /**
